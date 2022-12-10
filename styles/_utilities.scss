@@ -1,0 +1,17 @@
+.cursor {
+  &-pointer {
+    cursor: pointer;
+  }
+}
+
+//overriding maps
+$theme-colors: (
+  "primary": $primary,
+  "dark": $text-dark,
+);
+
+// custom map
+$custom-colors: ();
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
