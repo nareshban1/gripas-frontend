@@ -4,6 +4,38 @@
   }
 }
 
+.price {
+  &-container {
+    width: 150px;
+  }
+}
+
+.btn-outline-white {
+  @include button-outline-variant(white, $primary, white, white, white);
+}
+
+.btn-white {
+  @include button-variant(
+    white,
+    //background
+    white,
+    //border
+    $primary,
+    //color
+    $primary,
+    //hoverbackground
+    white,
+    //hoverborder
+    white,
+    //hovercolor
+    $primary,
+    //activebackground
+    $primary,
+    //activeborder
+    white//activecolor
+  );
+}
+
 //overriding maps
 $theme-colors: (
   "primary": $primary,
