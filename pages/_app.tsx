@@ -20,11 +20,11 @@ export default function App({ Component, pageProps }: AppProps) {
         ></link>
       </Head>
       <Navbar />
-      <main className="main container">
+      <main className="main overflow-y-hidden bg-primary">
         <Component {...pageProps} />
       </main>
 
-      <footer className="footer"></footer>
+      <footer className="footer bg-primary"></footer>
     </>
   );
 }

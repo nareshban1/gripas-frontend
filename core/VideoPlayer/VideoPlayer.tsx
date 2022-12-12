@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import { AiFillPlayCircle } from "react-icons/ai";
+import { VscPlay } from "react-icons/vsc";
 
 function VideoPlayerModal(props: any) {
   return (
@@ -26,11 +26,10 @@ const VideoPlayer = () => {
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <>
-      <AiFillPlayCircle
-        size={48}
-        className="text-primary ms-2 cursor-pointer"
-        onClick={() => setModalShow(true)}
-      />
+      <button className="btn btn-outline-light btn-text-white rounded-0 ms-3">
+        <VscPlay size={24} onClick={() => setModalShow(true)} />
+      </button>
+
       <VideoPlayerModal show={modalShow} onHide={() => setModalShow(false)} />
     </>
   );

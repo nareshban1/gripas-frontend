@@ -13,7 +13,7 @@ export default function Home() {
         <link rel="icon" href="/logo.svg" />
       </Head>
       <HeroSection />
-      <WhatWeDo />
+      {/* <WhatWeDo />
       <InfoCard
         title="We have helped over a 1000+ clients "
         subContent="Launch your company or product to the next level"
@@ -61,7 +61,7 @@ export default function Home() {
             Send Resume
           </button>
         </div>
-      </InfoCard>
+      </InfoCard> */}
     </div>
   );
 }
