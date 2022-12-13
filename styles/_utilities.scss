@@ -23,7 +23,7 @@
 }
 
 .hero-sub-text {
-  font-size: 1rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
 }
@@ -61,12 +61,40 @@
   align-items: center;
 }
 
+.workSection {
+  min-height: 48rem;
+}
+
 .overflow {
   &-y {
     &-hidden {
       overflow-y: hidden;
     }
   }
+}
+
+.service-list {
+  display: inline-block;
+  position: relative;
+}
+
+.service-list:after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  text-align: center;
+  transform: scaleX(0);
+  height: 5px;
+  bottom: 0;
+  left: 0;
+  background-color: $text-dark;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.service-list:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 .nav-link-items {
@@ -135,7 +163,9 @@ $theme-colors: (
 );
 
 // custom map
-$custom-colors: ();
+$custom-colors: (
+  "yellow": $secondary,
+);
 
 // Merge the maps
 $theme-colors: map-merge($theme-colors, $custom-colors);

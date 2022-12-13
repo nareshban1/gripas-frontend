@@ -3,70 +3,31 @@ import React from "react";
 
 const WhatWeDo = () => {
   return (
-    <div className="my-5 pt-5">
-      <h2 className=" fw-bold lh-1 mb-3 text-dark lh-base text-center">
-        What We
-        <span className="text-primary"> Do</span>
-      </h2>
-      <div className="row mt-5">
-        <div className="col-12 col-md-4 ">
-          <div className="text-center w-100 p-4">
-            <Image
-              src="/serviceIcon.svg"
-              alt="service Name"
-              width={106}
-              height={106}
-            />
-            <h4 className="fw-bold text-primary my-3">Grapics Designing</h4>
-            <p className="text-dark">
-              We specialize on "Social Media Marketing" with three package
-              available, currently. Further, we believe in driving business
-              through creativity.
-            </p>
+    <section className="bg-white">
+      <div className="container py-5 workSection d-flex flex-column justify-content-center">
+        <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text ">
+          What We
+          <span className="text-dark"> Do</span>
+        </h2>
+
+        <div className="row ">
+          <div className="col-md-7 col-12">
+            <ul className="p-0">
+              <li className="text-primary  display-5 fw-bold my-4 cursor-pointer service-list active">
+                Social Media Marketing
+              </li>
+              <li className="text-dark display-5 fw-bold my-4 cursor-pointer service-list">
+                Influencer Marketing
+              </li>
+              <li className="text-dark display-5 fw-bold my-4 cursor-pointer service-list">
+                Advertisement
+              </li>
+            </ul>
           </div>
-        </div>
-        <div className="col-12 col-md-4">
-          <div className="text-center w-100 p-4">
-            <Image
-              src="/serviceIcon.svg"
-              alt="service Name"
-              width={106}
-              height={106}
-            />
-            <h4 className="fw-bold text-primary my-3">Grapics Designing</h4>
-            <p className="text-dark">
-              We specialize on "Social Media Marketing" with three package
-              available, currently. Further, we believe in driving business
-              through creativity.
-            </p>
-          </div>
-        </div>
-        <div className="col-12 col-md-4">
-          <div className="text-center w-100 p-4">
-            <Image
-              src="/serviceIcon.svg"
-              alt="service Name"
-              width={106}
-              height={106}
-            />
-            <h4 className="fw-bold text-primary my-3">Grapics Designing</h4>
-            <p className="text-dark">
-              We specialize on "Social Media Marketing" with three package
-              available, currently. Further, we believe in driving business
-              through creativity.
-            </p>
-          </div>
+          <div className="col-md-5 col-12"></div>
         </div>
       </div>
-      <div className="text-center mt-5">
-        <button
-          type="button"
-          className="btn btn-primary px-4 py-2 me-md-2 rounded-pill"
-        >
-          View More
-        </button>
-      </div>
-    </div>
+    </section>
   );
 };
 
