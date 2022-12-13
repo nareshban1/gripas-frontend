@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
         ></link>
       </Head>
       <Navbar />
-      <main className="main overflow-y-hidden bg-primary">
+      <main className="main overflow-y-hidden">
         <Component {...pageProps} />
       </main>
 

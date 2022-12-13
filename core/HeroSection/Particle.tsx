@@ -19,64 +19,100 @@ const Particle = () => {
     []
   );
   return (
-    <div className="particles-container m-0">
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        loaded={particlesLoaded}
-        options={{
-          background: {
-            color: {
-              value: "",
-            },
+    <Particles
+      id="tsparticles"
+      className="particles-container m-0"
+      init={particlesInit}
+      loaded={particlesLoaded}
+      options={{
+        background: {
+          color: {
+            value: "",
           },
-          fpsLimit: 24,
-          fullScreen: false,
-          particles: {
-            color: {
-              value: ["#ffffff"],
+        },
+        fpsLimit: 24,
+        fullScreen: false,
+        particles: {
+          color: {
+            value: ["#ffffff"],
+          },
+          links: {
+            color: "#ffffff",
+            distance: 150,
+            enable: false,
+            opacity: 0.5,
+            width: 1,
+          },
+          collisions: {
+            enable: false,
+          },
+          move: {
+            direction: "bottom",
+            enable: true,
+            outModes: {
+              default: "out",
             },
-            links: {
-              color: "#ffffff",
-              distance: 150,
-              enable: false,
-              opacity: 0.5,
-              width: 1,
-            },
-            collisions: {
-              enable: false,
-            },
-            move: {
-              direction: "bottom",
+            random: true,
+            speed: 1,
+            straight: false,
+          },
+          number: {
+            density: {
               enable: true,
-              outModes: {
-                default: "out",
-              },
-              random: true,
-              speed: 1,
-              straight: false,
+              area: 1000,
             },
-            number: {
-              density: {
+            value: 80,
+          },
+          opacity: {
+            value: 0.8,
+          },
+          shape: {
+            type: "square",
+          },
+          size: {
+            value: { min: 1, max: 8 },
+          },
+        },
+        interactivity: {
+          detect_on: "window",
+          events: {
+            onHover: {
+              enable: true,
+              mode: "grab",
+              parallax: {
                 enable: true,
-                area: 1000,
+                force: 60,
+                smooth: 10,
               },
-              value: 80,
             },
-            opacity: {
-              value: 0.8,
+            onClick: {
+              enable: true,
+              mode: "push",
             },
-            shape: {
-              type: "square",
+            resize: true,
+          },
+          modes: {
+            grab: {
+              distance: 200,
+              lineLinked: {
+                opacity: 0.5,
+              },
             },
-            size: {
-              value: { min: 1, max: 5 },
+            repulse: {
+              distance: 200,
+            },
+            push: {
+              particles_nb: 4,
+            },
+            remove: {
+              particles_nb: 2,
             },
           },
-          detectRetina: true,
-        }}
-      />
-    </div>
+        },
+
+        detectRetina: true,
+      }}
+    />
   );
 };
 

@@ -26,8 +26,11 @@ const VideoPlayer = () => {
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <>
-      <button className="btn btn-outline-light btn-text-white rounded-0 ms-3">
-        <VscPlay size={24} onClick={() => setModalShow(true)} />
+      <button
+        className="btn btn-outline-light btn-text-white rounded-0 ms-3"
+        onClick={() => setModalShow(true)}
+      >
+        <VscPlay size={24} />
       </button>
 
       <VideoPlayerModal show={modalShow} onHide={() => setModalShow(false)} />
