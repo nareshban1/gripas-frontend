@@ -55,6 +55,12 @@
   }
 }
 
+.info-section {
+  min-height: 32rem;
+  display: flex;
+  align-items: center;
+}
+
 .overflow {
   &-y {
     &-hidden {
@@ -125,6 +131,7 @@
 $theme-colors: (
   "primary": $primary,
   "dark": $text-dark,
+  "secondary": $secondary,
 );
 
 // custom map

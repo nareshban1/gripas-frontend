@@ -1,6 +1,7 @@
 import Head from "next/head";
 import HeroSection from "../core/HeroSection/HeroSection";
 import InfoCard from "../core/InfoCard/InfoCard";
+import InfoSection from "../core/InfoSection/InfoSection";
 import Packages from "../core/Packages/Packages";
 import WhatWeDo from "../core/WhatWeDo/WhatWeDo";
 
@@ -13,6 +14,7 @@ export default function Home() {
         <link rel="icon" href="/logo.svg" />
       </Head>
       <HeroSection />
+      <InfoSection />
       {/* <WhatWeDo />
       <InfoCard
         title="We have helped over a 1000+ clients "
