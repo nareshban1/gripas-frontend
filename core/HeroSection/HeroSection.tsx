@@ -7,6 +7,7 @@ import type { Container, Engine } from "tsparticles-engine";
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import Particle from "./Particle";
+import AnimateInView from "../../components/AnimateInView/AnimateInView";
 const HeroSection = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
     console.log(engine);
@@ -26,28 +27,30 @@ const HeroSection = () => {
   return (
     <div className="bg-primary py-5 position-relative">
       <Particle />
-      <div className="container mx-auto py-5 my-5 bg-transparent position-relative">
-        <div className="row flex-lg-row align-items-center g-5 py-5 w-100 m-0 py-5 my-4 ">
-          <div className="col-12 col-lg-8 col-xl-7 ps-0 z-index">
-            <h1 className="display-3 fw-bold lh-1 mb-3 text-white lh-base ">
-              Driving business through{" "}
-              <span className="text-white text-decoration-underline">
-                creativity
-              </span>
-            </h1>
-            <p className="lead text-white fw-medium mb-5 hero-sub-text">
-              Our Vision is to empower youngsters and bring latest automation
-              technologies.
-            </p>
-            <div className="text-right d-flex">
-              <button className="btn btn-outline-white rounded-0 px-4 py-3 nav-link-text d-flex align-items-center">
-                Get Started <CgArrowLongRight className="ms-2 long-arrow" />
-              </button>
-              <VideoPlayer />
+      <AnimateInView>
+        <div className="container mx-auto py-5 my-5 bg-transparent position-relative">
+          <div className="row flex-lg-row align-items-center g-5 py-5 w-100 m-0 py-5 my-4 ">
+            <div className="col-12 col-lg-8 col-xl-7 ps-0 z-index">
+              <h1 className="display-3 fw-bold lh-1 mb-3 text-white lh-base ">
+                Driving business through{" "}
+                <span className="text-white text-decoration-underline">
+                  creativity
+                </span>
+              </h1>
+              <p className="lead text-white fw-medium mb-5 hero-sub-text">
+                Our Vision is to empower youngsters and bring latest automation
+                technologies.
+              </p>
+              <div className="text-right d-flex">
+                <button className="btn btn-outline-white rounded-0 px-4 py-3 nav-link-text d-flex align-items-center">
+                  Get Started <CgArrowLongRight className="ms-2 long-arrow" />
+                </button>
+                <VideoPlayer />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </AnimateInView>
     </div>
   );
 };

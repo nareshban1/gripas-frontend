@@ -22,6 +22,11 @@
   letter-spacing: 0.1rem;
 }
 
+.spaced-text {
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
 .hero-sub-text {
   font-size: 1.2rem;
   text-transform: uppercase;
@@ -98,7 +103,7 @@
   height: 5px;
   bottom: 0;
   left: 0;
-  background-color: $text-dark;
+  background-color: $primary;
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
@@ -138,6 +143,25 @@
 .long-arrow {
   height: 20px;
   width: 50px;
+}
+
+.product {
+  &-card {
+    height: 25rem;
+  }
+  &-image {
+    height: 35rem;
+    width: 100%;
+  }
+}
+
+.portfolio-view {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #19262ec9;
 }
 
 .btn-outline-white {
