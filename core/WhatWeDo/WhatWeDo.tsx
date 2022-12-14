@@ -1,7 +1,32 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+const services = [
+  {
+    name: "Social Media Marketing",
+    image: "/hero.svg",
+    id: 1,
+  },
+  {
+    name: "Video Advertisements",
+    image: "/video.svg",
+    id: 2,
+  },
+  {
+    name: "Tiktok Marketing",
+    image: "/Tiktok.svg",
+    id: 3,
+  },
+  {
+    name: "Short Comercial Advertisements",
+    image: "/commercial.svg",
+    id: 4,
+  },
+];
 
 const WhatWeDo = () => {
+  const [selectedService, setSelectedService] = useState(services?.[0]);
+  console.log(selectedService);
   return (
     <section className="bg-white">
       <div className="container py-5 workSection d-flex flex-column justify-content-center">
@@ -10,21 +35,64 @@ const WhatWeDo = () => {
           <span className="text-dark"> Do</span>
         </h2>
 
-        <div className="row ">
-          <div className="col-md-7 col-12">
+        <div className="row d-flex ">
+          <div className="col-lg-7 col-12 order-1 order-md-1">
             <ul className="p-0">
-              <li className="text-primary  display-5 fw-bold my-4 cursor-pointer service-list active">
-                Social Media Marketing
-              </li>
-              <li className="text-dark display-5 fw-bold my-4 cursor-pointer service-list">
-                Influencer Marketing
-              </li>
-              <li className="text-dark display-5 fw-bold my-4 cursor-pointer service-list">
-                Advertisement
-              </li>
+              {services.map((service) => (
+                <li
+                  key={service.id}
+                  className={` display-5 fw-bold my-4 cursor-pointer service-list-alt  ${
+                    selectedService.id === service.id
+                      ? "active text-primary "
+                      : "service-list"
+                  }`}
+                  onClick={() => setSelectedService(service)}
+                >
+                  {service.name}
+                  {selectedService.id === service.id && (
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={selectedService?.id}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{
+                          duration: 0.2,
+                        }}
+                        className="h-100 w-100 position-relative"
+                      >
+                        <p className="lead fw-medium text-dark mt-2">
+                          We specialize on "Social Media Marketing" with three
+                          package available, currently. Further, we believe in
+                          driving business through creativity.{" "}
+                        </p>
+                      </motion.div>
+                    </AnimatePresence>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="col-md-5 col-12"></div>
+          <div className="col-lg-5 col-12 order-0 order-lg-2 workSection-image my-lg-0 my-4">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedService?.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{
+                  duration: 0.2,
+                }}
+                className="h-100 w-100 position-relative"
+              >
+                <Image
+                  src={selectedService?.image}
+                  alt={selectedService.name}
+                  fill
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

@@ -65,6 +65,12 @@
   min-height: 48rem;
 }
 
+@media screen and (max-width: 1024px) {
+  .workSection-image {
+    min-height: 20rem;
+  }
+}
+
 .overflow {
   &-y {
     &-hidden {
@@ -74,6 +80,11 @@
 }
 
 .service-list {
+  display: inline-block;
+  position: relative;
+}
+
+.service-list-alt {
   display: inline-block;
   position: relative;
 }

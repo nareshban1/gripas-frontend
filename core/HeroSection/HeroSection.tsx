@@ -28,7 +28,7 @@ const HeroSection = () => {
       <Particle />
       <div className="container mx-auto py-5 my-5 bg-transparent position-relative">
         <div className="row flex-lg-row align-items-center g-5 py-5 w-100 m-0 py-5 my-4 ">
-          <div className="col-lg-6 ps-0 z-index">
+          <div className="col-12 col-lg-8 col-xl-7 ps-0 z-index">
             <h1 className="display-3 fw-bold lh-1 mb-3 text-white lh-base ">
               Driving business through{" "}
               <span className="text-white text-decoration-underline">
