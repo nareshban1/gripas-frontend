@@ -38,7 +38,7 @@ const Portfolio = () => {
           <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text ">
             Our Portfolio
           </h2>
-          <div className="row row-cols-2 g-5 my-3">
+          <div className="row row-cols-1 row-cols-lg-2 g-5 my-3">
             {portfolioItems.map((item) => (
               <motion.div
                 layoutId={item.id}
@@ -47,7 +47,12 @@ const Portfolio = () => {
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="position-relative product-card">
-                  <Image src={item?.image} alt={item.name} fill />
+                  <Image
+                    src={item?.image}
+                    alt={item.name}
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
                   <motion.h3
                     layoutId={item.name}
                     className="position-absolute p-4 spaced-text fw-bold display-6 text-white"

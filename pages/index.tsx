@@ -1,10 +1,12 @@
 import Head from "next/head";
-import AnimateInView from "../components/AnimateInView/AnimateInView";
+import Link from "next/link";
+import { CgArrowLongRight } from "react-icons/cg";
+import BlogsLanding from "../core/Blogs/BlogsLanding";
 import HeroSection from "../core/HeroSection/HeroSection";
-import InfoCard from "../core/InfoCard/InfoCard";
 import InfoSection from "../core/InfoSection/InfoSection";
 import Packages from "../core/Packages/Packages";
 import Portfolio from "../core/PortFolio/Portfolio";
+import Testemoonials from "../core/Testemonials/Testemoonials";
 import WhatWeDo from "../core/WhatWeDo/WhatWeDo";
 
 export default function Home() {
@@ -22,6 +24,32 @@ export default function Home() {
       <InfoSection />
       <WhatWeDo />
       <Portfolio />
+      <Packages />
+      <Testemoonials />
+      <BlogsLanding />
+      <div className="py-5">
+        <div className="container py-5">
+          <h2 className=" fw-bold lh-1 m-0 text-white lh-base text-start hero-sub-text ">
+            Oppurtunity
+          </h2>
+          <h3 className="display-6 fw-bold lh-1 my-3 text-white lh-base">
+            Are you a Freelancer?
+          </h3>
+          <p className="lead text-white fw-medium mb-5 hero-sub-text">
+            Our Vision is to empower youngsters and bring latest automation
+            technologies.
+          </p>
+          <div className="mt-4 d-flex">
+            <Link
+              href="/freelancer"
+              className="btn btn-outline-white rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
+            >
+              Contact Us
+              <CgArrowLongRight className="ms-2 long-arrow" />
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

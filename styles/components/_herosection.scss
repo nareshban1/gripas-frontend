@@ -2,6 +2,10 @@
   &-section {
     height: calc(100vh - 120px);
   }
+  &-main {
+    font-size: 4rem;
+    text-transform: capitalize;
+  }
   &-sub {
     &-text {
       font-size: 1rem;

@@ -16,13 +16,10 @@
   }
 }
 
-
-
 .spaced-text {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
 }
-
 
 .btn-text-white {
   &:hover {
@@ -57,8 +54,6 @@
   align-items: center;
 }
 
-
-
 .overflow {
   &-y {
     &-hidden {
@@ -66,8 +61,6 @@
     }
   }
 }
-
-
 
 .nav-link-items {
   font-size: 0.75rem;
@@ -118,6 +111,10 @@
   left: 0;
   right: 0;
   background-color: #19262ec9;
+}
+
+.testimonial {
+  min-height: 15rem;
 }
 
 .btn-outline-white {

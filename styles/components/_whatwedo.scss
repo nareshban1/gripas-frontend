@@ -12,8 +12,9 @@
   &-list {
     position: relative;
     transition: margin 300ms ease-in-out;
-
+    color: $text-dark-100;
     &:hover {
+      color: $text-dark;
       margin-left: 1rem;
     }
   }
