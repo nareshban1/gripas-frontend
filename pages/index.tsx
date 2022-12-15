@@ -19,9 +19,7 @@ export default function Home() {
         <link rel="icon" href="/logo.svg" />
       </Head>
       <HeroSection />
-
       <InfoSection />
-
       <WhatWeDo />
       <Portfolio />
     </div>
