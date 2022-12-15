@@ -1,0 +1,12 @@
+.hero {
+  &-section {
+    height: calc(100vh - 120px);
+  }
+  &-sub {
+    &-text {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+    }
+  }
+}

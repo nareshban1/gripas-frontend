@@ -1,0 +1,24 @@
+.workSection {
+  min-height: 48rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .workSection-image {
+    min-height: 20rem;
+  }
+}
+
+.service {
+  &-list {
+    position: relative;
+    transition: margin 300ms ease-in-out;
+
+    &:hover {
+      margin-left: 1rem;
+    }
+  }
+  &-info {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+}

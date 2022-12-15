@@ -45,7 +45,7 @@ const WhatWeDo = () => {
                 {services.map((service) => (
                   <li
                     key={service.id}
-                    className={` display-5 fw-bold my-4 cursor-pointer service-list-alt  ${
+                    className={`display-lg-5 display-6 fw-bold  my-4 cursor-pointer  ${
                       selectedService.id === service.id
                         ? "active text-primary "
                         : "service-list"
@@ -57,16 +57,16 @@ const WhatWeDo = () => {
                       <AnimatePresence mode="wait">
                         <motion.div
                           key={selectedService?.id}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
+                          initial={{ opacity: 0, y: 0 ,x:-10}}
+                          animate={{ opacity: 1, y: 0 , x:0 }}
+                          exit={{ opacity: 0, y: 0, x:-10 }}
                           transition={{
                             duration: 0.2,
                           }}
                           className="h-100 w-100 position-relative"
                         >
-                          <p className="lead fw-medium text-dark mt-2">
-                            We specialize on "Social Media Marketing" with three
+                          <p className="service-info fw-md-medium text-dark mt-2">
+                            We specialize on &quot;Social Media Marketing&quot; with three
                             package available, currently. Further, we believe in
                             driving business through creativity.{" "}
                           </p>
@@ -81,9 +81,9 @@ const WhatWeDo = () => {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={selectedService?.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
+                  initial={{ opacity: 0, y: 0 ,x:100}}
+                  animate={{ opacity: 1, y: 0 , x:0 }}
+                  exit={{ opacity: 0, y: 0, x:-100 }}
                   transition={{
                     duration: 0.2,
                   }}

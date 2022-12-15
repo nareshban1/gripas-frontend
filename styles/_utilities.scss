@@ -16,22 +16,13 @@
   }
 }
 
-.nav-link-text {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-}
+
 
 .spaced-text {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
 }
 
-.hero-sub-text {
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-}
 
 .btn-text-white {
   &:hover {
@@ -61,20 +52,12 @@
 }
 
 .info-section {
-  min-height: 32rem;
+  min-height: 28rem;
   display: flex;
   align-items: center;
 }
 
-.workSection {
-  min-height: 48rem;
-}
 
-@media screen and (max-width: 1024px) {
-  .workSection-image {
-    min-height: 20rem;
-  }
-}
 
 .overflow {
   &-y {
@@ -84,34 +67,7 @@
   }
 }
 
-.service-list {
-  display: inline-block;
-  position: relative;
-}
 
-.service-list-alt {
-  display: inline-block;
-  position: relative;
-}
-
-.service-list:after {
-  content: "";
-  position: absolute;
-  width: 80%;
-  text-align: center;
-  transform: scaleX(0);
-  height: 5px;
-  bottom: 0;
-  left: 0;
-  background-color: $primary;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
-}
-
-.service-list:hover:after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
 
 .nav-link-items {
   font-size: 0.75rem;
