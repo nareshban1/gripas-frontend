@@ -4,6 +4,7 @@ import { CgArrowLongRight } from "react-icons/cg";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import PortfolioParallax from "./PortfolioParallax";
 
 const portfolioItems = [
   {
@@ -26,6 +27,7 @@ const portfolioItems = [
     image: "/tiktok.jpg",
     id: "4",
   },
+
 ];
 
 const Portfolio = () => {
@@ -33,81 +35,46 @@ const Portfolio = () => {
 
   return (
     <section className="bg-white py-5">
-      <AnimateInView>
-        <div className="container py-5 workSection d-flex flex-column justify-content-start">
-          <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text ">
-            Our Portfolio
-          </h2>
-          <div className="row row-cols-1 row-cols-lg-2 g-5 my-3">
-            {portfolioItems.map((item) => (
-              <motion.div
-                layoutId={item.id}
-                onClick={() => setSelected(item)}
-                className="col cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="position-relative product-card">
-                  <Image
-                    src={item?.image}
-                    alt={item.name}
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
-                  <motion.h3
-                    layoutId={item.name}
-                    className="position-absolute p-4 spaced-text fw-bold display-6 text-white"
-                  >
-                    {item.name}
-                  </motion.h3>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          <AnimatePresence>
-            {selected && (
-              <motion.div
-                layoutId={selected.id}
-                className="portfolio-view"
-                onClick={() => setSelected(null)}
-              >
-                <div className="position-relative h-100 d-flex flex-column align-items-center justify-content-center container">
-                  <div className="product-image overflow-hidden position-relative">
-                    <Image
-                      src={selected?.image}
-                      alt={selected.name}
-                      fill
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-                  <div className="position-relative">
-                    <div className="p-4">
-                      <motion.h3
-                        layoutId={selected.name}
-                        className="spaced-text fw-bold display-6 text-white"
-                      >
-                        {selected.name}
-                      </motion.h3>
-                      <motion.h4 className="fw-regular  text-white">
-                        We specialize on "Social Media Marketing" with three
-                        package available, currently. Further, we believe in
-                        driving business through creativity.
-                      </motion.h4>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          <div className="mt-4 d-flex">
-            <Link
-              href="/portfolio"
-              className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-            >
-              View More
-              <CgArrowLongRight className="ms-2 long-arrow" />
-            </Link>
-          </div>
+      <AnimateInView className="container pt-5  d-flex flex-column justify-content-start">
+        <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text ">
+          What have we worked on
+        </h2>
+      </AnimateInView>
+      <section className="mb-3 mt-4">
+        {/* <PortfolioParallax baseVelocity={-5}>
+          {portfolioItems.map((item) => (
+            <span key={item.id}>
+              <Image
+                src={item.image}
+                alt={item.name}
+                height={300}
+                width={600}
+              ></Image>
+            </span>
+          ))}
+        </PortfolioParallax> */}
+        <PortfolioParallax baseVelocity={5}>
+          {portfolioItems.map((item) => (
+            <span key={item.id}>
+              <Image
+                src={item.image}
+                alt={item.name}
+                height={300}
+                width={600}
+              ></Image>
+            </span>
+          ))}
+        </PortfolioParallax>
+      </section>
+      <AnimateInView className="container pb-5  d-flex flex-column justify-content-start">
+        <div className="mt-4 d-flex">
+          <Link
+            href="/portfolio"
+            className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
+          >
+            View More
+            <CgArrowLongRight className="ms-2 long-arrow" />
+          </Link>
         </div>
       </AnimateInView>
     </section>
