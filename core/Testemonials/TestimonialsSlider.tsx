@@ -78,7 +78,7 @@ const TestimonialsSlider = () => {
   // detect it as an entirely new image. So you can infinitely paginate as few as 1 images.
   const reviewIndex = wrap(0, data.length, page);
 
-  const paginate = (newDirection: number) => {
+  const paginate: any = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
   };
   return (

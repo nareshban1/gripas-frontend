@@ -43,7 +43,7 @@ const BlogsLanding = () => {
                 <Image
                   src={item?.image}
                   alt={item.name}
-                  height={250}
+                  height={350}
                   width={400}
                   style={{ objectFit: "cover", width: "100%" }}
                 />

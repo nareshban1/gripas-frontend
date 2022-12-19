@@ -1,10 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import PortfolioParallax from "./PortfolioParallax";
 
 const portfolioItems = [
   {
@@ -27,7 +25,6 @@ const portfolioItems = [
     image: "/tiktok.jpg",
     id: "4",
   },
-
 ];
 
 const Portfolio = () => {
@@ -35,38 +32,54 @@ const Portfolio = () => {
 
   return (
     <section className="bg-white py-5">
-      <AnimateInView className="container pt-5  d-flex flex-column justify-content-start">
+      <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
         <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text ">
-          What have we worked on
+          Portfolio
         </h2>
-      </AnimateInView>
-      <section className="mb-3 mt-4">
-        {/* <PortfolioParallax baseVelocity={-5}>
-          {portfolioItems.map((item) => (
-            <span key={item.id}>
-              <Image
-                src={item.image}
-                alt={item.name}
-                height={300}
-                width={600}
-              ></Image>
-            </span>
-          ))}
-        </PortfolioParallax> */}
-        <PortfolioParallax baseVelocity={5}>
-          {portfolioItems.map((item) => (
-            <span key={item.id}>
-              <Image
-                src={item.image}
-                alt={item.name}
-                height={300}
-                width={600}
-              ></Image>
-            </span>
-          ))}
-        </PortfolioParallax>
-      </section>
-      <AnimateInView className="container pb-5  d-flex flex-column justify-content-start">
+        <h3 className="display-6 fw-bold lh-1 my-3 text-dark lh-base">
+          What have we worked on
+        </h3>
+        <div className="masnory-container d-flex g-5 position-relative my-5">
+          <div className=" row g-5 masnory-item-container position-relative h-100">
+            {[...portfolioItems].splice(0, 2).map((item) => (
+              <div className="col-12 ">
+                <div className="masnory-item">
+                  <div className="masnory-item-image">
+                    <Image src={item.image} alt={item.name} fill />
+                  </div>
+                  <div className="masnory-item-description mt-3">
+                    <h4 className="spaced-text fw-bold">{item.name}</h4>
+                    <p className="service-info fw-md-medium text-dark my-2">
+                      We specialize on &quot;Social Media Marketing&quot; with
+                      three package available, currently. Further, we believe in
+                      driving business through creativity.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="row g-5 masnory-item-container position-relative mt-5">
+            {[...portfolioItems].splice(2, 4).map((item) => (
+              <div className="col-12 ">
+                <div className="masnory-item">
+                  <div className="masnory-item-image">
+                    <Image src={item.image} alt={item.name} fill />
+                  </div>
+                  <div className="masnory-item-description mt-3">
+                    <h4 className="spaced-text fw-bold">{item.name}</h4>
+                    <p className="service-info fw-md-medium text-dark my-2">
+                      We specialize on &quot;Social Media Marketing&quot; with
+                      three package available, currently. Further, we believe in
+                      driving business through creativity.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-4 d-flex">
           <Link
             href="/portfolio"

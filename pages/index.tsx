@@ -30,7 +30,7 @@ export default function Home() {
       <div className="py-5">
         <div className="container py-5">
           <h2 className=" fw-bold lh-1 m-0 text-white lh-base text-start hero-sub-text ">
-            Oppurtunity
+            Opportunity
           </h2>
           <h3 className="display-6 fw-bold lh-1 my-3 text-white lh-base">
             Are you a Freelancer?

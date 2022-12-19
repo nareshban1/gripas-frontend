@@ -35,17 +35,18 @@ const WhatWeDo = () => {
       <AnimateInView>
         <div className="container py-5 workSection d-flex flex-column justify-content-center">
           <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text ">
-            What We
-            <span className="text-dark"> Do</span>
+            Services
           </h2>
-
+          <h3 className="display-6 fw-bold lh-1 my-3 text-dark lh-base">
+            What We Do
+          </h3>
           <div className="row d-flex ">
             <div className="col-lg-7 col-12 order-1 order-md-1">
               <ul className="p-0">
                 {services.map((service) => (
                   <li
                     key={service.id}
-                    className={`display-5 fw-bold  my-4 cursor-pointer  ${
+                    className={`display-5 fw-bold  my-5 cursor-pointer  ${
                       selectedService.id === service.id
                         ? "active text-primary "
                         : "service-list"
@@ -93,6 +94,7 @@ const WhatWeDo = () => {
                     src={selectedService?.image}
                     alt={selectedService.name}
                     fill
+                    style={{ objectFit: "contain" }}
                   />
                 </motion.div>
               </AnimatePresence>
