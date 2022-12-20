@@ -1,8 +1,8 @@
-import "../styles/main.scss";
+import { Poppins } from '@next/font/google';
 import type { AppProps } from "next/app";
-import Navbar from "../core/Navbar/Navbar";
 import Head from "next/head";
-import { Poppins } from '@next/font/google'
+import Navbar from "../core/Navbar/Navbar";
+import "../styles/main.scss";
 
 
 const poppins = Poppins({
@@ -21,8 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <main className={`main overflow-y-hidden ${poppins.className}`} >
         <Component {...pageProps} />
       </main>
-
-      <footer className="footer bg-primary"></footer>
+      <footer className=" bg-primary"></footer>
     </>
   );
 }

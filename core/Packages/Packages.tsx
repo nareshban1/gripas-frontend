@@ -2,9 +2,9 @@ import Link from "next/link";
 import React from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 
-const Packages = () => {
+const Packages = ({className}:{className?:string}) => {
   return (
-    <div className="my-5 py-5">
+    <div className={`${className? className:"my-5 py-5 bg-primary"}`}>
       <div className="container py-5">
         <h2 className=" fw-bold lh-1 m-0 text-white lh-base text-start hero-sub-text font-size-sm ">
           Packages

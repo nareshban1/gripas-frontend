@@ -1,7 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { CgArrowLongRight } from "react-icons/cg";
 import AnimateInView from "../components/AnimateInView/AnimateInView";
 import { portfolioItems } from "../core/PortFolio/Portfolio";
 
