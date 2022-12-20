@@ -28,8 +28,6 @@ const portfolioItems = [
 ];
 
 const Portfolio = () => {
-  const [selected, setSelected] = useState<any>(null);
-
   return (
     <section className="bg-white py-5">
       <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
@@ -39,7 +37,8 @@ const Portfolio = () => {
         <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
           What have we worked on
         </h3>
-        <div className="masnory-container d-flex g-5 position-relative my-5">
+        <div className="masnory-container row position-relative w-100 g-5 m-md-0">
+          <div className="col-12 col-md-6 ps-md-0">
           <div className=" row g-5 masnory-item-container position-relative h-100">
             {[...portfolioItems].splice(0, 2).map((item) => (
               <div className="col-12 " key={item.id}>
@@ -59,7 +58,10 @@ const Portfolio = () => {
               </div>
             ))}
           </div>
-          <div className="row g-5 masnory-item-container position-relative mt-5">
+          </div>
+         
+          <div className="col-12 col-md-6 pe-md-0">
+          <div className="row g-5 masnory-item-container position-relative mt-0 mt-md-5">
             {[...portfolioItems].splice(2, 4).map((item) => (
               <div className="col-12 " key={item.id}>
                 <div className="masnory-item">
@@ -78,6 +80,8 @@ const Portfolio = () => {
               </div>
             ))}
           </div>
+          </div>
+         
         </div>
 
         <div className="mt-4 d-flex">
