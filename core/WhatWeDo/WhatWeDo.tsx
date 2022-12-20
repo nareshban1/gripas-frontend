@@ -34,10 +34,10 @@ const WhatWeDo = () => {
     <section className="bg-white py-5">
       <AnimateInView>
         <div className="container py-5 workSection d-flex flex-column justify-content-center">
-          <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text ">
+          <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text  font-size-sm">
             Services
           </h2>
-          <h3 className="display-6 fw-bold lh-1 my-3 text-dark lh-base">
+          <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
             What We Do
           </h3>
           <div className="row d-flex ">
@@ -46,7 +46,7 @@ const WhatWeDo = () => {
                 {services.map((service) => (
                   <li
                     key={service.id}
-                    className={`display-5 fw-bold  my-5 cursor-pointer  ${
+                    className={`font-size-xl fw-bold  my-5 cursor-pointer  ${
                       selectedService.id === service.id
                         ? "active text-primary "
                         : "service-list"

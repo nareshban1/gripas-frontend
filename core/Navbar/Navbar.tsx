@@ -1,16 +1,12 @@
-import React from "react";
-import Services from "../../pages/services";
-import Blogs from "../../pages/blogs/index";
 import Link from "next/link";
-import Image from "next/image";
-import { CgArrowLongRight, CgArrowLongRightC } from "react-icons/cg";
+import { CgArrowLongRight } from "react-icons/cg";
 import { RiMenu3Line } from "react-icons/ri";
-const Navbar = () => {
+const Navbar = ({className}:{className:string}) => {
   return (
-    <nav className="navbar navbar-expand-lg m-0 p-0 navbar-custom">
+    <nav className={`navbar navbar-expand-lg m-0 p-0 navbar-custom ${className}`}>
       <div className="container py-2">
         <Link
-          className="navbar-brand py-3 hero-sub-text fw-bold text-white"
+          className="navbar-brand py-3 hero-sub-text font-size-sm fw-bold text-white"
           href="/"
         >
           {/* <Image

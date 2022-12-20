@@ -14,7 +14,7 @@ const CustomPageNotFound = () => {
       />
       <div className="text-center  text-white my-5">
         <h1 className="fs-1 fw-bold">404 Not Found</h1>
-        <p className="m-4 lead text-white fw-medium hero-sub-text">
+        <p className="m-4 lead text-white fw-medium hero-sub-text font-size-sm">
           Sorry, we can&apos;t find that page. You&apos;ll find lots to explore
           on the home page.{" "}
         </p>

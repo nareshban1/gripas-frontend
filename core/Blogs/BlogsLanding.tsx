@@ -27,10 +27,10 @@ const BlogsLanding = () => {
   return (
     <section className="bg-white py-5">
       <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
-        <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text ">
+        <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
           Content
         </h2>
-        <h3 className="display-6 fw-bold lh-1 my-3 text-primary lh-base">
+        <h3 className="font-size-lg fw-bold lh-1 my-3 text-primary lh-base">
           Blogs
         </h3>
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-3">
@@ -38,6 +38,7 @@ const BlogsLanding = () => {
             <motion.div
               className="col cursor-pointer"
               whileHover={{ scale: 1.05 }}
+              key={item.id}
             >
               <div className="position-relative border border-primary h-100 ">
                 <Image

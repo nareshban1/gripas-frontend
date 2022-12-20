@@ -6,10 +6,10 @@ const Packages = () => {
   return (
     <div className="my-5 py-5">
       <div className="container py-5">
-        <h2 className=" fw-bold lh-1 m-0 text-white lh-base text-start hero-sub-text ">
+        <h2 className=" fw-bold lh-1 m-0 text-white lh-base text-start hero-sub-text font-size-sm ">
           Packages
         </h2>
-        <h3 className="display-6 fw-bold lh-1 my-3 text-white lh-base">
+        <h3 className="font-size-lg fw-bold lh-1 my-3 text-white lh-base">
           We Have Awesome Packages with Flexible Pricing.
         </h3>
         <div className="mt-4 d-flex">

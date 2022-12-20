@@ -29,13 +29,13 @@ export default function Home() {
       <BlogsLanding />
       <div className="py-5">
         <div className="container py-5">
-          <h2 className=" fw-bold lh-1 m-0 text-white lh-base text-start hero-sub-text ">
+          <h2 className=" fw-bold lh-1 m-0 text-white lh-base text-start hero-sub-text font-size-sm">
             Opportunity
           </h2>
-          <h3 className="display-6 fw-bold lh-1 my-3 text-white lh-base">
+          <h3 className="font-size-lg fw-bold lh-1 my-3 text-white lh-base">
             Are you a Freelancer?
           </h3>
-          <p className="lead text-white fw-medium mb-5 hero-sub-text">
+          <p className="font-size-rg text-white fw-medium mb-5">
             Our Vision is to empower youngsters and bring latest automation
             technologies.
           </p>

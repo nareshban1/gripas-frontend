@@ -9,13 +9,13 @@ const HeroSection = () => {
       <AnimateInView className="container mx-auto bg-transparent position-relative h-100 align-items-center">
         <div className="row flex-lg-row align-items-center w-100 m-0 h-100 flex-grow-1 ">
           <div className="col-12 col-lg-8 col-xl-7 ps-0 z-index">
-            <h1 className="fw-bold display-4 lh-1 mb-3 text-white lh-base ">
+            <h1 className="fw-bold font-size-xxl lh-1 mb-3 text-white lh-base ">
               Driving business through{" "}
               <span className="text-white text-decoration-underline">
                 creativity
               </span>
             </h1>
-            <p className="lead text-white fw-medium mb-5 hero-sub-text">
+            <p className="lead text-white fw-medium mb-5 hero-sub-text font-size-sm">
               Our Vision is to empower youngsters and bring latest automation
               technologies.
             </p>

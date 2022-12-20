@@ -111,7 +111,7 @@ const TestimonialsSlider = () => {
             className="position-absolute "
           >
             <div>
-              <h3 className="text-dark fw-semibold display-6">
+              <h3 className="text-dark fw-semibold font-size-lg">
                 {data[reviewIndex].title}
               </h3>
               <p className="fs-4">{data[reviewIndex].description}</p>

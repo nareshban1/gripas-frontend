@@ -36,13 +36,13 @@ const Portfolio = () => {
         <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text ">
           Portfolio
         </h2>
-        <h3 className="display-6 fw-bold lh-1 my-3 text-dark lh-base">
+        <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
           What have we worked on
         </h3>
         <div className="masnory-container d-flex g-5 position-relative my-5">
           <div className=" row g-5 masnory-item-container position-relative h-100">
             {[...portfolioItems].splice(0, 2).map((item) => (
-              <div className="col-12 ">
+              <div className="col-12 " key={item.id}>
                 <div className="masnory-item">
                   <div className="masnory-item-image">
                     <Image src={item.image} alt={item.name} fill />
@@ -61,7 +61,7 @@ const Portfolio = () => {
           </div>
           <div className="row g-5 masnory-item-container position-relative mt-5">
             {[...portfolioItems].splice(2, 4).map((item) => (
-              <div className="col-12 ">
+              <div className="col-12 " key={item.id}>
                 <div className="masnory-item">
                   <div className="masnory-item-image">
                     <Image src={item.image} alt={item.name} fill />
