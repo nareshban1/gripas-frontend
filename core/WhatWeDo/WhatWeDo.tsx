@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import { CgArrowLongRight } from "react-icons/cg";
 import Link from "next/link";
-const services = [
+export const services = [
   {
     name: "Social Media Marketing",
     image: "/hero.svg",
