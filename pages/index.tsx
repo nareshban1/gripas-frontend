@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { CgArrowLongRight } from "react-icons/cg";
 import BlogsLanding from "../core/Blogs/BlogsLanding";
+import Freelancer from "../core/Freelancer/Freelancer";
 import HeroSection from "../core/HeroSection/HeroSection";
 import InfoSection from "../core/InfoSection/InfoSection";
 import Packages from "../core/Packages/Packages";
@@ -27,29 +28,7 @@ export default function Home() {
       <Packages />
       <Testemoonials />
       <BlogsLanding />
-      <div className="py-5">
-        <div className="container py-5">
-          <h2 className=" fw-bold lh-1 m-0 text-white lh-base text-start hero-sub-text font-size-sm">
-            Opportunity
-          </h2>
-          <h3 className="font-size-lg fw-bold lh-1 my-3 text-white lh-base">
-            Are you a Freelancer?
-          </h3>
-          <p className="font-size-rg text-white fw-medium mb-5">
-            Our Vision is to empower youngsters and bring latest automation
-            technologies.
-          </p>
-          <div className="mt-4 d-flex">
-            <Link
-              href="/freelancer"
-              className="btn btn-outline-white rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-            >
-              Contact Us
-              <CgArrowLongRight className="ms-2 long-arrow" />
-            </Link>
-          </div>
-        </div>
-      </div>
+     <Freelancer/>
     </div>
   );
 }
