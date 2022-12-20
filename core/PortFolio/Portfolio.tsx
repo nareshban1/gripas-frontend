@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 
-const portfolioItems = [
+export const portfolioItems = [
   {
     name: "Project 1",
     image: "/all.jpg",
@@ -31,7 +31,7 @@ const Portfolio = () => {
   return (
     <section className="bg-white py-5">
       <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
-        <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text ">
+        <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
           Portfolio
         </h2>
         <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
