@@ -1,9 +1,14 @@
 import Link from "next/link";
 import { CgArrowLongRight } from "react-icons/cg";
 import { RiMenu3Line } from "react-icons/ri";
-const Navbar = ({className}:{className:string}) => {
+import { useContext } from "react";
+import { OverlayContext } from "../../context/OverlayContext";
+const Navbar = ({ className }: { className: string }) => {
+  const { showStartedForm, toggleStartedForm } = useContext(OverlayContext);
   return (
-    <nav className={`navbar navbar-expand-lg m-0 p-0 navbar-custom ${className}`}>
+    <nav
+      className={`navbar navbar-expand-lg m-0 p-0 navbar-custom ${className}`}
+    >
       <div className="container py-2">
         <Link
           className="navbar-brand py-3 hero-sub-text font-size-sm fw-bold text-white"
@@ -55,7 +60,10 @@ const Navbar = ({className}:{className:string}) => {
               </Link>
             </li>
           </ul>
-          <button className="btn btn-outline-white ms-3 rounded-0 px-4 py-3 nav-link-text d-flex align-items-center">
+          <button
+            className="btn btn-outline-white ms-3 rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
+            onClick={toggleStartedForm}
+          >
             Get Started <CgArrowLongRight className="ms-2 long-arrow" />
           </button>
         </div>

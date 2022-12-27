@@ -1,0 +1,73 @@
+.input {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  &-flexfield {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 18px;
+    font-weight: 400;
+    align-items: center;
+    gap: 10px;
+  }
+  &-error {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 5px;
+  }
+  &-field {
+    width: 100%;
+    height: 50px;
+    padding: 0 10px;
+    font-family: "Montserrat";
+    border-radius: 0px;
+    border: 1px solid black;
+  }
+  &-label {
+    width: 100%;
+    font-family: "Montserrat";
+    margin-bottom: 10px;
+  }
+  &-textfield {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    font-family: "Montserrat";
+    border-radius: 0px;
+    border: 1px solid black;
+  }
+  &-formcontainer {
+    padding: 0 8%;
+    margin: 50px 0;
+  }
+  &-radio {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+}
+
+.upload {
+  &-container {
+    height: 100%;
+    border: 1px dotted black;
+  }
+  &-root {
+    position: relative;
+    padding: 10px;
+  }
+  &-input {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    width: 100%;
+    height: 100px;
+  }
+  &-message {
+    font-size: 14px;
+  }
+}

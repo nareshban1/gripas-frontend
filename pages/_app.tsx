@@ -1,15 +1,16 @@
-import { Poppins } from '@next/font/google';
+import { Poppins } from "@next/font/google";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { OverlayContextProvider } from "../context/OverlayContext";
+import GetStarted from "../core/Forms/GetStarted";
 import Navbar from "../core/Navbar/Navbar";
 import "../styles/main.scss";
 
-
 const poppins = Poppins({
-  weight: ['100','200','300','400','500','600', '700','800','900'],
-  style: ['normal', 'italic'],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
   display: "fallback",
-})
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -17,11 +18,14 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Navbar className={poppins.className}/>
-      <main className={`main overflow-y-hidden ${poppins.className}`} >
-        <Component {...pageProps} />
-      </main>
-      <footer className=" bg-primary"></footer>
+      <OverlayContextProvider>
+        <Navbar className={poppins.className} />
+        <main className={`main overflow-y-hidden ${poppins.className}`}>
+          <Component {...pageProps} />
+        </main>
+        <GetStarted />
+        <footer className=" bg-primary"></footer>
+      </OverlayContextProvider>
     </>
   );
 }
