@@ -28,7 +28,7 @@ export default function Home() {
       <Packages />
       <Testemoonials />
       <BlogsLanding />
-     <Freelancer/>
+      <Freelancer />
     </div>
   );
 }

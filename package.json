@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
     "@next/font": "^13.0.7",
     "@types/node": "18.11.12",
     "@types/react": "18.0.26",
@@ -28,8 +29,10 @@
     "react-bootstrap": "^2.7.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
+    "react-hook-form": "^7.41.2",
     "react-icons": "^4.7.1",
     "react-particles": "^2.6.0",
+    "react-select": "^5.7.0",
     "sass": "^1.56.2",
     "styled-components": "^5.3.6",
     "tsparticles": "^2.6.0",

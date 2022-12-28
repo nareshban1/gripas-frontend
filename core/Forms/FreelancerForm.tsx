@@ -1,31 +1,30 @@
-import React from "react";
-import { useContext } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
 import OffCanvasComponent from "../../components/OffCanvasComponent/OffCanvasComponent";
 
-import { OverlayContext } from "../../context/OverlayContext";
-import { GetStartedInputs, GetStartedValidationSchema } from "./schema";
-import TextInput from "../../components/FormComponents/TextInput";
 import { useForm } from "react-hook-form";
 import { CgArrowLongRight } from "react-icons/cg";
 import TextArea from "../../components/FormComponents/TextArea";
+import TextInput from "../../components/FormComponents/TextInput";
+import { OverlayContext } from "../../context/OverlayContext";
+import { FreelancerInputs, FreelancerValidationSchema } from "./schema";
 
-const GetStarted = () => {
-  const { showStartedForm, toggleStartedForm } = useContext(OverlayContext);
+const FreelancerForm = () => {
+  const { showfreelanceForm, toggleFreelanceForm } = useContext(OverlayContext);
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<GetStartedInputs>({
-    resolver: yupResolver(GetStartedValidationSchema),
+  } = useForm<FreelancerInputs>({
+    resolver: yupResolver(FreelancerValidationSchema),
   });
-  const onSubmit = (data: GetStartedInputs) => console.log(data);
+  const onSubmit = (data: FreelancerInputs) => console.log(data);
   return (
     <OffCanvasComponent
-      title={"Get Started"}
-      show={showStartedForm}
-      handleClose={toggleStartedForm}
+      title={"Freelancer ?"}
+      show={showfreelanceForm}
+      handleClose={toggleFreelanceForm}
     >
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -72,4 +71,4 @@ const GetStarted = () => {
   );
 };
 
-export default GetStarted;
+export default FreelancerForm;

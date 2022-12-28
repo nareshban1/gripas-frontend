@@ -2,11 +2,12 @@ import { Poppins } from "@next/font/google";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { OverlayContextProvider } from "../context/OverlayContext";
+import FreelancerForm from "../core/Forms/FreelancerForm";
 import GetStarted from "../core/Forms/GetStarted";
 import Navbar from "../core/Navbar/Navbar";
 import "../styles/main.scss";
 
-const poppins = Poppins({
+export const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
   display: "fallback",
@@ -24,6 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </main>
         <GetStarted />
+        <FreelancerForm />
         <footer className=" bg-primary"></footer>
       </OverlayContextProvider>
     </>
