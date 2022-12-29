@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Poppins } from "@next/font/google";
 import type { AppProps } from "next/app";
 import Head from "next/head";

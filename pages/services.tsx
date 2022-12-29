@@ -13,9 +13,11 @@ const Services = () => {
           Our Services
         </h3>
         {services.map((service, index) => (
-          <div key={service.id} className={`row my-4 align-items-center`}>
+          <div key={service.id} className={`row my-5 align-items-center`}>
             <div
-              className={`col-6  ${index % 2 === 0 ? "order-1 " : "order-2"}`}
+              className={`col-md-6 order-1  ${
+                index % 2 === 0 ? "order-md-1 " : "order-md-2"
+              }`}
             >
               <h1 className={`font-size-xl fw-bold my-3 text-primary `}>
                 {" "}
@@ -28,7 +30,9 @@ const Services = () => {
               </p>
             </div>
             <div
-              className={`col-6  ${index % 2 === 0 ? "order-2 " : "order-1"}`}
+              className={`col-md-6 order-0  ${
+                index % 2 === 0 ? "order-md-2 " : "order-md-1"
+              }`}
             >
               <div className="position-relative service-image">
                 <Image

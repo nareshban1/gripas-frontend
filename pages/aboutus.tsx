@@ -79,15 +79,15 @@ const AboutUs = () => {
         <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
           {portfolioItems.map((item) => (
             <div className="col cursor-pointer" key={item.id}>
-              <div className="position-relative border border-primary h-100 ">
+              <div className="position-relative  h-100 ">
                 <Image
                   src={item?.image}
                   alt={item.name}
-                  height={200}
+                  height={250}
                   width={400}
                   style={{ objectFit: "cover", width: "100%" }}
                 />
-                <p className="p-4 spaced-text fw-bold fs-5 text-dark m-0">
+                <p className="py-3 spaced-text fw-bold fs-5 text-dark m-0">
                   {item.name}
                 </p>
               </div>

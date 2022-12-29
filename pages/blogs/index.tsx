@@ -63,58 +63,68 @@ const Blogs = () => {
           Blogs
         </h3>
 
-        <h2 className=" fw-bold lh-1 mt-3 text-dark lh-base text-start hero-sub-text font-size-sm">
+        <h2 className=" fw-bold lh-1 mt-3 text-dark lh-base text-start  fs-5">
           Featured
         </h2>
-        <motion.div
-          className="col cursor-pointer my-3"
-          key={portfolioItems[0].id}
-        >
-          <div className="position-relative border border-primary h-100 ">
-            <Image
-              src={portfolioItems[0]?.image}
-              alt={portfolioItems[0].name}
-              height={350}
-              width={400}
-              style={{ objectFit: "cover", width: "100%" }}
-            />
-            <div className="p-4 bg-white">
-              <p className=" spaced-text fw-bold fs-5 text-dark ">
-                {portfolioItems[0].name}
-              </p>
-              <p className="service-info fw-md-medium text-dark my-2">
-                We specialize on &quot;Social Media Marketing&quot; with three
-                package available, currently. Further, we believe in driving
-                business through creativity.
-              </p>
-            </div>
-          </div>
-        </motion.div>
-        <h2 className=" fw-bold lh-1 my-3 text-dark lh-base text-start hero-sub-text font-size-sm">
-          All Blogs
-        </h2>
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
-          {portfolioItems.map((item) => (
-            <motion.div
-              className="col cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              key={item.id}
-            >
-              <div className="position-relative border border-primary h-100 ">
-                <Image
-                  src={item?.image}
-                  alt={item.name}
-                  height={350}
-                  width={400}
-                  style={{ objectFit: "cover", width: "100%" }}
-                />
-                <p className="p-4 spaced-text fw-bold fs-5 text-dark">
-                  {item.name}
+        <Link href={`/blogs/${portfolioItems[0].id}`}>
+          <motion.div
+            className="col cursor-pointer my-3"
+            key={portfolioItems[0].id}
+          >
+            <div className="position-relative  h-100 ">
+              <Image
+                src={portfolioItems[0]?.image}
+                alt={portfolioItems[0].name}
+                height={350}
+                width={400}
+                style={{ objectFit: "cover", width: "100%" }}
+              />
+              <div className="py-4 bg-white">
+                <p className=" spaced-text fw-bold fs-5 text-dark ">
+                  {portfolioItems[0].name}
+                </p>
+                <p className="service-info fw-md-medium text-dark my-2">
+                  We specialize on &quot;Social Media Marketing&quot; with three
+                  package available, currently. Further, we believe in driving
+                  business through creativity.
                 </p>
               </div>
-            </motion.div>
+            </div>
+          </motion.div>
+        </Link>
+      </AnimateInView>
+      <AnimateInView className="container py-5">
+        <h2 className=" fw-bold lh-1 my-3 text-dark lh-base text-start  fs-5">
+          All Blogs
+        </h2>
+
+        <div className="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-4 ">
+          {portfolioItems.map((item) => (
+            <div className="col">
+              <Link href={`/blogs/${item.id}`}>
+                <motion.div
+                  className="cursor-pointer h-100"
+                  whileHover={{ scale: 1.05 }}
+                  key={item.id}
+                >
+                  <div className="position-relative  h-100 ">
+                    <Image
+                      src={item?.image}
+                      alt={item.name}
+                      height={350}
+                      width={400}
+                      style={{ objectFit: "cover", width: "100%" }}
+                    />
+                    <p className="py-3 spaced-text fw-bold fs-5 text-dark ">
+                      {item.name}
+                    </p>
+                  </div>
+                </motion.div>
+              </Link>
+            </div>
           ))}
         </div>
+
         <div className="mt-5 d-flex justify-content-end">
           <Link
             href="/blogs"
