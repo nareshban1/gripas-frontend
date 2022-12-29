@@ -4,7 +4,7 @@ import React from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import { motion } from "framer-motion";
 import { CgArrowLongLeft, CgArrowLongRight } from "react-icons/cg";
-const portfolioItems = [
+export const portfolioItems = [
   {
     name: "How to create a tiktok ad",
     image: "/all.jpg",
@@ -83,7 +83,7 @@ const Blogs = () => {
                 <p className=" spaced-text fw-bold fs-5 text-dark ">
                   {portfolioItems[0].name}
                 </p>
-                <p className="service-info fw-md-medium text-dark my-2">
+                <p className="fs-5 fw-md-medium text-dark my-2">
                   We specialize on &quot;Social Media Marketing&quot; with three
                   package available, currently. Further, we believe in driving
                   business through creativity.

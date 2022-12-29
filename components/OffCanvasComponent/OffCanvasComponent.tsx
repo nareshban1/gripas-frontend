@@ -19,23 +19,16 @@ const OffCanvasComponent = ({
       onHide={handleClose}
       placement={"end"}
       backdrop={false}
-      className={`offcanvas ${poppins.className} p-3`}
+      className={`offcanvas ${poppins.className} p-4`}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 0, x: -10 }}
-        animate={{ opacity: 1, y: 0, x: 0 }}
-        exit={{ opacity: 0, y: 0, x: -10 }}
-        transition={{
-          duration: 0.2,
-        }}
-      >
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title className="spaced-text fw-bold fs-4">
-            {title}
-          </Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>{children}</Offcanvas.Body>
-      </motion.div>
+      <Offcanvas.Header closeButton className="p-0">
+        <Offcanvas.Title className="spaced-text fw-bold fs-4">
+          {title}
+        </Offcanvas.Title>
+      </Offcanvas.Header>
+      <Offcanvas.Body className="h-100 scrollable p-0 mt-4">
+        {children}
+      </Offcanvas.Body>
     </Offcanvas>
   );
 };

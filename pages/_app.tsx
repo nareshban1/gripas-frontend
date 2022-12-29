@@ -22,7 +22,10 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <OverlayContextProvider>
         <Navbar className={poppins.className} />
-        <main className={`main overflow-y-hidden ${poppins.className}`}>
+        <main
+          id="main"
+          className={`main overflow-y-hidden ${poppins.className}`}
+        >
           <Component {...pageProps} />
         </main>
         <GetStarted />

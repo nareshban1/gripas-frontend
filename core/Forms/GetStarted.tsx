@@ -27,8 +27,8 @@ const GetStarted = () => {
       show={showStartedForm}
       handleClose={toggleStartedForm}
     >
-      <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <div className=" h-100">
+        <form onSubmit={handleSubmit(onSubmit)} className="">
           <TextInput
             type="text"
             name="fullName"

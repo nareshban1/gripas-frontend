@@ -37,3 +37,27 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: $primary;
 }
+
+.scrollable {
+  overflow-y: scroll;
+  /* width */
+  &::-webkit-scrollbar {
+    width: 5px !important;
+    cursor: pointer !important;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $primary;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $primary;
+  }
+}

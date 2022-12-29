@@ -48,7 +48,7 @@ const AboutUs = () => {
         <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
           About Us
         </h3>
-        <p className="col-12 col-md-8">
+        <p className="col-12 col-md-8 fs-5">
           We’re a team of talented creatives who live and breathe great design.
           We’re not just coders who take instructions, we’re artists who take
           inspiration from the wider creative world of music, film and the arts.
@@ -56,7 +56,7 @@ const AboutUs = () => {
           the latest trends, we develop brands, design websites and deliver
           campaigns that break the mould, and fight back against boring.
         </p>
-        <p className="col-12 col-md-8">
+        <p className="col-12 col-md-8 fs-5">
           We’re a team of talented creatives who live and breathe great design.
           We’re not just coders who take instructions, we’re artists who take
           inspiration from the wider creative world of music, film and the arts.

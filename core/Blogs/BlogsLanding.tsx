@@ -35,24 +35,26 @@ const BlogsLanding = () => {
         </h3>
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-3">
           {portfolioItems.map((item) => (
-            <motion.div
-              className="col cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              key={item.id}
-            >
-              <div className="position-relative  h-100 ">
-                <Image
-                  src={item?.image}
-                  alt={item.name}
-                  height={350}
-                  width={400}
-                  style={{ objectFit: "cover", width: "100%" }}
-                />
-                <p className="py-3 mb-0 spaced-text fw-bold fs-5 text-dark">
-                  {item.name}
-                </p>
-              </div>
-            </motion.div>
+            <Link href={`/blogs/${item.id}`}>
+              <motion.div
+                className="col cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                key={item.id}
+              >
+                <div className="position-relative  h-100 ">
+                  <Image
+                    src={item?.image}
+                    alt={item.name}
+                    height={350}
+                    width={400}
+                    style={{ objectFit: "cover", width: "100%" }}
+                  />
+                  <p className="py-3 mb-0 spaced-text fw-bold fs-5 text-dark">
+                    {item.name}
+                  </p>
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
         <div className="mt-5 d-flex">
