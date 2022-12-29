@@ -15,7 +15,7 @@ const Checkbox = (props: CheckboxTypes) => {
       <div>
         {options &&
           options.map((option) => (
-            <div>
+            <div key={option.id}>
               <input
                 type="checkbox"
                 id={option?.id}

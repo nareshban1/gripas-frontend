@@ -100,7 +100,7 @@ const Blogs = () => {
 
         <div className="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-4 ">
           {portfolioItems.map((item) => (
-            <div className="col">
+            <div className="col" key={item.id}>
               <Link href={`/blogs/${item.id}`}>
                 <motion.div
                   className="cursor-pointer h-100"
