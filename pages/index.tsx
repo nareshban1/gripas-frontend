@@ -1,14 +1,16 @@
+import dynamic from "next/dynamic";
 import Head from "next/head";
-import Link from "next/link";
-import { CgArrowLongRight } from "react-icons/cg";
-import BlogsLanding from "../core/Blogs/BlogsLanding";
-import Freelancer from "../core/Freelancer/Freelancer";
-import HeroSection from "../core/HeroSection/HeroSection";
-import InfoSection from "../core/InfoSection/InfoSection";
-import Packages from "../core/Packages/Packages";
-import Portfolio from "../core/PortFolio/Portfolio";
-import Testemoonials from "../core/Testemonials/Testemoonials";
-import WhatWeDo from "../core/WhatWeDo/WhatWeDo";
+
+const BlogsLanding = dynamic(() => import("../core/Blogs/BlogsLanding"));
+const Freelancer = dynamic(() => import("../core/Freelancer/Freelancer"));
+const HeroSection = dynamic(() => import("../core/HeroSection/HeroSection"));
+const InfoSection = dynamic(() => import("../core/InfoSection/InfoSection"));
+const Packages = dynamic(() => import("../core/Packages/Packages"));
+const Portfolio = dynamic(() => import("../core/PortFolio/Portfolio"));
+const Testemoonials = dynamic(
+  () => import("../core/Testemonials/Testemoonials")
+);
+const WhatWeDo = dynamic(() => import("../core/WhatWeDo/WhatWeDo"));
 
 export default function Home() {
   return (

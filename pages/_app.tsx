@@ -4,9 +4,12 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { OverlayContextProvider } from "../context/OverlayContext";
 import FreelancerForm from "../core/Forms/FreelancerForm";
-import GetStarted from "../core/Forms/GetStarted";
-import Navbar from "../core/Navbar/Navbar";
+
 import "../styles/main.scss";
+import dynamic from "next/dynamic";
+
+const GetStarted = dynamic(() => import("../core/Forms/GetStarted"));
+const Navbar = dynamic(() => import("../core/Navbar/Navbar"));
 
 export const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
