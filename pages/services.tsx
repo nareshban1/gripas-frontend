@@ -1,7 +1,8 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import AnimateInView from "../components/AnimateInView/AnimateInView";
-import Packages from "../core/Packages/Packages";
 import { services } from "../core/WhatWeDo/WhatWeDo";
+const LinkToPackage = dynamic(() => import("../core/Packages/LinkToPackage"));
 const Services = () => {
   return (
     <section className="bg-white ">
@@ -46,7 +47,7 @@ const Services = () => {
           </div>
         ))}
       </AnimateInView>
-      <Packages className="py-5 bg-primary" />
+      <LinkToPackage className="py-5 bg-primary" />
     </section>
   );
 };

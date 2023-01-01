@@ -17,7 +17,7 @@ const Packages = () => {
           </h3>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3">
             {packages.map((pack, index) => (
-              <div className="col ">
+              <div className="col " key={index}>
                 <div
                   className={`border rounded-0 p-4 shadow h-100 d-flex flex-column ${
                     pack.isRecommended && "border-4 border-primary"
@@ -50,7 +50,7 @@ const Packages = () => {
                   </div>
                   <div className="my-5">
                     {pack.services.map((service, index) => (
-                      <p>
+                      <p key={index}>
                         {service.count} {service.name}
                       </p>
                     ))}

@@ -52,9 +52,8 @@ const AboutUs = () => {
           field. Till now we have served 100+ clients and counting.
         </p>
         <p className="col-12 col-md-8 fs-5">
-          We specialize on "Social Media Marketing" with three package
-          available, currently. Further, we believe in driving business through
-          creativity.
+          We specialize on Social Media Marketing with three package available,
+          currently. Further, we believe in driving business through creativity.
         </p>
         <p className="col-12 col-md-8 fs-5">
           Our Mission is to help SMEs to achieve their Sales and Marketing

@@ -160,7 +160,7 @@ const Packages = ({ className }: { className?: string }) => {
           {packages
             .filter((pack) => pack.isFeatured)
             .map((pack, index) => (
-              <div className="col ">
+              <div className="col " key={index}>
                 <div
                   className={`border rounded-0 p-4 bg-white shadow h-100 d-flex flex-column ${
                     pack.isRecommended && "border-4 border-primary"
@@ -193,7 +193,7 @@ const Packages = ({ className }: { className?: string }) => {
                   </div>
                   <div className="my-5">
                     {pack.services.map((service, index) => (
-                      <p>
+                      <p key={index}>
                         {service.count} {service.name}
                       </p>
                     ))}
