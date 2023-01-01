@@ -1,13 +1,10 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import OffCanvasComponent from "../../components/OffCanvasComponent/OffCanvasComponent";
-
-import { useForm } from "react-hook-form";
-import { CgArrowLongRight } from "react-icons/cg";
 import TextArea from "../../components/FormComponents/TextArea";
 import TextInput from "../../components/FormComponents/TextInput";
 import { OverlayContext } from "../../context/OverlayContext";
 import { FreelancerInputs, FreelancerValidationSchema } from "./schema";
+import { CgArrowLongRight, useForm, yupResolver } from "../Imports/imports";
 
 const FreelancerForm = () => {
   const { showfreelanceForm, toggleFreelanceForm } = useContext(OverlayContext);

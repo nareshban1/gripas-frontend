@@ -1,7 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { CgArrowLongRight } from "react-icons/cg";
+import { CgArrowLongRight, Link } from "../core/Imports/imports";
 import AnimateInView from "../components/AnimateInView/AnimateInView";
 import Freelancer from "../core/Freelancer/Freelancer";
 
@@ -49,20 +47,19 @@ const AboutUs = () => {
           About Us
         </h3>
         <p className="col-12 col-md-8 fs-5">
-          We’re a team of talented creatives who live and breathe great design.
-          We’re not just coders who take instructions, we’re artists who take
-          inspiration from the wider creative world of music, film and the arts.
-          By soaking up culture, sharing new ideas and staying on the pulse of
-          the latest trends, we develop brands, design websites and deliver
-          campaigns that break the mould, and fight back against boring.
+          Gripas Marketing was established back in 2020 during the Pandemic.
+          With digitalization we began making name in the Digital Marketing
+          field. Till now we have served 100+ clients and counting.
         </p>
         <p className="col-12 col-md-8 fs-5">
-          We’re a team of talented creatives who live and breathe great design.
-          We’re not just coders who take instructions, we’re artists who take
-          inspiration from the wider creative world of music, film and the arts.
-          By soaking up culture, sharing new ideas and staying on the pulse of
-          the latest trends, we develop brands, design websites and deliver
-          campaigns that break the mould, and fight back against boring.
+          We specialize on "Social Media Marketing" with three package
+          available, currently. Further, we believe in driving business through
+          creativity.
+        </p>
+        <p className="col-12 col-md-8 fs-5">
+          Our Mission is to help SMEs to achieve their Sales and Marketing
+          objective via Social Media Marketing. Our Vision is to empower
+          youngsters and bring latest automation technologies.
         </p>
         <div className="my-4 d-flex">
           <Link

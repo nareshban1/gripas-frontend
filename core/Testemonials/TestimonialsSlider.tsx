@@ -1,8 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { wrap } from "popmotion";
-import { CgArrowLongLeft, CgArrowLongRight } from "react-icons/cg";
+import {
+  AnimatePresence,
+  CgArrowLongLeft,
+  CgArrowLongRight,
+  motion,
+  wrap,
+} from "../Imports/imports";
 
 const variants = {
   enter: (direction: number) => {
@@ -115,10 +119,10 @@ const TestimonialsSlider = () => {
                 {data[reviewIndex].title}
               </h3>
               <p className="fs-5">{data[reviewIndex].description}</p>
-              <p className="fs-5 mb-0 fw-medium">
+              <p className="fs-6 mb-0 fw-medium">
                 {data[reviewIndex].reviewer.name}
               </p>
-              <em className="fs-5">
+              <em className="fs-6">
                 <>{data[reviewIndex].reviewer.designation}</>,{" "}
                 {data[reviewIndex].reviewer.company}
               </em>

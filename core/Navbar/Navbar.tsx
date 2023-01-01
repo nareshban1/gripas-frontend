@@ -1,8 +1,6 @@
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
-import { motion } from "framer-motion";
-import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
-import { CgArrowLongRight } from "react-icons/cg";
+import { CgArrowLongRight, Link, motion } from "../Imports/imports";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import { OverlayContext } from "../../context/OverlayContext";
 import { poppins } from "../../pages/_app";
@@ -129,73 +127,77 @@ const Navbar = ({ className }: { className: string }) => {
           time="0.05s"
           className={`bg-primary ${poppins.className}`}
         >
-          <div className="container main d-flex flex-column justify-content-between py-4">
-            <ul className="navbar-nav ">
-              <li className="nav-item py-3">
-                <Link
-                  className="nav-link text-white fw-bold  nav-link-items fs-3"
-                  href="/aboutus"
-                  onClick={hidemenuFunc}
-                >
-                  About Us
-                </Link>
-              </li>
-              <li className="nav-item py-3 ">
-                <Link
-                  className="nav-link text-white fw-bold  nav-link-items fs-3"
-                  href="/services"
-                  onClick={hidemenuFunc}
-                >
-                  Services
-                </Link>
-              </li>
-              <li className="nav-item py-3">
-                <Link
-                  className="nav-link text-white fw-bold   nav-link-items fs-3"
-                  href="/packages"
-                  onClick={hidemenuFunc}
-                >
-                  Pricing
-                </Link>
-              </li>
-              <li className="nav-item py-3">
-                <Link
-                  className="nav-link text-white fw-bold   nav-link-items fs-3"
-                  href="/portfolio"
-                  onClick={hidemenuFunc}
-                >
-                  Portfolio
-                </Link>
-              </li>
-              <li className="nav-item py-3">
-                <Link
-                  className="nav-link text-white fw-bold  nav-link-items fs-3"
-                  href="/blogs"
-                  onClick={hidemenuFunc}
-                >
-                  Blog
-                </Link>
-              </li>
-              <li className="nav-item py-3">
-                <Link
-                  className="nav-link text-white fw-bold  nav-link-items fs-3"
-                  href="/blogs"
-                  onClick={hidemenuFunc}
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-            <div className="justify-self-baseline">
-              <button
-                className="btn btn-outline-white rounded-0 px-4 py-3 spaced-text fs-5 fw-bold d-flex align-items-center "
-                onClick={() => {
-                  toggleStartedForm();
-                  hidemenuFunc();
-                }}
-              >
-                Get Started <CgArrowLongRight className="ms-2 long-arrow" />
-              </button>
+          <div className="container main h-100 py-2 d-flex">
+            <div className="overflow-auto w-100 flex-grow-1 position-relative">
+              <div className="position-absolute h-100 overflow-auto  d-flex flex-column justify-content-between ">
+                <ul className="navbar-nav ">
+                  <li className="nav-item py-2">
+                    <Link
+                      className="nav-link text-white fw-bold  nav-link-items fs-3"
+                      href="/aboutus"
+                      onClick={hidemenuFunc}
+                    >
+                      About Us
+                    </Link>
+                  </li>
+                  <li className="nav-item py-2 ">
+                    <Link
+                      className="nav-link text-white fw-bold  nav-link-items fs-3"
+                      href="/services"
+                      onClick={hidemenuFunc}
+                    >
+                      Services
+                    </Link>
+                  </li>
+                  <li className="nav-item py-2">
+                    <Link
+                      className="nav-link text-white fw-bold   nav-link-items fs-3"
+                      href="/packages"
+                      onClick={hidemenuFunc}
+                    >
+                      Pricing
+                    </Link>
+                  </li>
+                  <li className="nav-item py-2">
+                    <Link
+                      className="nav-link text-white fw-bold   nav-link-items fs-3"
+                      href="/portfolio"
+                      onClick={hidemenuFunc}
+                    >
+                      Portfolio
+                    </Link>
+                  </li>
+                  <li className="nav-item py-2">
+                    <Link
+                      className="nav-link text-white fw-bold  nav-link-items fs-3"
+                      href="/blogs"
+                      onClick={hidemenuFunc}
+                    >
+                      Blog
+                    </Link>
+                  </li>
+                  <li className="nav-item py-2">
+                    <Link
+                      className="nav-link text-white fw-bold  nav-link-items fs-3"
+                      href="/blogs"
+                      onClick={hidemenuFunc}
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+                <div className="justify-self-baseline">
+                  <button
+                    className="btn btn-outline-white rounded-0 px-4 py-3 spaced-text fs-5 fw-bold d-flex align-items-center "
+                    onClick={() => {
+                      toggleStartedForm();
+                      hidemenuFunc();
+                    }}
+                  >
+                    Get Started <CgArrowLongRight className="ms-2 long-arrow" />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </AnimateInView>

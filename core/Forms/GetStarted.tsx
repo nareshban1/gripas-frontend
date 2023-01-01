@@ -1,13 +1,11 @@
 import React from "react";
 import { useContext } from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
 import OffCanvasComponent from "../../components/OffCanvasComponent/OffCanvasComponent";
-
 import { OverlayContext } from "../../context/OverlayContext";
 import { GetStartedInputs, GetStartedValidationSchema } from "./schema";
 import TextInput from "../../components/FormComponents/TextInput";
-import { useForm } from "react-hook-form";
-import { CgArrowLongRight } from "react-icons/cg";
+import { CgArrowLongRight, useForm, yupResolver } from "../Imports/imports";
+
 import TextArea from "../../components/FormComponents/TextArea";
 
 const GetStarted = () => {
@@ -20,7 +18,7 @@ const GetStarted = () => {
   } = useForm<GetStartedInputs>({
     resolver: yupResolver(GetStartedValidationSchema),
   });
-  const onSubmit = (data: GetStartedInputs) => console.log(data);
+  const onSubmit = (data: GetStartedInputs) => data;
   return (
     <OffCanvasComponent
       title={"Get Started"}

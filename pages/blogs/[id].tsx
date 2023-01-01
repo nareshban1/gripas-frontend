@@ -1,10 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
-import { motion } from "framer-motion";
 import { portfolioItems } from ".";
-import Link from "next/link";
-import { CgArrowLongRight } from "react-icons/cg";
+import { CgArrowLongRight, Link, motion } from "../../core/Imports/imports";
 import Freelancer from "../../core/Freelancer/Freelancer";
 
 const BlogDetail = () => {

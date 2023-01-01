@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import { motion } from "framer-motion";
 import { CgArrowLongLeft, CgArrowLongRight } from "react-icons/cg";
+import Link from "next/link";
 export const portfolioItems = [
   {
     name: "How to create a tiktok ad",

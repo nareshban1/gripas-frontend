@@ -1,7 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import { CgArrowLongRight } from "react-icons/cg";
+import { CgArrowLongRight, Link } from "../Imports/imports";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 
 export const portfolioItems = [

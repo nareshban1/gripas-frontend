@@ -1,5 +1,5 @@
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion } from "../Imports/imports";
 
 const Path = (props: any) => (
   <motion.path

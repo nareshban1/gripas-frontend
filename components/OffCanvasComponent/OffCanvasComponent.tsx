@@ -18,7 +18,7 @@ const OffCanvasComponent = ({
       show={show}
       onHide={handleClose}
       placement={"end"}
-      backdrop={false}
+      backdrop={true}
       className={`offcanvas ${poppins.className} p-4`}
     >
       <Offcanvas.Header closeButton className="p-0">

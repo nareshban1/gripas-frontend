@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CgArrowLongRight } from "react-icons/cg";
+import { CgArrowLongRight } from "../Imports/imports";
 import { OverlayContext } from "../../context/OverlayContext";
 
 const Freelancer = () => {

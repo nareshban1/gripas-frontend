@@ -1,9 +1,7 @@
-import Link from "next/link";
 import React from "react";
-import { CgArrowLongRight } from "react-icons/cg";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
-import { motion } from "framer-motion";
 import Image from "next/image";
+import { CgArrowLongRight, Link, motion } from "../Imports/imports";
 
 const portfolioItems = [
   {
@@ -35,7 +33,7 @@ const BlogsLanding = () => {
         </h3>
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-3">
           {portfolioItems.map((item) => (
-            <Link href={`/blogs/${item.id}`}>
+            <Link href={`/blogs/${item.id}`} key={item.id}>
               <motion.div
                 className="col cursor-pointer"
                 whileHover={{ scale: 1.05 }}
