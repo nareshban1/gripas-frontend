@@ -7,6 +7,7 @@ import FreelancerForm from "../core/Forms/FreelancerForm";
 
 import "../styles/main.scss";
 import dynamic from "next/dynamic";
+import Footer from "../core/Footer/Footer";
 
 const GetStarted = dynamic(() => import("../core/Forms/GetStarted"));
 const Navbar = dynamic(() => import("../core/Navbar/Navbar"));
@@ -34,7 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </main>
         <GetStarted />
         <FreelancerForm />
-        <footer className=" bg-primary"></footer>
+        <Footer className={poppins.className} />
       </OverlayContextProvider>
     </>
   );

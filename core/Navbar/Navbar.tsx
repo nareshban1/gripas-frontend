@@ -33,7 +33,7 @@ const Navbar = ({ className }: { className: string }) => {
   return (
     <>
       <nav
-        className={`navbar navbar-expand-lg m-0 p-0 navbar-custom ${className}`}
+        className={`navbar navbar-expand-lg m-0 p-0 navbar-custom ${className} w-100`}
       >
         <div className="container py-2">
           <Link
