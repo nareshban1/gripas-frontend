@@ -14,7 +14,7 @@ const WhatWeDo = dynamic(() => import("../core/WhatWeDo/WhatWeDo"));
 
 export default function Home() {
   return (
-    <div className="w-100 bg-primary">
+    <div className="w-100 bg-primary overflow-hidden">
       <Head>
         <title>Gripas Marketing</title>
         <meta
