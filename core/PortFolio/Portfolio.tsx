@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CgArrowLongRight, Link } from "../Imports/imports";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
+import * as gtag from "../../lib/gtag";
 
 export const portfolioItems = [
   {
@@ -87,6 +88,14 @@ const Portfolio = () => {
           <Link
             href="/portfolio"
             className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
+            onClick={() => {
+              gtag.event({
+                action: "View More Works Clicked",
+                label: "More Works",
+                category: "engagement",
+                value: "",
+              });
+            }}
           >
             View More
             <CgArrowLongRight className="ms-2 long-arrow" />

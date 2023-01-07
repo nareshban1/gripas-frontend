@@ -10,6 +10,8 @@ import "../styles/main.scss";
 import dynamic from "next/dynamic";
 import Footer from "../core/Footer/Footer";
 import Script from "next/script";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const GetStarted = dynamic(() => import("../core/Forms/GetStarted"));
 const Navbar = dynamic(() => import("../core/Navbar/Navbar"));
@@ -22,6 +24,16 @@ export const poppins = Poppins({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
   return (
     <>
       <Head>
@@ -33,18 +45,19 @@ export default function App({ Component, pageProps }: AppProps) {
       />
       <Script
         strategy="afterInteractive"
-        id="googleAnalytics"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
+        src="https://www.googletagmanager.com/gtag/js?id=G-3MQMJRZFG6"
+      ></Script>
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+           window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${gtag.GA_TRACKING_ID}', {
               page_path: window.location.pathname,
             });
-          `,
-        }}
-      />
+        `}
+      </Script>
+
       <OverlayContextProvider>
         <Navbar className={poppins.className} />
         <main

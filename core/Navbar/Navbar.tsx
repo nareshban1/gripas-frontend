@@ -6,6 +6,7 @@ import { OverlayContext } from "../../context/OverlayContext";
 import { poppins } from "../../pages/_app";
 import { MenuToggle } from "./MenuToggle";
 import { useWindowSize } from "./useWindowSize";
+import Button from "../../components/Button/Button";
 
 const Navbar = ({ className }: { className: string }) => {
   const { toggleStartedForm } = useContext(OverlayContext);
@@ -112,12 +113,12 @@ const Navbar = ({ className }: { className: string }) => {
                 </Link>
               </li>
             </ul>
-            <button
+
+            <Button
               className="btn btn-outline-white ms-3 rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
               onClick={toggleStartedForm}
-            >
-              Get Started <CgArrowLongRight className="ms-2 long-arrow" />
-            </button>
+              label="Get Started"
+            ></Button>
           </div>
         </div>
       </nav>

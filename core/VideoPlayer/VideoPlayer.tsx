@@ -1,38 +1,19 @@
 import React from "react";
-import { Modal } from "react-bootstrap";
 import { VscPlay } from "react-icons/vsc";
-
-function VideoPlayerModal(props: any) {
-  return (
-    <Modal {...props} size="xl" centered className="border-0" fullscreen>
-      <Modal.Header closeButton className="bg-light border-0"></Modal.Header>
-      <Modal.Body className="bg-light">
-        <iframe
-          width={"100%"}
-          height={"100%"}
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-          title="Rick Astley - Never Gonna Give You Up (Official Music Video)"
-          frameBorder={0}
-          allow="accelerometer; autoplay; encrypted-media; "
-          allowFullScreen
-          className="rounded"
-        ></iframe>
-      </Modal.Body>
-    </Modal>
-  );
-}
+import Button from "../../components/Button/Button";
+import VideoPlayerModal from "./VideoPlayerModal";
 
 const VideoPlayer = () => {
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <>
-      <button
+      <Button
         className="btn btn-outline-light btn-text-white rounded-0 ms-3"
         onClick={() => setModalShow(true)}
-      >
-        <VscPlay size={24} />
-      </button>
-
+        actionlabel="Promotional Video"
+        hasArrow={false}
+        icon={<VscPlay size={24} />}
+      ></Button>
       <VideoPlayerModal show={modalShow} onHide={() => setModalShow(false)} />
     </>
   );

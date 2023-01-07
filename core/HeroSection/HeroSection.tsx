@@ -1,8 +1,13 @@
+import { useContext } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
+import Button from "../../components/Button/Button";
+import { OverlayContext } from "../../context/OverlayContext";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import Particle from "./Particle";
 const HeroSection = () => {
+  const { toggleStartedForm } = useContext(OverlayContext);
+
   return (
     <div className="bg-primary position-relative hero-section">
       <Particle />
@@ -20,9 +25,12 @@ const HeroSection = () => {
               technologies.
             </p>
             <div className="text-right d-flex">
-              <button className="btn btn-outline-white rounded-0 px-4 py-3 nav-link-text d-flex align-items-center">
-                Get Started <CgArrowLongRight className="ms-2 long-arrow" />
-              </button>
+              <Button
+                className="btn btn-outline-white rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
+                onClick={toggleStartedForm}
+                label="Get Started"
+              ></Button>
+
               <VideoPlayer />
             </div>
           </div>

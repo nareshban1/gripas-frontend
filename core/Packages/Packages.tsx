@@ -1,6 +1,8 @@
 import React from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import { CgArrowLongRight, Link } from "../Imports/imports";
+import * as gtag from "../../lib/gtag";
+import Button from "../../components/Button/Button";
 
 export const packages = [
   {
@@ -199,13 +201,14 @@ const Packages = ({ className }: { className?: string }) => {
                     ))}
                   </div>
                   <div className="d-flex mt-auto">
-                    <Link
-                      href="/packages"
+                    <Button
+                      action="generate_lead"
+                      actionCategory="engagement"
+                      actionlabel={`Buy ${pack.packageName} Package`}
+                      label={`Buy Package`}
+                      onClick={() => {}}
                       className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-                    >
-                      Buy Package
-                      <CgArrowLongRight className="ms-2 long-arrow" />
-                    </Link>
+                    />
                   </div>
                 </div>
               </div>
@@ -215,6 +218,14 @@ const Packages = ({ className }: { className?: string }) => {
           <Link
             href="/packages"
             className="btn btn-outline-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
+            onClick={() => {
+              gtag.event({
+                action: "View All Packages Clicked",
+                label: "View All Packages",
+                category: "engagement",
+                value: "",
+              });
+            }}
           >
             View All Packages
             <CgArrowLongRight className="ms-2 long-arrow" />

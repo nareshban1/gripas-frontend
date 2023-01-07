@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CgArrowLongRight } from "../Imports/imports";
 import { OverlayContext } from "../../context/OverlayContext";
+import Button from "../../components/Button/Button";
 
 const Freelancer = () => {
   const { toggleFreelanceForm } = useContext(OverlayContext);
@@ -19,13 +20,11 @@ const Freelancer = () => {
           technologies.
         </p>
         <div className="mt-4 d-flex">
-          <button
+          <Button
+            label="Contact Us"
             className="btn btn-outline-white rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
             onClick={toggleFreelanceForm}
-          >
-            Contact Us
-            <CgArrowLongRight className="ms-2 long-arrow" />
-          </button>
+          ></Button>
         </div>
       </div>
     </div>

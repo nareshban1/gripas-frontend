@@ -2,6 +2,7 @@ import React from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import Image from "next/image";
 import { CgArrowLongRight, Link, motion } from "../Imports/imports";
+import * as gtag from "../../lib/gtag";
 
 const portfolioItems = [
   {
@@ -59,6 +60,14 @@ const BlogsLanding = () => {
           <Link
             href="/blogs"
             className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
+            onClick={() => {
+              gtag.event({
+                action: "View All Blogs Clicked",
+                label: "View All Blogs",
+                category: "engagement",
+                value: "",
+              });
+            }}
           >
             View More
             <CgArrowLongRight className="ms-2 long-arrow" />

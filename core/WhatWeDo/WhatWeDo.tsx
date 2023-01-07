@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
+import * as gtag from "../../lib/gtag";
+
 import {
   CgArrowLongRight,
   motion,
@@ -95,6 +97,7 @@ const WhatWeDo = () => {
                   src={selectedService?.image}
                   alt={selectedService.name}
                   fill
+                  sizes=""
                   style={{ objectFit: "contain" }}
                 />
               </motion.div>
@@ -105,6 +108,14 @@ const WhatWeDo = () => {
           <Link
             href="/services"
             className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
+            onClick={() => {
+              gtag.event({
+                action: "More Services Clicked",
+                label: "More Services",
+                category: "engagement",
+                value: "",
+              });
+            }}
           >
             More Services
             <CgArrowLongRight className="ms-2 long-arrow" />
