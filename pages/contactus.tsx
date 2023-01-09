@@ -2,6 +2,7 @@ import Head from "next/head";
 import React from "react";
 import AnimateInView from "../components/AnimateInView/AnimateInView";
 import ContactForm from "../core/Forms/ContactForm";
+import Freelancer from "../core/Freelancer/Freelancer";
 
 const officeLocations = [
   {
@@ -63,6 +64,7 @@ const ContactUs = () => {
           </div>
         </div>
       </AnimateInView>
+      <Freelancer />
     </section>
   );
 };

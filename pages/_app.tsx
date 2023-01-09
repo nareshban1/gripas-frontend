@@ -12,6 +12,7 @@ import Footer from "../core/Footer/Footer";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import CustomPackage from "../core/Forms/CustomPackage";
 
 const GetStarted = dynamic(() => import("../core/Forms/GetStarted"));
 const Navbar = dynamic(() => import("../core/Navbar/Navbar"));
@@ -68,6 +69,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </main>
         <GetStarted />
         <FreelancerForm />
+        <CustomPackage />
         <Footer className={poppins.className} />
       </OverlayContextProvider>
     </>

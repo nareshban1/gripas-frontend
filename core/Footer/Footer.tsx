@@ -29,24 +29,24 @@ const Footer = ({ className }: { className: string }) => {
           <div className="col-12 col-md-6">
             <div className="text-white my-4 w-100">
               <h6 className="spaced-text fw-bold">Quick Links</h6>
-              <ul className="p-0 d-md-flex my-2 ">
+              <ul className="p-0 d-md-flex my-2 flex-wrap">
                 <Link className="text-white" href="/aboutus">
                   <li className="pe-md-3 my-2 my-md-0">About Us</li>
                 </Link>
                 <Link className="text-white" href="/services">
-                  <li className="px-md-3 my-2 my-md-0">Services</li>
+                  <li className="pe-md-3 my-2 my-md-0">Services</li>
                 </Link>
                 <Link className="text-white" href="/packages">
-                  <li className="px-md-3 my-2 my-md-0">Pricing</li>
+                  <li className="pe-md-3 my-2 my-md-0">Pricing</li>
                 </Link>
                 <Link className="text-white" href="/portfolio">
-                  <li className="px-md-3 my-2 my-md-0">Portfolio</li>
+                  <li className="pe-md-3 my-2 my-md-0">Portfolio</li>
                 </Link>
                 <Link className="text-white" href="/blogs">
-                  <li className="px-md-3 my-2 my-md-0">Blog</li>
+                  <li className="pe-md-3 my-2 my-md-0">Blog</li>
                 </Link>
                 <Link className="text-white" href="/contactus">
-                  <li className="px-md-3 my-2 my-md-0">Contact</li>
+                  <li className="pe-md-3 my-2 my-md-0">Contact</li>
                 </Link>
               </ul>
             </div>

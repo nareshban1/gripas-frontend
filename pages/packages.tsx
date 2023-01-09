@@ -1,11 +1,16 @@
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 import AnimateInView from "../components/AnimateInView/AnimateInView";
+import Button from "../components/Button/Button";
+import { OverlayContext } from "../context/OverlayContext";
+import PackageCard from "../core/Packages/PackageCard";
 import { packages } from "../core/Packages/Packages";
 
 const Packages = () => {
+  const { toggleCustomForm } = useContext(OverlayContext);
+
   return (
     <>
       <section className="bg-white">
@@ -24,56 +29,10 @@ const Packages = () => {
           <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
             Packages
           </h3>
-          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             {packages.map((pack, index) => (
               <div className="col " key={index}>
-                <div
-                  className={`border rounded-0 p-4 shadow h-100 d-flex flex-column ${
-                    pack.isRecommended && "border-4 border-primary"
-                  }`}
-                >
-                  <div className="d-flex align-items-center justify-content-between">
-                    <h5 className="fs-4 spaced-text fw-bold">
-                      {pack.packageName}
-                    </h5>
-                    {pack.isDiscounted && (
-                      <span className="bg-secondary px-2 py-1 fw-bolder ">
-                        Discounted
-                      </span>
-                    )}
-                  </div>
-
-                  <p className="fw-semibold">{pack.subInfo}</p>
-                  <span
-                    className={`fw-medium fs-5 text-decoration-line-through ${
-                      pack.isDiscounted ? "visible" : "invisible"
-                    }`}
-                  >
-                    Rs.{pack.actualPrice}
-                  </span>
-                  <div className="d-flex align-items-baseline ">
-                    <h1 className="fs-1 fw-bold m-0 me-2">
-                      Rs.{pack.price.toLocaleString()}
-                    </h1>
-                    <span>per month</span>
-                  </div>
-                  <div className="my-5">
-                    {pack.services.map((service, index) => (
-                      <p key={index}>
-                        {service.count} {service.name}
-                      </p>
-                    ))}
-                  </div>
-                  <div className="d-flex mt-auto">
-                    <Link
-                      href="/packages"
-                      className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-                    >
-                      Buy Package
-                      <CgArrowLongRight className="ms-2 long-arrow" />
-                    </Link>
-                  </div>
-                </div>
+                <PackageCard pack={pack} />
               </div>
             ))}
           </div>
@@ -87,14 +46,15 @@ const Packages = () => {
           <h3 className="font-size-lg fw-bold lh-1 my-3 text-white lh-base">
             Did not find any packages that fits your requirements?
           </h3>
+          <p className="font-size-rg text-white fw-medium mb-3">
+            Contact us to discuss a package that fits your needs.
+          </p>
           <div className="mt-4 d-flex">
-            <Link
-              href="/packages"
+            <Button
+              label="Custom Package"
               className="btn btn-outline-white rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-            >
-              Custom Package
-              <CgArrowLongRight className="ms-2 long-arrow" />
-            </Link>
+              onClick={toggleCustomForm}
+            ></Button>
           </div>
         </div>
       </div>

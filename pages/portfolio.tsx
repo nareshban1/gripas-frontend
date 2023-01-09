@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import AnimateInView from "../components/AnimateInView/AnimateInView";
-import Packages from "../core/Packages/Packages";
+import LinkToPackage from "../core/Packages/LinkToPackage";
 import { portfolioItems } from "../core/PortFolio/Portfolio";
 
 const Portfolio = () => {
@@ -46,7 +46,7 @@ const Portfolio = () => {
           </div>
         </AnimateInView>
       </section>
-      <Packages className="py-5 bg-primary" />
+      <LinkToPackage className="py-5 bg-primary" />
     </>
   );
 };

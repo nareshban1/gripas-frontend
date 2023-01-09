@@ -12,6 +12,7 @@ type TextInputTypes = {
   register?: UseFormRegister<any>;
   error?: string;
   label?: string;
+  className?: string;
 };
 
 const TextInput = (props: TextInputTypes) => {
@@ -27,14 +28,16 @@ const TextInput = (props: TextInputTypes) => {
     rules,
     error,
     label,
-
+    className,
     ...rest
   } = props;
   return (
-    <div className="mb-3">
-      <label htmlFor={name} className="form-label">
-        {label}
-      </label>
+    <div className={className ?? "mb-3"}>
+      {label && (
+        <label htmlFor={name} className="form-label">
+          {label}
+        </label>
+      )}
       <input
         type={type}
         name={name}

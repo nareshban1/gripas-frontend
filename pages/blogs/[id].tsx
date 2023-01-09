@@ -5,6 +5,7 @@ import { portfolioItems } from ".";
 import { CgArrowLongRight, Link, motion } from "../../core/Imports/imports";
 import Freelancer from "../../core/Freelancer/Freelancer";
 import Head from "next/head";
+import LinkToPackage from "../../core/Packages/LinkToPackage";
 
 const BlogDetail = () => {
   return (
@@ -112,7 +113,8 @@ const BlogDetail = () => {
           </div>
         </AnimateInView>
       </section>
-      <Freelancer />
+      <LinkToPackage />
+      {/* <Freelancer /> */}
     </>
   );
 };

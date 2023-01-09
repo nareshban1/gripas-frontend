@@ -3,6 +3,7 @@ import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import { CgArrowLongRight, Link } from "../Imports/imports";
 import * as gtag from "../../lib/gtag";
 import Button from "../../components/Button/Button";
+import PackageCard from "./PackageCard";
 
 export const packages = [
   {
@@ -163,54 +164,7 @@ const Packages = ({ className }: { className?: string }) => {
             .filter((pack) => pack.isFeatured)
             .map((pack, index) => (
               <div className="col " key={index}>
-                <div
-                  className={`border rounded-0 p-4 bg-white shadow h-100 d-flex flex-column ${
-                    pack.isRecommended && "border-4 border-primary"
-                  }`}
-                >
-                  <div className="d-flex align-items-center justify-content-between">
-                    <h5 className="fs-4 spaced-text fw-bold">
-                      {pack.packageName}
-                    </h5>
-                    {pack.isDiscounted && (
-                      <span className="bg-secondary px-2 py-1 fw-bolder ">
-                        Discounted
-                      </span>
-                    )}
-                  </div>
-
-                  <p className="fw-semibold">{pack.subInfo}</p>
-                  <span
-                    className={`fw-medium fs-5 text-decoration-line-through ${
-                      pack.isDiscounted ? "visible" : "invisible"
-                    }`}
-                  >
-                    Rs.{pack.actualPrice}
-                  </span>
-                  <div className="d-flex align-items-baseline ">
-                    <h1 className="fs-1 fw-bold m-0 me-2">
-                      Rs.{pack.price.toLocaleString()}
-                    </h1>
-                    <span>per month</span>
-                  </div>
-                  <div className="my-5">
-                    {pack.services.map((service, index) => (
-                      <p key={index}>
-                        {service.count} {service.name}
-                      </p>
-                    ))}
-                  </div>
-                  <div className="d-flex mt-auto">
-                    <Button
-                      action="generate_lead"
-                      actionCategory="engagement"
-                      actionlabel={`Buy ${pack.packageName} Package`}
-                      label={`Buy Package`}
-                      onClick={() => {}}
-                      className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-                    />
-                  </div>
-                </div>
+                <PackageCard pack={pack} />
               </div>
             ))}
         </div>

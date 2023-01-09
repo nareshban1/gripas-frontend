@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CgArrowLongRight } from "react-icons/cg";
 
-const LinkToPackage = ({ className }: { className: string }) => {
+const LinkToPackage = ({ className }: { className?: string }) => {
   return (
     <div className={`${className ? className : "py-5 bg-primary"}`}>
       <div className="container py-5  d-flex flex-column justify-content-start">

@@ -7,6 +7,7 @@ import TextInput from "../../components/FormComponents/TextInput";
 import { CgArrowLongRight, useForm, yupResolver } from "../Imports/imports";
 
 import TextArea from "../../components/FormComponents/TextArea";
+import Checkbox from "../../components/FormComponents/Checkbox";
 
 const GetStarted = () => {
   const { showStartedForm, toggleStartedForm } = useContext(OverlayContext);
@@ -29,11 +30,11 @@ const GetStarted = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="">
           <TextInput
             type="text"
-            name="fullName"
-            label="Name"
+            name="business"
+            label="Business Name"
             register={register}
-            placeHolder="Enter First Name"
-            error={errors.fullName?.message}
+            placeHolder="Enter Business Name"
+            error={errors.businessName?.message}
           />
           <TextInput
             type="email"
@@ -51,12 +52,90 @@ const GetStarted = () => {
             placeHolder="Enter Contact Number"
             error={errors.contactNo?.message}
           />
-
-          <TextArea
-            name="message"
-            label="Any Message?"
+          <TextInput
+            type="text"
+            name="address"
+            label="Address"
             register={register}
-            placeHolder="Enter Message"
+            placeHolder="Enter Address"
+            error={errors.address?.message}
+          />
+          <TextInput
+            type="text"
+            name="panNumber"
+            label="PAN?VAT Number"
+            register={register}
+            placeHolder="Enter PAN/VAT Number"
+            error={errors.panNumber?.message}
+          />
+          <Checkbox
+            type="checkbox"
+            name="level"
+            options={[
+              { label: "Sales", value: "Sales" },
+              {
+                label: "Marketing and Branding",
+                value: "Marketing and Branding",
+              },
+            ]}
+            label="Why do You Choose Social Media Marketing?"
+            register={register}
+            error={errors.whyContactUs?.message}
+          />
+          <TextInput
+            type="text"
+            name="brandColor"
+            label="Brand Color"
+            register={register}
+            placeHolder="Provide Color Code"
+            error={errors.brandColor?.message}
+          />
+          <TextInput
+            type="text"
+            name="socialMediaLink"
+            label="Social Media Link"
+            register={register}
+            placeHolder="Enter Social Media Link"
+            error={errors.socialMediaLink?.message}
+          />
+          <TextInput
+            type="text"
+            name="websiteLink"
+            label="Website"
+            register={register}
+            placeHolder="Enter Website Link"
+            error={errors.websiteLink?.message}
+          />
+          <TextInput
+            type="text"
+            name="yourServices"
+            label="Your Services"
+            register={register}
+            placeHolder="Your Services"
+            error={errors.yourServices?.message}
+          />
+          <Checkbox
+            type="checkbox"
+            name="level"
+            options={[
+              {
+                label: "Social Media Marketing",
+                value: "Social Media Marketing",
+              },
+              { label: "Graphic Designing", value: "Graphic Designing" },
+              { label: "Website", value: "Website" },
+              { label: "Content Marketing", value: "Content Marketing" },
+              { label: "Video Ads", value: "Video Ads" },
+            ]}
+            label="What Service Do You expect From us?"
+            register={register}
+            error={errors.servicesRequired?.message}
+          />
+          <TextArea
+            name="other"
+            label="Any Info?"
+            register={register}
+            placeHolder="Enter Info"
           />
           <button
             type="submit"

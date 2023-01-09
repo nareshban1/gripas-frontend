@@ -6,29 +6,40 @@ type CheckboxTypes = {
   rules?: RegisterOptions;
   error?: string;
   register?: UseFormRegister<any>;
+  label?: string;
+  type: "radio" | "checkbox";
 };
 
 const Checkbox = (props: CheckboxTypes) => {
-  const { name, options, register, rules, error, ...rest } = props;
+  const { name, type, label, options, register, rules, error, ...rest } = props;
   return (
-    <div>
+    <div className="mb-3">
+      <label htmlFor={name} className="form-label">
+        {label}
+      </label>
       <div>
         {options &&
           options.map((option) => (
-            <div key={option.id}>
+            <div key={option.id} className="d-flex align-items-center my-1">
               <input
-                type="checkbox"
+                type={type}
                 id={option?.id}
                 name={name}
                 value={option.value}
                 {...(register && register(name, rules))}
-              />
-              <label htmlFor={option?.id}>{option.label}</label>
-              {error && <p>{error}</p>}
+                className="text-primary bg-primary"
+              />{" "}
+              <label
+                htmlFor={option?.id}
+                className="fw-light"
+                style={{ marginLeft: "0.5rem" }}
+              >
+                {option.label}
+              </label>
             </div>
           ))}
       </div>
-      {error && <p>{error}</p>}
+      {error && <p className="form-text text-danger">{error}</p>}
     </div>
   );
 };

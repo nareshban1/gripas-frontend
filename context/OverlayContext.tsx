@@ -9,6 +9,7 @@ export const useAuth = () => {
 export const OverlayContextProvider = (props: any) => {
   const [showfreelanceForm, setShowfreelanceForm] = useState(false);
   const [showStartedForm, setShowStartedForm] = useState(false);
+  const [showCustomForm, setShowCustomForm] = useState(false);
 
   const toggleFreelanceForm = () => {
     setShowfreelanceForm(!showfreelanceForm);
@@ -18,11 +19,17 @@ export const OverlayContextProvider = (props: any) => {
     setShowStartedForm(!showStartedForm);
   };
 
+  const toggleCustomForm = () => {
+    setShowCustomForm(!showCustomForm);
+  };
+
   const value = {
     showStartedForm,
     showfreelanceForm,
+    showCustomForm,
     toggleStartedForm,
     toggleFreelanceForm,
+    toggleCustomForm,
   };
 
   return (
