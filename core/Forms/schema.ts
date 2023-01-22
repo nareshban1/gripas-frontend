@@ -89,3 +89,41 @@ export const GetStartedValidationSchema = Yup.object({
     "Please mention what services you require"
   ),
 }).required();
+
+export interface BuyPackageInputs {
+  packageId: string;
+  email: string;
+  businessName: string;
+  contactNo: string;
+  address: string;
+  panNumber: string;
+  whyContactUs: string;
+  brandColor: string;
+  socialMediaLink: string;
+  websiteLink: string;
+  yourServices: string;
+  servicesRequired: string;
+  otherInfo: string;
+}
+
+export const BuyPackageValidationSchema = Yup.object({
+  packageId: Yup.string().required("Please select a package"),
+  businessName: Yup.string().required("Please enter your business name"),
+  email: Yup.string()
+    .email("Please enter a valid email")
+    .required("Please enter your email"),
+  contactNo: Yup.string()
+    .matches(phoneRegExp, "Please enter your valid phone number")
+    .required("Please enter your contact number"),
+  address: Yup.string().required("Please enter your address"),
+  panNumber: Yup.string().required("Please enter your pan number"),
+  whyContactUs: Yup.string().required("Please enter why you chose us"),
+  brandColor: Yup.string().required("Please provide your brand color"),
+  socialMediaLink: Yup.string().required("Please enter your social media link"),
+  yourServices: Yup.string().required(
+    "Please provide the services you provide"
+  ),
+  servicesRequired: Yup.string().required(
+    "Please mention what services you require"
+  ),
+}).required();

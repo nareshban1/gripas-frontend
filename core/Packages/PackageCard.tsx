@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
+import { OverlayContext } from "../../context/OverlayContext";
 import { Link } from "../Imports/imports";
+import Button from "../../components/Button/Button";
 
 const PackageCard = ({ pack }: { pack: any }) => {
+  const { togglePackageBuyForm, setPackage } = useContext(OverlayContext);
   return (
     <div
       className={`border box-sizing-border rounded-0 p-3 shadow h-100 d-flex flex-column position-relative`}
@@ -44,13 +47,14 @@ const PackageCard = ({ pack }: { pack: any }) => {
       </div>
 
       <div className="d-flex mt-3">
-        <Link
-          href="/packages"
+        <Button
           className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-        >
-          Buy Package
-          <CgArrowLongRight className="ms-2 long-arrow" />
-        </Link>
+          onClick={() => {
+            togglePackageBuyForm();
+            setPackage(pack.id);
+          }}
+          label=" Buy Package"
+        ></Button>
       </div>
     </div>
   );

@@ -188,15 +188,14 @@ const Navbar = ({ className }: { className: string }) => {
                   </li>
                 </ul>
                 <div className="justify-self-baseline">
-                  <button
+                  <Button
                     className="btn btn-outline-white rounded-0 px-4 py-3 spaced-text fs-5 fw-bold d-flex align-items-center "
                     onClick={() => {
                       toggleStartedForm();
                       hidemenuFunc();
                     }}
-                  >
-                    Get Started <CgArrowLongRight className="ms-2 long-arrow" />
-                  </button>
+                    label="Get Started"
+                  ></Button>
                 </div>
               </div>
             </div>

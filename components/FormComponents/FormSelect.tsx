@@ -1,18 +1,26 @@
 import { Controller } from "react-hook-form";
-import ReactSelect from "./ReactSelect";
+import ReactSelect, { SelectTypes } from "./ReactSelect";
 
 type FormSelectTypes = {
   name: string;
   options: any;
   control: any;
   error?: string;
-  onChange: () => void;
+  className?: string;
+  label?: string;
+  value?: any;
+  onChange: any;
 };
 
-const FormSelect = (props: FormSelectTypes) => {
-  const { name, options, control, error, ...rest } = props;
+const FormSelect = (props: FormSelectTypes & SelectTypes) => {
+  const { name, options, control, error, className, label, ...rest } = props;
   return (
-    <div>
+    <div className={className ?? "mb-3"}>
+      {label && (
+        <label htmlFor={name} className="form-label">
+          {label}
+        </label>
+      )}
       <Controller
         name={name}
         control={control}
@@ -20,7 +28,7 @@ const FormSelect = (props: FormSelectTypes) => {
           <ReactSelect options={options} {...field} {...rest} />
         )}
       />
-      {error && <p>{error}</p>}
+      {error && <p className="form-text text-danger">{error}</p>}
     </div>
   );
 };

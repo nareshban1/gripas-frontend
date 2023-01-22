@@ -7,14 +7,14 @@ import {
   StylesConfig,
 } from "react-select/dist/declarations/src";
 
-type SelectTypes = {
+export type SelectTypes = {
   options: any[];
   styles?: StylesConfig;
   isMulti?: boolean;
   isClearable?: boolean;
   loadingMessage?: string;
   placeHolder?: string;
-  error?: boolean;
+  hasError?: boolean;
   touched?: boolean;
   isSearchable?: boolean;
   isLoading?: boolean;
@@ -25,6 +25,7 @@ type SelectTypes = {
   ) => ReactNode;
   id?: string;
   name?: string;
+  value: any;
   onChange: (
     value?: OnChangeValue<any, true>,
     action?: ActionMeta<any>
@@ -32,11 +33,19 @@ type SelectTypes = {
 };
 
 const selectStyles: StylesConfig = {
-  control: (styles) => ({ ...styles, backgroundColor: "white" }),
+  container: (styles) => ({ ...styles }),
+  control: (styles, { isDisabled }) => ({
+    ...styles,
+    backgroundColor: isDisabled ? "#EBEBE4" : "white",
+    borderRadius: 0,
+    borderColor: isDisabled ? "#688fa8" : "#266590",
+    padding: "0.5rem",
+  }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
     return { ...styles };
   },
-  input: (styles) => ({ ...styles }),
+  valueContainer: (styles) => ({ ...styles, margin: 0, padding: 0 }),
+  input: (styles) => ({ ...styles, margin: 0, padding: 0 }),
   placeholder: (styles) => ({ ...styles }),
   singleValue: (styles, { data }) => ({ ...styles }),
 };
@@ -49,7 +58,7 @@ const ReactSelect = (props: SelectTypes) => {
     isClearable,
     onChange,
     placeHolder,
-    error,
+    hasError,
     touched,
     isDisabled,
     isLoading,
@@ -58,11 +67,13 @@ const ReactSelect = (props: SelectTypes) => {
     formatOptionLabel,
     id,
     name,
+    value,
     ...rest
   } = props;
   const customStyles = { ...selectStyles, ...styles };
   return (
     <Select
+      value={value}
       options={options}
       isMulti={isMulti}
       styles={customStyles}

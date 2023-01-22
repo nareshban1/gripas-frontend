@@ -1,8 +1,6 @@
-import React from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
-import { CgArrowLongRight, Link } from "../Imports/imports";
 import * as gtag from "../../lib/gtag";
-import Button from "../../components/Button/Button";
+import { CgArrowLongRight, Link } from "../Imports/imports";
 import PackageCard from "./PackageCard";
 
 export const packages = [

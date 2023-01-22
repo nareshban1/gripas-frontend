@@ -1,11 +1,10 @@
 import { useContext } from "react";
-import OffCanvasComponent from "../../components/OffCanvasComponent/OffCanvasComponent";
-import TextArea from "../../components/FormComponents/TextArea";
-import TextInput from "../../components/FormComponents/TextInput";
-import { OverlayContext } from "../../context/OverlayContext";
-import { FreelancerInputs, FreelancerValidationSchema } from "./schema";
-import { CgArrowLongRight, useForm, yupResolver } from "../Imports/imports";
 import Checkbox from "../../components/FormComponents/Checkbox";
+import TextInput from "../../components/FormComponents/TextInput";
+import OffCanvasComponent from "../../components/OffCanvasComponent/OffCanvasComponent";
+import { OverlayContext } from "../../context/OverlayContext";
+import { CgArrowLongRight, useForm, yupResolver } from "../Imports/imports";
+import { FreelancerInputs, FreelancerValidationSchema } from "./schema";
 
 const FreelancerForm = () => {
   const { showfreelanceForm, toggleFreelanceForm } = useContext(OverlayContext);

@@ -56,7 +56,7 @@ const Services = () => {
           </div>
         ))}
       </AnimateInView>
-      <LinkToPackage className="py-5 bg-primary" />
+      <LinkToPackage />
     </section>
   );
 };

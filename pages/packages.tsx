@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 import AnimateInView from "../components/AnimateInView/AnimateInView";
 import Button from "../components/Button/Button";
+import InfoComponent from "../components/InfoComponent/InfoComponent";
 import { OverlayContext } from "../context/OverlayContext";
 import PackageCard from "../core/Packages/PackageCard";
 import { packages } from "../core/Packages/Packages";
@@ -38,26 +39,13 @@ const Packages = () => {
           </div>
         </AnimateInView>
       </section>
-      <div className={"mt-5 py-5 bg-primary"}>
-        <div className="container py-5">
-          <h2 className=" fw-bold lh-1 m-0 text-white lh-base text-start hero-sub-text font-size-sm ">
-            Customization
-          </h2>
-          <h3 className="font-size-lg fw-bold lh-1 my-3 text-white lh-base">
-            Did not find any packages that fits your requirements?
-          </h3>
-          <p className="font-size-rg text-white fw-medium mb-3">
-            Contact us to discuss a package that fits your needs.
-          </p>
-          <div className="mt-4 d-flex">
-            <Button
-              label="Custom Package"
-              className="btn btn-outline-white rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-              onClick={toggleCustomForm}
-            ></Button>
-          </div>
-        </div>
-      </div>
+      <InfoComponent
+        subtitle="Customization"
+        title="Did not find any packages that fits your requirements?"
+        info="Contact us to discuss a package that fits your needs."
+        label="Custom Package"
+        onButtonClick={toggleCustomForm}
+      />
     </>
   );
 };
