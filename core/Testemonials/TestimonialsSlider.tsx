@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import Markdown from "../../components/Markdown/Markdown";
+import useInterval from "../../hooks/useInterval";
 import {
   AnimatePresence,
   CgArrowLongLeft,
@@ -7,6 +9,7 @@ import {
   motion,
   wrap,
 } from "../Imports/imports";
+import { ITestemonials } from "./Testemonials";
 
 const variants = {
   enter: (direction: number) => {
@@ -37,43 +40,7 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
-const data = [
-  {
-    id: 1,
-    title: "Awesome Services",
-    description:
-      " We specialize on Social Media Marketing with three package available, currently. Further, we believe in driving business through creativity.",
-    reviewer: {
-      name: "Naresh Ban",
-      company: "AscendDevs",
-      designation: "Developer",
-    },
-  },
-  {
-    id: 2,
-    title: "Awesome Services",
-    description:
-      " We specialize on Social Media Marketing with three package available, currently. Further, we believe in driving business through creativity.",
-    reviewer: {
-      name: "Naresh Ban",
-      company: "AscendDevs",
-      designation: "Developer",
-    },
-  },
-  {
-    id: 3,
-    title: "Awesome Services",
-    description:
-      " We specialize on Social Media Marketing with three package available, currently. Further, we believe in driving business through creativity.We specialize on Social Media Marketing with three package available, currently. Further, we believe in driving business through creativity.",
-    reviewer: {
-      name: "Naresh Ban",
-      company: "AscendDevs",
-      designation: "Developer",
-    },
-  },
-];
-
-const TestimonialsSlider = () => {
+const TestimonialsSlider = ({ data }: { data: ITestemonials[] }) => {
   const [[page, direction], setPage] = useState([0, 0]);
 
   // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
@@ -85,6 +52,11 @@ const TestimonialsSlider = () => {
   const paginate: any = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
   };
+
+  useInterval(() => {
+    paginate(1);
+  }, 6000);
+
   return (
     <>
       <div className="position-relative testimonial my-3">
@@ -116,15 +88,16 @@ const TestimonialsSlider = () => {
           >
             <div>
               <h3 className="text-dark fw-semibold font-size-lg">
-                {data[reviewIndex].title}
+                {data[reviewIndex]?.title}
               </h3>
-              <p className="fs-5">{data[reviewIndex].description}</p>
+              <p className="fs-5">
+                <Markdown markdown={data[reviewIndex]?.comment ?? ""} />
+              </p>
               <p className="fs-6 mb-0 fw-medium">
-                {data[reviewIndex].reviewer.name}
+                {data[reviewIndex]?.commentor}
               </p>
               <em className="fs-6">
-                <>{data[reviewIndex].reviewer.designation}</>,{" "}
-                {data[reviewIndex].reviewer.company}
+                <>{data[reviewIndex]?.position}</>, {data[reviewIndex]?.company}
               </em>
             </div>
           </motion.div>

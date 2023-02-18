@@ -2,7 +2,18 @@ import React from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import TestimonialsSlider from "./TestimonialsSlider";
 
-const Testemoonials = () => {
+export interface ITestemonials {
+  id: number;
+  title: string;
+  comment: string;
+  slug: string;
+  commentor: string;
+  company: string;
+  position: string;
+  is_active: boolean;
+}
+const Testemonials = ({ testemonials }: { testemonials: ITestemonials[] }) => {
+  console.log(JSON.stringify(testemonials), "data");
   return (
     <section className="bg-white py-5">
       <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
@@ -13,11 +24,11 @@ const Testemoonials = () => {
           What people say
         </h3>
         <div className="position-relative d-flex flex-column overflow-hidden">
-          <TestimonialsSlider />
+          <TestimonialsSlider data={testemonials} />
         </div>
       </AnimateInView>
     </section>
   );
 };
 
-export default Testemoonials;
+export default Testemonials;

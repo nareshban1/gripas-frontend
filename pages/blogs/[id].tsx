@@ -1,10 +1,8 @@
-import Image from "next/image";
-import React from "react";
-import AnimateInView from "../../components/AnimateInView/AnimateInView";
-import { portfolioItems } from ".";
-import { CgArrowLongRight, Link, motion } from "../../core/Imports/imports";
-import Freelancer from "../../core/Freelancer/Freelancer";
 import Head from "next/head";
+import Image from "next/image";
+import { portfolioItems } from ".";
+import AnimateInView from "../../components/AnimateInView/AnimateInView";
+import { CgArrowLongRight, Link, motion } from "../../core/Imports/imports";
 import LinkToPackage from "../../core/Packages/LinkToPackage";
 
 const BlogDetail = () => {

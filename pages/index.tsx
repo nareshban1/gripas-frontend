@@ -1,5 +1,7 @@
+import axios from "axios";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import process from "process";
 
 const BlogsLanding = dynamic(() => import("../core/Blogs/BlogsLanding"));
 const Freelancer = dynamic(() => import("../core/Freelancer/Freelancer"));
@@ -7,12 +9,17 @@ const HeroSection = dynamic(() => import("../core/HeroSection/HeroSection"));
 const InfoSection = dynamic(() => import("../core/InfoSection/InfoSection"));
 const Packages = dynamic(() => import("../core/Packages/Packages"));
 const Portfolio = dynamic(() => import("../core/PortFolio/Portfolio"));
-const Testemoonials = dynamic(
-  () => import("../core/Testemonials/Testemoonials")
-);
+const Testemonials = dynamic(() => import("../core/Testemonials/Testemonials"));
 const WhatWeDo = dynamic(() => import("../core/WhatWeDo/WhatWeDo"));
 
-export default function Home() {
+export default function Home(props: any) {
+  const {
+    featuredServices,
+    featuredPortfolios,
+    testemonials,
+    featuredPackages,
+    featuredBlogs,
+  } = props;
   return (
     <div className="w-100 bg-primary overflow-hidden">
       <Head>
@@ -25,12 +32,54 @@ export default function Home() {
       </Head>
       <HeroSection />
       <InfoSection />
-      <WhatWeDo />
-      <Portfolio />
-      <Packages />
-      <Testemoonials />
-      <BlogsLanding />
+      <WhatWeDo featuredServices={featuredServices} />
+      <Portfolio featuredPortfolios={featuredPortfolios} />
+      <Packages featuredPackages={featuredPackages} />
+      <Testemonials testemonials={testemonials} />
+      <BlogsLanding featuredBlogs={featuredBlogs} />
       <Freelancer />
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const featuredServicesResponse = await axios.get(
+    `${process.env.API_ENDPOINT}services/?is_featured=true`
+  );
+  const featuredPortfolioResponse = await axios.get(
+    `${process.env.API_ENDPOINT}portfolios/?is_featured=true`
+  );
+  const featuredPackagesResponse = await axios.get(
+    `${process.env.API_ENDPOINT}packages/?is_featured=true`
+  );
+  const testemonialsResponse = await axios.get(
+    `${process.env.API_ENDPOINT}testemonials/`
+  );
+  const featuredBlogsResponse = await axios.get(
+    `${process.env.API_ENDPOINT}blogslist/?listType=landing`
+  );
+
+  const [
+    featuredServices,
+    featuredPortfolios,
+    featuredBlogs,
+    testemonials,
+    featuredPackages,
+  ] = await Promise.all([
+    featuredServicesResponse?.data,
+    featuredPortfolioResponse?.data,
+    featuredBlogsResponse?.data,
+    testemonialsResponse?.data,
+    featuredPackagesResponse?.data,
+  ]);
+
+  return {
+    props: {
+      featuredServices,
+      featuredPortfolios,
+      featuredPackages,
+      featuredBlogs,
+      testemonials,
+    },
+  };
 }

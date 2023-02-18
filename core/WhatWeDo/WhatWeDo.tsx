@@ -1,39 +1,35 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
+import Markdown from "../../components/Markdown/Markdown";
 import * as gtag from "../../lib/gtag";
-
 import {
-  CgArrowLongRight,
-  motion,
   AnimatePresence,
+  CgArrowLongRight,
   Link,
+  motion,
 } from "../Imports/imports";
-export const services = [
-  {
-    name: "Social Media Marketing",
-    image: "/hero.svg",
-    id: 1,
-  },
-  {
-    name: "Video Advertisements",
-    image: "/video.svg",
-    id: 2,
-  },
-  {
-    name: "Tiktok Marketing",
-    image: "/Tiktok.svg",
-    id: 3,
-  },
-  {
-    name: "Short Comercial Advertisements",
-    image: "/commercial.svg",
-    id: 4,
-  },
-];
 
-const WhatWeDo = () => {
-  const [selectedService, setSelectedService] = useState(services?.[0]);
+export interface ServiceItem {
+  id: number;
+  serviceimage: string;
+  name: string;
+  slug: string;
+  details: string;
+  is_active: boolean;
+  is_featured: boolean;
+}
+
+const WhatWeDo = (props: { featuredServices: ServiceItem[] }) => {
+  const { featuredServices } = props;
+  const [selectedService, setSelectedService] = useState<ServiceItem | null>(
+    null
+  );
+
+  useEffect(() => {
+    if (featuredServices) setSelectedService(featuredServices[0]);
+  }, [featuredServices]);
+
   return (
     <section className="bg-white py-5">
       <AnimateInView className="container py-5 workSection d-flex flex-column justify-content-center">
@@ -46,18 +42,18 @@ const WhatWeDo = () => {
         <div className="row d-flex ">
           <div className="col-lg-7 col-12 order-1 order-md-1">
             <ul className="p-0">
-              {services.map((service) => (
+              {featuredServices?.map((service) => (
                 <li
                   key={service.id}
                   className={`font-size-xl fw-bold  my-5 cursor-pointer  ${
-                    selectedService.id === service.id
+                    selectedService?.id === service.id
                       ? "active text-primary "
                       : "service-list"
                   }`}
                   onClick={() => setSelectedService(service)}
                 >
                   {service.name}
-                  {selectedService.id === service.id && (
+                  {selectedService?.id === service.id && (
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={selectedService?.id}
@@ -70,9 +66,7 @@ const WhatWeDo = () => {
                         className="h-100 w-100 position-relative"
                       >
                         <p className="service-info fw-md-medium text-dark my-2">
-                          We specialize on &quot;Social Media Marketing&quot;
-                          with three package available, currently. Further, we
-                          believe in driving business through creativity.{" "}
+                          <Markdown markdown={service.details} />
                         </p>
                       </motion.div>
                     </AnimatePresence>
@@ -81,6 +75,7 @@ const WhatWeDo = () => {
               ))}
             </ul>
           </div>
+
           <div className="col-lg-5 col-12 order-0 order-lg-2 workSection-image my-lg-0 my-4">
             <AnimatePresence mode="wait">
               <motion.div
@@ -93,13 +88,15 @@ const WhatWeDo = () => {
                 }}
                 className="h-100 w-100 position-relative"
               >
-                <Image
-                  src={selectedService?.image}
-                  alt={selectedService.name}
-                  fill
-                  sizes=""
-                  style={{ objectFit: "contain" }}
-                />
+                {selectedService && (
+                  <Image
+                    src={selectedService?.serviceimage ?? ""}
+                    alt={selectedService?.name ?? ""}
+                    fill
+                    sizes=""
+                    style={{ objectFit: "contain" }}
+                  />
+                )}
               </motion.div>
             </AnimatePresence>
           </div>

@@ -1,17 +1,14 @@
+import axios from "axios";
 import Head from "next/head";
-import Link from "next/link";
-import React, { useContext } from "react";
-import { CgArrowLongRight } from "react-icons/cg";
+import { useContext } from "react";
 import AnimateInView from "../components/AnimateInView/AnimateInView";
-import Button from "../components/Button/Button";
 import InfoComponent from "../components/InfoComponent/InfoComponent";
 import { OverlayContext } from "../context/OverlayContext";
 import PackageCard from "../core/Packages/PackageCard";
-import { packages } from "../core/Packages/Packages";
+import { PackageDetail } from "../core/Packages/Packages";
 
-const Packages = () => {
+const Packages = ({ packages }: { packages: PackageDetail[] }) => {
   const { toggleCustomForm } = useContext(OverlayContext);
-
   return (
     <>
       <section className="bg-white">
@@ -31,7 +28,7 @@ const Packages = () => {
             Packages
           </h3>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            {packages.map((pack, index) => (
+            {packages?.map((pack, index) => (
               <div className="col " key={index}>
                 <PackageCard pack={pack} />
               </div>
@@ -49,5 +46,18 @@ const Packages = () => {
     </>
   );
 };
+
+export async function getServerSideProps() {
+  const packagesResponse = await axios.get(
+    `${process.env.API_ENDPOINT}packages/`
+  );
+
+  const [packages] = await Promise.all([packagesResponse?.data]);
+  return {
+    props: {
+      packages,
+    },
+  };
+}
 
 export default Packages;

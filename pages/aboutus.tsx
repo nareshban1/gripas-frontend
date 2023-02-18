@@ -1,42 +1,24 @@
+import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
+import AnimateInView from "../components/AnimateInView/AnimateInView";
 import Freelancer from "../core/Freelancer/Freelancer";
 import { CgArrowLongRight, Link } from "../core/Imports/imports";
 
-const portfolioItems = [
-  {
-    name: "Naresh Ban",
-    image: "/defaultuser.jpg",
-    id: "1",
-  },
-  {
-    name: "Roshan Saud",
-    image: "/defaultuser.jpg",
-    id: "2",
-  },
-  {
-    name: "Roshan Saud",
-    image: "/defaultuser.jpg",
-    id: "3",
-  },
-  {
-    name: "Naresh Ban",
-    image: "/defaultuser.jpg",
-    id: "4",
-  },
-  {
-    name: "Roshan Saud",
-    image: "/defaultuser.jpg",
-    id: "5",
-  },
-  {
-    name: "Roshan Saud",
-    image: "/defaultuser.jpg",
-    id: "6",
-  },
-];
+export interface TeamMember {
+  id: number;
+  name: string;
+  info: string;
+  image: string;
+}
 
-const AboutUs = () => {
+const AboutUs = ({
+  teamMembers,
+  pageDetails,
+}: {
+  teamMembers: TeamMember[];
+  pageDetails: any;
+}) => {
   return (
     <section className="bg-white ">
       <Head>
@@ -47,7 +29,7 @@ const AboutUs = () => {
         />
         <link rel="icon" href="/logo.svg" />
       </Head>
-      <div className="container py-5  d-flex flex-column justify-content-start">
+      <AnimateInView className="container py-5 d-flex flex-column justify-content-start ">
         <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
           Want to know more about us?
         </h2>
@@ -81,7 +63,7 @@ const AboutUs = () => {
           The Team
         </h3>
         <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
-          {portfolioItems.map((item) => (
+          {teamMembers?.map((item) => (
             <div className="col cursor-pointer" key={item.id}>
               <div className="position-relative  h-100 ">
                 <Image
@@ -98,10 +80,30 @@ const AboutUs = () => {
             </div>
           ))}
         </div>
-      </div>
+      </AnimateInView>
       <Freelancer />
     </section>
   );
 };
 
 export default AboutUs;
+
+export async function getServerSideProps() {
+  const teamMembersResponse = await axios.get(
+    `${process.env.API_ENDPOINT}teams/`
+  );
+  const pageDetailsResponse = await axios.get(
+    `${process.env.API_ENDPOINT}pagecontents/?page=about`
+  );
+  const [teamMembers, pageDetails] = await Promise.all([
+    teamMembersResponse?.data,
+    pageDetailsResponse?.data,
+  ]);
+
+  return {
+    props: {
+      teamMembers,
+      pageDetails,
+    },
+  };
+}

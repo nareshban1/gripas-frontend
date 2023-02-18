@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { CgArrowLongLeft, CgArrowLongRight } from "react-icons/cg";
 import Link from "next/link";
 import Head from "next/head";
+import axios from "axios";
 export const portfolioItems = [
   {
     name: "How to create a tiktok ad",
@@ -53,7 +54,40 @@ export const portfolioItems = [
   },
 ];
 
-const Blogs = () => {
+export interface PaginatedBlogs {
+  next: any;
+  itemsOnPage: number;
+  hasNext: boolean;
+  hasPrevious: boolean;
+  previous: any;
+  count: number;
+  totalPages: number;
+  currentPage: number;
+  data: Blogitem[];
+}
+
+export interface Blogitem {
+  id: number;
+  category: Category[];
+  title: string;
+  slug: string;
+  content: string;
+  created_at: string;
+  image: string;
+}
+
+export interface Category {
+  id: number;
+  name: string;
+}
+
+const Blogs = ({
+  featuredBlogs,
+  allBlogs,
+}: {
+  featuredBlogs: Blogitem[];
+  allBlogs: PaginatedBlogs;
+}) => {
   return (
     <section className="bg-white ">
       <Head>
@@ -75,22 +109,22 @@ const Blogs = () => {
         <h2 className=" fw-bold lh-1 mt-3 text-dark lh-base text-start  fs-5">
           Featured
         </h2>
-        <Link href={`/blogs/${portfolioItems[0].id}`}>
+        <Link href={`/blogs/${featuredBlogs[0].slug}`}>
           <motion.div
             className="col cursor-pointer my-3"
-            key={portfolioItems[0].id}
+            key={featuredBlogs[0].id}
           >
-            <div className="position-relative  h-100 ">
+            <div className="position-relative h-100 ">
               <Image
-                src={portfolioItems[0]?.image}
-                alt={portfolioItems[0].name}
+                src={featuredBlogs[0]?.image}
+                alt={featuredBlogs[0].title}
                 height={350}
                 width={400}
                 style={{ objectFit: "cover", width: "100%" }}
               />
               <div className="py-4 bg-white">
                 <p className=" spaced-text fw-bold fs-5 text-dark ">
-                  {portfolioItems[0].name}
+                  {featuredBlogs[0].title}
                 </p>
                 <p className="fs-5 fw-md-medium text-dark my-2">
                   We specialize on &quot;Social Media Marketing&quot; with three
@@ -108,9 +142,9 @@ const Blogs = () => {
         </h2>
 
         <div className="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-4 ">
-          {portfolioItems.map((item) => (
+          {allBlogs.data.map((item) => (
             <div className="col" key={item.id}>
-              <Link href={`/blogs/${item.id}`}>
+              <Link href={`/blogs/${item.slug}`}>
                 <motion.div
                   className="cursor-pointer h-100"
                   whileHover={{ scale: 1.05 }}
@@ -119,13 +153,13 @@ const Blogs = () => {
                   <div className="position-relative  h-100 ">
                     <Image
                       src={item?.image}
-                      alt={item.name}
+                      alt={item.title}
                       height={350}
                       width={400}
                       style={{ objectFit: "cover", width: "100%" }}
                     />
                     <p className="py-3 spaced-text fw-bold fs-5 text-dark ">
-                      {item.name}
+                      {item.title}
                     </p>
                   </div>
                 </motion.div>
@@ -156,3 +190,22 @@ const Blogs = () => {
 };
 
 export default Blogs;
+
+export async function getServerSideProps() {
+  const featuredBlogsResponse = await axios.get(
+    `${process.env.API_ENDPOINT}featured-blog/`
+  );
+  const allBlogsResponse = await axios.get(`${process.env.API_ENDPOINT}blogs/`);
+
+  const [featuredBlogs, allBlogs] = await Promise.all([
+    featuredBlogsResponse?.data,
+    allBlogsResponse?.data,
+  ]);
+
+  return {
+    props: {
+      featuredBlogs,
+      allBlogs,
+    },
+  };
+}

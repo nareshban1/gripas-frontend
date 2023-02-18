@@ -4,25 +4,29 @@ import Image from "next/image";
 import { CgArrowLongRight, Link, motion } from "../Imports/imports";
 import * as gtag from "../../lib/gtag";
 
-const portfolioItems = [
-  {
-    name: "How to create a tiktok ad",
-    image: "/all.jpg",
-    id: "1",
-  },
-  {
-    name: "How to implement google analytics",
-    image: "/facebook.jpg",
-    id: "2",
-  },
-  {
-    name: "Social Marketing Tips and Tricks",
-    image: "/product.jpg",
-    id: "3",
-  },
-];
+export interface BlogList {
+  id: number;
+  listType: string;
+  upload_time: string;
+  blogs: Blog[];
+}
 
-const BlogsLanding = () => {
+export interface Blog {
+  id: number;
+  category: Category[];
+  title: string;
+  slug: string;
+  content: string;
+  created_at: string;
+  image: string;
+}
+
+export interface Category {
+  id: number;
+  name: string;
+}
+
+const BlogsLanding = ({ featuredBlogs }: { featuredBlogs: BlogList[] }) => {
   return (
     <section className="bg-white py-5">
       <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
@@ -33,8 +37,8 @@ const BlogsLanding = () => {
           Blogs
         </h3>
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-3">
-          {portfolioItems.map((item) => (
-            <Link href={`/blogs/${item.id}`} key={item.id}>
+          {featuredBlogs[0]?.blogs.map((item) => (
+            <Link href={`/blogs/${item.slug}`} key={item.id}>
               <motion.div
                 className="col cursor-pointer"
                 whileHover={{ scale: 1.05 }}
@@ -43,13 +47,13 @@ const BlogsLanding = () => {
                 <div className="position-relative  h-100 ">
                   <Image
                     src={item?.image}
-                    alt={item.name}
+                    alt={item.title}
                     height={350}
                     width={400}
                     style={{ objectFit: "cover", width: "100%" }}
                   />
                   <p className="py-3 mb-0 spaced-text fw-bold fs-5 text-dark">
-                    {item.name}
+                    {item.title}
                   </p>
                 </div>
               </motion.div>

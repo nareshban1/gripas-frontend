@@ -70,7 +70,7 @@ const GetStarted = () => {
           />
           <Checkbox
             type="checkbox"
-            name="level"
+            name="whyContactUs"
             options={[
               { label: "Sales", value: "Sales" },
               {
@@ -116,7 +116,7 @@ const GetStarted = () => {
           />
           <Checkbox
             type="checkbox"
-            name="level"
+            name="servicesRequired"
             options={[
               {
                 label: "Social Media Marketing",

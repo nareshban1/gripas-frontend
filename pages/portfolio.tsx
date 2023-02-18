@@ -1,10 +1,16 @@
+import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
 import AnimateInView from "../components/AnimateInView/AnimateInView";
+import Markdown from "../components/Markdown/Markdown";
 import LinkToPackage from "../core/Packages/LinkToPackage";
-import { portfolioItems } from "../core/PortFolio/Portfolio";
+import { IPortfolioItem } from "../core/PortFolio/Portfolio";
 
-const Portfolio = () => {
+export default function Portfolio({
+  allPortfolios,
+}: {
+  allPortfolios: IPortfolioItem[];
+}) {
   return (
     <>
       <section className="bg-white ">
@@ -25,7 +31,7 @@ const Portfolio = () => {
           </h3>
           <div className="container-fluid p-0">
             <div className="row row-cols-md-2 row-cols-1  position-relative w-100 g-5 m-0">
-              {[...portfolioItems].map((item) => (
+              {allPortfolios.map((item) => (
                 <div className="col item-grid p-0 p-md-3" key={item.id}>
                   <div className="item-grid-item">
                     <div className="item-grid-item-image">
@@ -34,9 +40,7 @@ const Portfolio = () => {
                     <div className="item-grid-item-description mt-3">
                       <h4 className="spaced-text fw-bold">{item.name}</h4>
                       <p className="service-info fw-md-medium text-dark my-2">
-                        We specialize on &quot;Social Media Marketing&quot; with
-                        three package available, currently. Further, we believe
-                        in driving business through creativity.
+                        <Markdown markdown={item.details} />
                       </p>
                     </div>
                   </div>
@@ -46,9 +50,21 @@ const Portfolio = () => {
           </div>
         </AnimateInView>
       </section>
-      <LinkToPackage className="py-5 bg-primary" />
+      <LinkToPackage />
     </>
   );
-};
+}
 
-export default Portfolio;
+export async function getServerSideProps() {
+  const allPortfolioResponse = await axios.get(
+    `${process.env.API_ENDPOINT}portfolios/`
+  );
+
+  const [allPortfolios] = await Promise.all([allPortfolioResponse?.data]);
+
+  return {
+    props: {
+      allPortfolios,
+    },
+  };
+}

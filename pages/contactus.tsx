@@ -1,19 +1,19 @@
+import axios from "axios";
 import Head from "next/head";
 import React from "react";
 import AnimateInView from "../components/AnimateInView/AnimateInView";
 import ContactForm from "../core/Forms/ContactForm";
 import Freelancer from "../core/Freelancer/Freelancer";
 
-const officeLocations = [
-  {
-    officeName: "Main Office",
-    location: "Kathmandu, Nepal",
-    phoneNo: "9898989",
-    email: "example@example.com",
-  },
-];
+interface AllContacts {
+  id: number;
+  officename: string;
+  location: string;
+  phoneNo: string;
+  email: string;
+}
 
-const ContactUs = () => {
+const ContactUs = ({ allContacts }: { allContacts: AllContacts[] }) => {
   return (
     <section className="bg-white ">
       <Head>
@@ -53,9 +53,9 @@ const ContactUs = () => {
             <h5 className="fw-semibold text-uppercase mb-4">
               General Information
             </h5>
-            {officeLocations.map((location, index) => (
+            {allContacts.map((location, index) => (
               <div key={index} className="fs-5">
-                <h5 className="fs-5 fw-bold ">{location.officeName}</h5>
+                <h5 className="fs-5 fw-bold ">{location.officename}</h5>
                 <p className="m-0 fw-medium">{location.location}</p>
                 <p className="m-0 fw-medium">{location.phoneNo}</p>
                 <p className="m-0 fw-medium">{location.email}</p>
@@ -70,3 +70,17 @@ const ContactUs = () => {
 };
 
 export default ContactUs;
+
+export async function getServerSideProps() {
+  const allContactResponse = await axios.get(
+    `${process.env.API_ENDPOINT}contacts/`
+  );
+
+  const [allContacts] = await Promise.all([allContactResponse?.data]);
+
+  return {
+    props: {
+      allContacts,
+    },
+  };
+}
