@@ -1,11 +1,77 @@
+import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
-import { portfolioItems } from ".";
+import { useCallback } from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
+import Markdown from "../../components/Markdown/Markdown";
 import { CgArrowLongRight, Link, motion } from "../../core/Imports/imports";
 import LinkToPackage from "../../core/Packages/LinkToPackage";
 
-const BlogDetail = () => {
+export interface BlogList {
+  id: number;
+  listType: string;
+  upload_time: string;
+  blogs: BlogItem[];
+}
+
+export interface BlogItem {
+  id: number;
+  category: Category[];
+  title: string;
+  slug: string;
+  content: string;
+  created_at: string;
+  image: string;
+}
+
+export interface Category {
+  id: number;
+  name: string;
+}
+
+const BlogDetail = ({
+  blogResponseData,
+  recommendedResposeData,
+}: {
+  blogResponseData: BlogItem;
+  recommendedResposeData: BlogList[];
+}) => {
+  const blogData = useCallback(() => {
+    const recommendedList = recommendedResposeData?.find(
+      (item) => item.listType === "recommended"
+    );
+    return (
+      <>
+        {recommendedList?.blogs ? (
+          <>
+            {recommendedList?.blogs.map((blog) => (
+              <Link href={`/blogs/${blog.slug}`} key={blog?.slug}>
+                <motion.div
+                  className="col cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  key={blog.id}
+                >
+                  <div className="position-relative  h-100 ">
+                    <Image
+                      src={blog?.image}
+                      alt={blog?.title}
+                      height={350}
+                      width={400}
+                      style={{ objectFit: "cover", width: "100%" }}
+                    />
+                    <p className="py-3 mb-0 spaced-text fw-bold fs-5 text-dark">
+                      {blog?.title}
+                    </p>
+                  </div>
+                </motion.div>
+              </Link>
+            ))}
+          </>
+        ) : null}
+      </>
+    );
+  }, [recommendedResposeData]);
+
   return (
     <>
       <section className="bg-white ">
@@ -22,7 +88,7 @@ const BlogDetail = () => {
             2022-12-25
           </p>
           <h3 className="fs-1 fw-bold lh-1 my-3 text-dark lh-base text-center">
-            {portfolioItems[0]?.name}
+            {blogResponseData?.title}
           </h3>
           <p className=" fw-medium lh-1 text-dark lh-base text-center fs-5 m-0">
             By Roshan Saud
@@ -31,8 +97,8 @@ const BlogDetail = () => {
           <div className="my-4">
             <div className="position-relative blogs-image">
               <Image
-                src={portfolioItems[0]?.image}
-                alt={portfolioItems[0]?.name}
+                src={blogResponseData?.image}
+                alt={blogResponseData?.title}
                 fill
                 style={{ objectFit: "cover", width: "100%", height: "100%" }}
               />
@@ -40,31 +106,7 @@ const BlogDetail = () => {
 
             <div className="my-5 bg-white">
               <div className="col col-lg-8 mx-auto fs-5 fw-md-medium text-dark ">
-                <p className=" my-4">
-                  We specialize on &quot;Social Media Marketing&quot; with three
-                  package available, currently. Further, we believe in driving
-                  business through creativity. We specialize on &quot;Social
-                  Media Marketing&quot; with three package available, currently.
-                  Further, we believe in driving business through creativity. We
-                  specialize on &quot;Social Media Marketing&quot; with three
-                  package available, currently. Further, we believe in driving
-                  business through creativity. We specialize on &quot;Social
-                  Media Marketing&quot; with three package available, currently.
-                  Further, we believe in driving business through creativity.
-                </p>
-
-                <p className=" my-4">
-                  We specialize on &quot;Social Media Marketing&quot; with three
-                  package available, currently. Further, we believe in driving
-                  business through creativity. We specialize on &quot;Social
-                  Media Marketing&quot; with three package available, currently.
-                  Further, we believe in driving business through creativity. We
-                  specialize on &quot;Social Media Marketing&quot; with three
-                  package available, currently. Further, we believe in driving
-                  business through creativity. We specialize on &quot;Social
-                  Media Marketing&quot; with three package available, currently.
-                  Further, we believe in driving business through creativity.
-                </p>
+                <Markdown markdown={blogResponseData?.content} />
               </div>
             </div>
           </div>
@@ -79,26 +121,7 @@ const BlogDetail = () => {
             More from the blog
           </h3>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-3">
-            {[...portfolioItems].splice(0, 3).map((item) => (
-              <motion.div
-                className="col cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-                key={item.id}
-              >
-                <div className="position-relative  h-100 ">
-                  <Image
-                    src={item?.image}
-                    alt={item.name}
-                    height={350}
-                    width={400}
-                    style={{ objectFit: "cover", width: "100%" }}
-                  />
-                  <p className="py-3 mb-0 spaced-text fw-bold fs-5 text-dark">
-                    {item.name}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+            {blogData()}
           </div>
           <div className="mt-5 d-flex">
             <Link
@@ -112,9 +135,30 @@ const BlogDetail = () => {
         </AnimateInView>
       </section>
       <LinkToPackage />
-      {/* <Freelancer /> */}
     </>
   );
 };
 
 export default BlogDetail;
+
+export async function getServerSideProps(context: { query: { slug: any } }) {
+  const { slug } = context.query;
+  const blogResponse = await axios.get(
+    `${process.env.API_ENDPOINT}blogs/${slug}`
+  );
+  const recommendedResponse = await axios.get(
+    `${process.env.API_ENDPOINT}blogslist/?listType=recommended`
+  );
+
+  const [blogResponseData, recommendedResposeData] = await Promise.all([
+    blogResponse?.data,
+    recommendedResponse?.data,
+  ]);
+
+  return {
+    props: {
+      blogResponseData,
+      recommendedResposeData,
+    },
+  };
+}

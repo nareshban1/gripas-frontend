@@ -8,6 +8,9 @@ const nextConfig = {
   eslint: {
     dirs: ["pages", "components", "context", "core", "lib"],
   },
+  env: {
+    API_ENDPOINT: process.env.API_ENDPOINT,
+  },
 };
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
