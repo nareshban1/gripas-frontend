@@ -1,3 +1,4 @@
+import { domAnimation, LazyMotion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
@@ -50,20 +51,22 @@ const WhatWeDo = (props: { featuredServices: ServiceItem[] }) => {
                   {service.name}
                   {selectedService?.id === service.id && (
                     <AnimatePresence mode="wait">
-                      <m.div
-                        key={selectedService?.id}
-                        initial={{ opacity: 0, y: 0, x: -10 }}
-                        animate={{ opacity: 1, y: 0, x: 0 }}
-                        exit={{ opacity: 0, y: 0, x: -10 }}
-                        transition={{
-                          duration: 0.2,
-                        }}
-                        className="h-100 w-100 position-relative"
-                      >
-                        <p className="service-info fw-md-medium text-dark my-2">
-                          <Markdown markdown={service.details} />
-                        </p>
-                      </m.div>
+                      <LazyMotion features={domAnimation}>
+                        <m.div
+                          key={selectedService?.id}
+                          initial={{ opacity: 0, y: 0, x: -10 }}
+                          animate={{ opacity: 1, y: 0, x: 0 }}
+                          exit={{ opacity: 0, y: 0, x: -10 }}
+                          transition={{
+                            duration: 0.2,
+                          }}
+                          className="h-100 w-100 position-relative"
+                        >
+                          <p className="service-info fw-md-medium text-dark my-2">
+                            <Markdown markdown={service.details} />
+                          </p>
+                        </m.div>
+                      </LazyMotion>
                     </AnimatePresence>
                   )}
                 </li>
@@ -73,26 +76,28 @@ const WhatWeDo = (props: { featuredServices: ServiceItem[] }) => {
 
           <div className="col-lg-5 col-12 order-0 order-lg-2 workSection-image my-lg-0 my-4">
             <AnimatePresence mode="wait">
-              <m.div
-                key={selectedService?.id}
-                initial={{ opacity: 0, y: 0, x: 100 }}
-                animate={{ opacity: 1, y: 0, x: 0 }}
-                exit={{ opacity: 0, y: 0, x: -100 }}
-                transition={{
-                  duration: 0.2,
-                }}
-                className="h-100 w-100 position-relative"
-              >
-                {selectedService && (
-                  <Image
-                    src={selectedService?.serviceimage ?? ""}
-                    alt={selectedService?.name ?? ""}
-                    fill
-                    sizes=""
-                    style={{ objectFit: "contain" }}
-                  />
-                )}
-              </m.div>
+              <LazyMotion features={domAnimation}>
+                <m.div
+                  key={selectedService?.id}
+                  initial={{ opacity: 0, y: 0, x: 100 }}
+                  animate={{ opacity: 1, y: 0, x: 0 }}
+                  exit={{ opacity: 0, y: 0, x: -100 }}
+                  transition={{
+                    duration: 0.2,
+                  }}
+                  className="h-100 w-100 position-relative"
+                >
+                  {selectedService && (
+                    <Image
+                      src={selectedService?.serviceimage ?? ""}
+                      alt={selectedService?.name ?? ""}
+                      fill
+                      sizes=""
+                      style={{ objectFit: "contain" }}
+                    />
+                  )}
+                </m.div>
+              </LazyMotion>
             </AnimatePresence>
           </div>
         </div>

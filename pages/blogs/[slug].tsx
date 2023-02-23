@@ -1,19 +1,20 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
-import { useCallback } from "react";
 import apiRequest from "../../components/Axios/api-request";
-import Markdown from "../../components/Markdown/Markdown";
 import { Blog, BlogList } from "../../core/Blogs/blogs.interface";
 import { CgArrowLongRight, Link } from "../../core/Imports/imports";
+import * as gtag from "../../lib/gtag";
 const LinkToPackage = dynamic(
   () => import("../../core/Packages/LinkToPackage")
 );
 const AnimateInView = dynamic(
   () => import("../../components/AnimateInView/AnimateInView")
 );
-const BlogsCard = dynamic(() => import("../../core/Blogs/BlogsCard"));
-
+const Markdown = dynamic(() => import("../../components/Markdown/Markdown"));
+const RecommendedList = dynamic(
+  () => import("../../core/Blogs/RecommendedList")
+);
 const BlogDetail = ({
   blogResponseData,
   recommendedResposeData,
@@ -21,23 +22,6 @@ const BlogDetail = ({
   blogResponseData: Blog;
   recommendedResposeData: BlogList[];
 }) => {
-  const blogData = useCallback(() => {
-    const recommendedList = recommendedResposeData?.find(
-      (item) => item.listType === "recommended"
-    );
-    return (
-      <>
-        {recommendedList?.blogs ? (
-          <>
-            {recommendedList?.blogs.map((blog) => (
-              <BlogsCard blogItem={blog} key={blog.id} />
-            ))}
-          </>
-        ) : null}
-      </>
-    );
-  }, [recommendedResposeData]);
-
   return (
     <>
       <Head>
@@ -87,14 +71,22 @@ const BlogDetail = ({
             More from the blog
           </h3>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-3">
-            {blogData()}
+            <RecommendedList recommendedResposeData={recommendedResposeData} />
           </div>
           <div className="mt-5 d-flex">
             <Link
               href="/blogs"
               className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
+              onClick={() => {
+                gtag.event({
+                  action: "View All Blogs Clicked",
+                  label: "View All Blogs",
+                  category: "engagement",
+                  value: "",
+                });
+              }}
             >
-              View All
+              View More
               <CgArrowLongRight className="ms-2 long-arrow" />
             </Link>
           </div>
@@ -109,11 +101,9 @@ export default BlogDetail;
 
 export async function getServerSideProps(context: { query: { slug: any } }) {
   const { slug } = context.query;
-  const blogResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}blogs/${slug}`
-  );
+  const blogResponse = await apiRequest(`blogs/${slug}`);
   const recommendedResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}blogslist/?listType=recommended`
+    `blogslist/?listType=recommended`
   );
 
   const [blogResponseData, recommendedResposeData] = await Promise.all([

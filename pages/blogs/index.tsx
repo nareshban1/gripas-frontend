@@ -73,9 +73,7 @@ const Blogs = ({ featuredBlogs }: { featuredBlogs: Blog[] }) => {
 export default Blogs;
 
 export async function getServerSideProps() {
-  const featuredBlogsResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}featured-blog/`
-  );
+  const featuredBlogsResponse = await apiRequest(`featured-blog/`);
 
   const [featuredBlogs] = await Promise.all([featuredBlogsResponse]);
 

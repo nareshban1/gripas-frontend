@@ -15,7 +15,7 @@ const AllBlogs = () => {
   useEffect(() => {
     const getBlogs = async () => {
       const allBlogsResponse = await apiRequest<PaginatedBlogs>(
-        `${process.env.API_ENDPOINT}blogs/?page=${pageNumber}`
+        `blogs/?page=${pageNumber}`
       );
       setAllBlogs(allBlogsResponse ?? null);
     };

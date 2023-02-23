@@ -75,9 +75,7 @@ const ContactUs = ({ allContacts }: { allContacts: AllContacts[] }) => {
 export default ContactUs;
 
 export async function getServerSideProps() {
-  const allContactResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}contacts/`
-  );
+  const allContactResponse = await apiRequest(`contacts/`);
 
   const [allContacts] = await Promise.all([allContactResponse]);
 

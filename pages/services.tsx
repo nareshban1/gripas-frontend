@@ -67,9 +67,7 @@ const Services = ({ allServices }: { allServices: ServiceItem[] }) => {
 export default Services;
 
 export async function getServerSideProps() {
-  const allServicesResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}services/`
-  );
+  const allServicesResponse = await apiRequest(`services/`);
 
   const [allServices] = await Promise.all([allServicesResponse]);
 

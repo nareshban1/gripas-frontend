@@ -35,9 +35,7 @@ const BuyPackageForm = () => {
 
   useEffect(() => {
     const getPackages = async () => {
-      const packagesResponse = await axios.get(
-        `${process.env.API_ENDPOINT}packages/`
-      );
+      const packagesResponse = await axios.get(`packages/`);
       setAllPackages(packagesResponse.data);
     };
     getPackages();

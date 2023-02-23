@@ -46,20 +46,16 @@ export default function Home(props: any) {
 
 export async function getServerSideProps() {
   const featuredServicesResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}services/?is_featured=true`
+    `services/?is_featured=true`
   );
   const featuredPortfolioResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}portfolios/?is_featured=true`
+    `portfolios/?is_featured=true`
   );
   const featuredPackagesResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}packages/?is_featured=true`
+    `packages/?is_featured=true`
   );
-  const testemonialsResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}testemonials/`
-  );
-  const featuredBlogsResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}blogslist/?listType=landing`
-  );
+  const testemonialsResponse = await apiRequest(`testemonials/`);
+  const featuredBlogsResponse = await apiRequest(`blogslist/?listType=landing`);
 
   const [
     featuredServices,

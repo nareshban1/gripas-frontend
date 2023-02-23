@@ -61,9 +61,7 @@ export default function Portfolio({
 }
 
 export async function getServerSideProps() {
-  const allPortfolioResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}portfolios/`
-  );
+  const allPortfolioResponse = await apiRequest(`portfolios/`);
 
   const [allPortfolios] = await Promise.all([allPortfolioResponse]);
 

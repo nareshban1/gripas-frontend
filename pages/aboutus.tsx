@@ -92,12 +92,8 @@ const AboutUs = ({
 export default AboutUs;
 
 export async function getServerSideProps() {
-  const teamMembersResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}teams/`
-  );
-  const pageDetailsResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}pagecontents/?page=about`
-  );
+  const teamMembersResponse = await apiRequest(`teams/`);
+  const pageDetailsResponse = await apiRequest(`pagecontents/?page=about`);
   const [teamMembers, pageDetails] = await Promise.all([
     teamMembersResponse,
     pageDetailsResponse,

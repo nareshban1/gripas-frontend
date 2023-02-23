@@ -54,9 +54,7 @@ const Packages = ({ packages }: { packages: PackageDetail[] }) => {
 };
 
 export async function getServerSideProps() {
-  const packagesResponse = await apiRequest(
-    `${process.env.API_ENDPOINT}packages/`
-  );
+  const packagesResponse = await apiRequest(`packages/`);
 
   const [packages] = await Promise.all([packagesResponse]);
   return {
