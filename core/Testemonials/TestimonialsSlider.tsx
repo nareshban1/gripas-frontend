@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import Markdown from "../../components/Markdown/Markdown";
 import useInterval from "../../hooks/useInterval";

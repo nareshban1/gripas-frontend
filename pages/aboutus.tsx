@@ -1,10 +1,13 @@
-import axios from "axios";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
-import AnimateInView from "../components/AnimateInView/AnimateInView";
-import Freelancer from "../core/Freelancer/Freelancer";
-import { CgArrowLongRight, Link } from "../core/Imports/imports";
+import apiRequest from "../components/Axios/api-request";
 
+import { CgArrowLongRight, Link } from "../core/Imports/imports";
+const AnimateInView = dynamic(
+  () => import("../components/AnimateInView/AnimateInView")
+);
+const Freelancer = dynamic(() => import("../core/Freelancer/Freelancer"));
 export interface TeamMember {
   id: number;
   name: string;
@@ -89,15 +92,15 @@ const AboutUs = ({
 export default AboutUs;
 
 export async function getServerSideProps() {
-  const teamMembersResponse = await axios.get(
+  const teamMembersResponse = await apiRequest(
     `${process.env.API_ENDPOINT}teams/`
   );
-  const pageDetailsResponse = await axios.get(
+  const pageDetailsResponse = await apiRequest(
     `${process.env.API_ENDPOINT}pagecontents/?page=about`
   );
   const [teamMembers, pageDetails] = await Promise.all([
-    teamMembersResponse?.data,
-    pageDetailsResponse?.data,
+    teamMembersResponse,
+    pageDetailsResponse,
   ]);
 
   return {

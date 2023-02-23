@@ -1,5 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useContext, useEffect, useMemo } from "react";
+import axios from "axios";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CgArrowLongRight } from "react-icons/cg";
 import Checkbox from "../../components/FormComponents/Checkbox";
@@ -8,12 +9,13 @@ import TextArea from "../../components/FormComponents/TextArea";
 import TextInput from "../../components/FormComponents/TextInput";
 import OffCanvasComponent from "../../components/OffCanvasComponent/OffCanvasComponent";
 import { OverlayContext } from "../../context/OverlayContext";
-import { packages } from "../Packages/Packages";
+import { PackageDetail } from "../Packages/Packages";
 import { BuyPackageInputs, BuyPackageValidationSchema } from "./schema";
 
 const BuyPackageForm = () => {
   const { showPackageBuyForm, togglePackageBuyForm, packageId, setPackage } =
     useContext(OverlayContext);
+  const [allPackages, setAllPackages] = useState<PackageDetail[]>([]);
   const {
     register,
     handleSubmit,
@@ -31,19 +33,29 @@ const BuyPackageForm = () => {
     reset({ packageId: packageId });
   }, [packageId, reset]);
 
+  useEffect(() => {
+    const getPackages = async () => {
+      const packagesResponse = await axios.get(
+        `${process.env.API_ENDPOINT}packages/`
+      );
+      setAllPackages(packagesResponse.data);
+    };
+    getPackages();
+  }, []);
+
   const onSubmit = (data: BuyPackageInputs) => console.log(data);
 
   const packageOptions = useMemo(
     () =>
-      Array.isArray(packages)
-        ? packages.map((packageDetail) => {
+      Array.isArray(allPackages)
+        ? allPackages.map((packageDetail) => {
             return {
-              label: packageDetail.packageName,
+              label: packageDetail.packagename,
               value: packageDetail.id,
             };
           })
         : [],
-    []
+    [allPackages]
   );
 
   return (

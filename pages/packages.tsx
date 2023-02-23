@@ -1,11 +1,17 @@
-import axios from "axios";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useContext } from "react";
-import AnimateInView from "../components/AnimateInView/AnimateInView";
-import InfoComponent from "../components/InfoComponent/InfoComponent";
+import apiRequest from "../components/Axios/api-request";
 import { OverlayContext } from "../context/OverlayContext";
-import PackageCard from "../core/Packages/PackageCard";
 import { PackageDetail } from "../core/Packages/Packages";
+
+const AnimateInView = dynamic(
+  () => import("../components/AnimateInView/AnimateInView")
+);
+const InfoComponent = dynamic(
+  () => import("../components/InfoComponent/InfoComponent")
+);
+const PackageCard = dynamic(() => import("../core/Packages/PackageCard"));
 
 const Packages = ({ packages }: { packages: PackageDetail[] }) => {
   const { toggleCustomForm } = useContext(OverlayContext);
@@ -48,11 +54,11 @@ const Packages = ({ packages }: { packages: PackageDetail[] }) => {
 };
 
 export async function getServerSideProps() {
-  const packagesResponse = await axios.get(
+  const packagesResponse = await apiRequest(
     `${process.env.API_ENDPOINT}packages/`
   );
 
-  const [packages] = await Promise.all([packagesResponse?.data]);
+  const [packages] = await Promise.all([packagesResponse]);
   return {
     props: {
       packages,

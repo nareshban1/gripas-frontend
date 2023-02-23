@@ -1,4 +1,4 @@
-import React, { Children, ReactNode } from "react";
+import { ReactNode } from "react";
 
 type propsType = {
   title: string;

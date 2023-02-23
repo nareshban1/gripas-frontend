@@ -1,39 +1,24 @@
-import axios from "axios";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
 import { useCallback } from "react";
-import AnimateInView from "../../components/AnimateInView/AnimateInView";
+import apiRequest from "../../components/Axios/api-request";
 import Markdown from "../../components/Markdown/Markdown";
-import { CgArrowLongRight, Link, motion } from "../../core/Imports/imports";
-import LinkToPackage from "../../core/Packages/LinkToPackage";
-
-export interface BlogList {
-  id: number;
-  listType: string;
-  upload_time: string;
-  blogs: BlogItem[];
-}
-
-export interface BlogItem {
-  id: number;
-  category: Category[];
-  title: string;
-  slug: string;
-  content: string;
-  created_at: string;
-  image: string;
-}
-
-export interface Category {
-  id: number;
-  name: string;
-}
+import { Blog, BlogList } from "../../core/Blogs/blogs.interface";
+import { CgArrowLongRight, Link } from "../../core/Imports/imports";
+const LinkToPackage = dynamic(
+  () => import("../../core/Packages/LinkToPackage")
+);
+const AnimateInView = dynamic(
+  () => import("../../components/AnimateInView/AnimateInView")
+);
+const BlogsCard = dynamic(() => import("../../core/Blogs/BlogsCard"));
 
 const BlogDetail = ({
   blogResponseData,
   recommendedResposeData,
 }: {
-  blogResponseData: BlogItem;
+  blogResponseData: Blog;
   recommendedResposeData: BlogList[];
 }) => {
   const blogData = useCallback(() => {
@@ -45,26 +30,7 @@ const BlogDetail = ({
         {recommendedList?.blogs ? (
           <>
             {recommendedList?.blogs.map((blog) => (
-              <Link href={`/blogs/${blog.slug}`} key={blog?.slug}>
-                <motion.div
-                  className="col cursor-pointer"
-                  whileHover={{ scale: 1.05 }}
-                  key={blog.id}
-                >
-                  <div className="position-relative  h-100 ">
-                    <Image
-                      src={blog?.image}
-                      alt={blog?.title}
-                      height={350}
-                      width={400}
-                      style={{ objectFit: "cover", width: "100%" }}
-                    />
-                    <p className="py-3 mb-0 spaced-text fw-bold fs-5 text-dark">
-                      {blog?.title}
-                    </p>
-                  </div>
-                </motion.div>
-              </Link>
+              <BlogsCard blogItem={blog} key={blog.id} />
             ))}
           </>
         ) : null}
@@ -74,15 +40,15 @@ const BlogDetail = ({
 
   return (
     <>
+      <Head>
+        <title>Blog View</title>
+        <meta
+          name="description"
+          content="Gripas Marketing was established back in 2020 during the Pandemic. With digitalization we began making name in the Digital Marketing field. Till now we have served 100+ clients and counting. We specialize on 'Social Media Marketing' with three package available, currently. Further, we believe in driving business through creativity. Our Mission is to help SMEs to achieve their Sales and Marketing objective via Social Media Marketing. Our Vision is to empower youngsters and bring latest automation technologies."
+        />
+        <link rel="icon" href="/logo.svg" />
+      </Head>
       <section className="bg-white ">
-        <Head>
-          <title>Blog View</title>
-          <meta
-            name="description"
-            content="Gripas Marketing was established back in 2020 during the Pandemic. With digitalization we began making name in the Digital Marketing field. Till now we have served 100+ clients and counting. We specialize on 'Social Media Marketing' with three package available, currently. Further, we believe in driving business through creativity. Our Mission is to help SMEs to achieve their Sales and Marketing objective via Social Media Marketing. Our Vision is to empower youngsters and bring latest automation technologies."
-          />
-          <link rel="icon" href="/logo.svg" />
-        </Head>
         <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
           <p className=" fw-regular lh-1 text-dark lh-base text-center fs-5 m-0">
             2022-12-25
@@ -143,16 +109,16 @@ export default BlogDetail;
 
 export async function getServerSideProps(context: { query: { slug: any } }) {
   const { slug } = context.query;
-  const blogResponse = await axios.get(
+  const blogResponse = await apiRequest(
     `${process.env.API_ENDPOINT}blogs/${slug}`
   );
-  const recommendedResponse = await axios.get(
+  const recommendedResponse = await apiRequest(
     `${process.env.API_ENDPOINT}blogslist/?listType=recommended`
   );
 
   const [blogResponseData, recommendedResposeData] = await Promise.all([
-    blogResponse?.data,
-    recommendedResponse?.data,
+    blogResponse,
+    recommendedResponse,
   ]);
 
   return {

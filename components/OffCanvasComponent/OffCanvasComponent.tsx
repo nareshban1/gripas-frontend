@@ -1,7 +1,5 @@
-import React from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { poppins } from "../../pages/_app";
-import { motion } from "framer-motion";
 const OffCanvasComponent = ({
   show,
   title,

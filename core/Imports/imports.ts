@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence,m } from "framer-motion";
 import { wrap } from "popmotion";
 import { CgArrowLongLeft, CgArrowLongRight } from "react-icons/cg";
 import Particles from "react-particles";
@@ -17,4 +17,5 @@ export {
   yupResolver,
   useForm,
   Link,
+  m
 };

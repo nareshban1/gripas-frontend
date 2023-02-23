@@ -1,8 +1,7 @@
 import Link from "next/link";
-import React, { PropsWithChildren } from "react";
 import { CgArrowLongRight } from "react-icons/cg";
-import Button from "../Button/Button";
 import * as gtag from "../../lib/gtag";
+import Button from "../Button/Button";
 
 type Props = {
   className?: string;

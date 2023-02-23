@@ -1,9 +1,12 @@
-import axios from "axios";
+import dynamic from "next/dynamic";
 import Head from "next/head";
-import React from "react";
-import AnimateInView from "../components/AnimateInView/AnimateInView";
-import ContactForm from "../core/Forms/ContactForm";
-import Freelancer from "../core/Freelancer/Freelancer";
+import apiRequest from "../components/Axios/api-request";
+
+const Freelancer = dynamic(() => import("../core/Freelancer/Freelancer"));
+const ContactForm = dynamic(() => import("../core/Forms/ContactForm"));
+const AnimateInView = dynamic(
+  () => import("../components/AnimateInView/AnimateInView")
+);
 
 interface AllContacts {
   id: number;
@@ -72,11 +75,11 @@ const ContactUs = ({ allContacts }: { allContacts: AllContacts[] }) => {
 export default ContactUs;
 
 export async function getServerSideProps() {
-  const allContactResponse = await axios.get(
+  const allContactResponse = await apiRequest(
     `${process.env.API_ENDPOINT}contacts/`
   );
 
-  const [allContacts] = await Promise.all([allContactResponse?.data]);
+  const [allContacts] = await Promise.all([allContactResponse]);
 
   return {
     props: {

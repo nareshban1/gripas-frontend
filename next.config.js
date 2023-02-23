@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["127.0.0.1"],
+    domains: ["127.0.0.1", "gripasadmin.ascenddevs.com"],
   },
   eslint: {
     dirs: ["pages", "components", "context", "core", "lib"],

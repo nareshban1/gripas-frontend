@@ -1,10 +1,15 @@
-import axios from "axios";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
-import AnimateInView from "../components/AnimateInView/AnimateInView";
-import Markdown from "../components/Markdown/Markdown";
-import LinkToPackage from "../core/Packages/LinkToPackage";
+import apiRequest from "../components/Axios/api-request";
+
 import { IPortfolioItem } from "../core/PortFolio/Portfolio";
+
+const Markdown = dynamic(() => import("../components/Markdown/Markdown"));
+const AnimateInView = dynamic(
+  () => import("../components/AnimateInView/AnimateInView")
+);
+const LinkToPackage = dynamic(() => import("../core/Packages/LinkToPackage"));
 
 export default function Portfolio({
   allPortfolios,
@@ -56,11 +61,11 @@ export default function Portfolio({
 }
 
 export async function getServerSideProps() {
-  const allPortfolioResponse = await axios.get(
+  const allPortfolioResponse = await apiRequest(
     `${process.env.API_ENDPOINT}portfolios/`
   );
 
-  const [allPortfolios] = await Promise.all([allPortfolioResponse?.data]);
+  const [allPortfolios] = await Promise.all([allPortfolioResponse]);
 
   return {
     props: {

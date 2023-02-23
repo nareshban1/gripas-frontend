@@ -1,20 +1,23 @@
 import axios from "axios";
-import { motion } from "framer-motion";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CgArrowLongLeft, CgArrowLongRight } from "react-icons/cg";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
-import { PaginatedBlogs } from "../../pages/blogs";
+import apiRequest from "../../components/Axios/api-request";
+import { PaginatedBlogs } from "./blogs.interface";
+const BlogsCard = dynamic(() => import("./BlogsCard"));
+
 const AllBlogs = () => {
   const [allBlogs, setAllBlogs] = useState<PaginatedBlogs | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
+
   useEffect(() => {
     const getBlogs = async () => {
-      const allBlogsResponse = await axios.get(
+      const allBlogsResponse = await apiRequest<PaginatedBlogs>(
         `${process.env.API_ENDPOINT}blogs/?page=${pageNumber}`
       );
-      setAllBlogs(allBlogsResponse.data);
+      setAllBlogs(allBlogsResponse ?? null);
     };
     getBlogs();
   }, [pageNumber]);
@@ -36,26 +39,7 @@ const AllBlogs = () => {
       <div className="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-4 ">
         {allBlogs?.data.map((item) => (
           <div className="col" key={item.id}>
-            <Link href={`/blogs/${item.slug}`}>
-              <motion.div
-                className="cursor-pointer h-100"
-                whileHover={{ scale: 1.05 }}
-                key={item.id}
-              >
-                <div className="position-relative  h-100 ">
-                  <Image
-                    src={item?.image}
-                    alt={item.title}
-                    height={350}
-                    width={400}
-                    style={{ objectFit: "cover", width: "100%" }}
-                  />
-                  <p className="py-3 spaced-text fw-bold fs-5 text-dark ">
-                    {item.title}
-                  </p>
-                </div>
-              </motion.div>
-            </Link>
+            <BlogsCard blogItem={item} />
           </div>
         ))}
       </div>

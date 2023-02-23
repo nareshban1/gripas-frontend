@@ -1,40 +1,17 @@
-import Image from "next/image";
-import React from "react";
-import AnimateInView from "../../components/AnimateInView/AnimateInView";
-import { motion } from "framer-motion";
-import { CgArrowLongLeft, CgArrowLongRight } from "react-icons/cg";
-import Link from "next/link";
+import { m } from "framer-motion";
+import dynamic from "next/dynamic";
 import Head from "next/head";
-import axios from "axios";
-import AllBlogs from "../../core/Blogs/AllBlogs";
-export interface PaginatedBlogs {
-  next: any;
-  itemsOnPage: number;
-  hasNext: boolean;
-  hasPrevious: boolean;
-  previous: any;
-  count: number;
-  totalPages: number;
-  currentPage: number;
-  data: Blogitem[];
-}
+import Image from "next/image";
+import Link from "next/link";
+import apiRequest from "../../components/Axios/api-request";
+import { Blog } from "../../core/Blogs/blogs.interface";
 
-export interface Blogitem {
-  id: number;
-  category: Category[];
-  title: string;
-  slug: string;
-  content: string;
-  created_at: string;
-  image: string;
-}
+const AllBlogs = dynamic(() => import("../../core/Blogs/AllBlogs"));
+const AnimateInView = dynamic(
+  () => import("../../components/AnimateInView/AnimateInView")
+);
 
-export interface Category {
-  id: number;
-  name: string;
-}
-
-const Blogs = ({ featuredBlogs }: { featuredBlogs: Blogitem[] }) => {
+const Blogs = ({ featuredBlogs }: { featuredBlogs: Blog[] }) => {
   return (
     <section className="bg-white ">
       <Head>
@@ -60,7 +37,7 @@ const Blogs = ({ featuredBlogs }: { featuredBlogs: Blogitem[] }) => {
               Featured
             </h2>
             <Link href={`/blogs/${featuredBlogs?.[0]?.slug}`}>
-              <motion.div
+              <m.div
                 className="col cursor-pointer my-3"
                 key={featuredBlogs[0].id}
               >
@@ -83,7 +60,7 @@ const Blogs = ({ featuredBlogs }: { featuredBlogs: Blogitem[] }) => {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </Link>
           </>
         ) : null}
@@ -96,11 +73,11 @@ const Blogs = ({ featuredBlogs }: { featuredBlogs: Blogitem[] }) => {
 export default Blogs;
 
 export async function getServerSideProps() {
-  const featuredBlogsResponse = await axios.get(
+  const featuredBlogsResponse = await apiRequest(
     `${process.env.API_ENDPOINT}featured-blog/`
   );
 
-  const [featuredBlogs] = await Promise.all([featuredBlogsResponse?.data]);
+  const [featuredBlogs] = await Promise.all([featuredBlogsResponse]);
 
   return {
     props: {

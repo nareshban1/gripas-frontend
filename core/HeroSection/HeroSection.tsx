@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { CgArrowLongRight } from "react-icons/cg";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import Button from "../../components/Button/Button";
 import { OverlayContext } from "../../context/OverlayContext";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import Particle from "./Particle";
+
 const HeroSection = () => {
   const { toggleStartedForm } = useContext(OverlayContext);
 

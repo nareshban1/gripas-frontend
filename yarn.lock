@@ -460,6 +460,13 @@
   dependencies:
     glob "7.1.7"
 
+"@next/eslint-plugin-next@^13.1.6":
+  version "13.1.6"
+  resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-13.1.6.tgz#ad8be22dd3d8aee9a9bd9a2507e2c55a2f7ebdd9"
+  integrity sha512-o7cauUYsXjzSJkay8wKjpKJf2uLzlggCsGUkPu3lP09Pv97jYlekTC20KJrjQKmSv5DXV0R/uks2ZXhqjNkqAw==
+  dependencies:
+    glob "7.1.7"
+
 "@next/font@^13.0.7":
   version "13.0.7"
   resolved "https://registry.yarnpkg.com/@next/font/-/font-13.0.7.tgz#e0046376edb0ce592d9cfddea8f4ab321eb1515a"
@@ -3658,6 +3665,11 @@ next-mdx-remote@^4.3.0:
     "@mdx-js/react" "^2.2.1"
     vfile "^5.3.0"
     vfile-matter "^3.0.1"
+
+next-seo@^5.15.0:
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.15.0.tgz#b1a90508599774982909ea44803323c6fb7b50f4"
+  integrity sha512-LGbcY91yDKGMb7YI+28n3g+RuChUkt6pXNpa8FkfKkEmNiJkeRDEXTnnjVtwT9FmMhG6NH8qwHTelGrlYm9rgg==
 
 next@13.0.6:
   version "13.0.6"

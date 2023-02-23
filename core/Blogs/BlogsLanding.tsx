@@ -1,30 +1,10 @@
-import React from "react";
+import dynamic from "next/dynamic";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
-import Image from "next/image";
-import { CgArrowLongRight, Link, motion } from "../Imports/imports";
 import * as gtag from "../../lib/gtag";
+import { CgArrowLongRight, Link } from "../Imports/imports";
+import { BlogList } from "./blogs.interface";
 
-export interface BlogList {
-  id: number;
-  listType: string;
-  upload_time: string;
-  blogs: Blog[];
-}
-
-export interface Blog {
-  id: number;
-  category: Category[];
-  title: string;
-  slug: string;
-  content: string;
-  created_at: string;
-  image: string;
-}
-
-export interface Category {
-  id: number;
-  name: string;
-}
+const BlogsCard = dynamic(() => import("./BlogsCard"));
 
 const BlogsLanding = ({ featuredBlogs }: { featuredBlogs: BlogList[] }) => {
   return (
@@ -38,26 +18,7 @@ const BlogsLanding = ({ featuredBlogs }: { featuredBlogs: BlogList[] }) => {
         </h3>
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-3">
           {featuredBlogs[0]?.blogs.map((item) => (
-            <Link href={`/blogs/${item.slug}`} key={item.id}>
-              <motion.div
-                className="col cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-                key={item.id}
-              >
-                <div className="position-relative  h-100 ">
-                  <Image
-                    src={item?.image}
-                    alt={item.title}
-                    height={350}
-                    width={400}
-                    style={{ objectFit: "cover", width: "100%" }}
-                  />
-                  <p className="py-3 mb-0 spaced-text fw-bold fs-5 text-dark">
-                    {item.title}
-                  </p>
-                </div>
-              </motion.div>
-            </Link>
+            <BlogsCard blogItem={item} key={item.id} />
           ))}
         </div>
         <div className="mt-5 d-flex">

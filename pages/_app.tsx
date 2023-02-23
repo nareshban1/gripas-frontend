@@ -1,21 +1,22 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/main.scss";
+
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { Poppins } from "@next/font/google";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { OverlayContextProvider } from "../context/OverlayContext";
-import FreelancerForm from "../core/Forms/FreelancerForm";
 import * as gtag from "../lib/gtag";
-
-import "../styles/main.scss";
 import dynamic from "next/dynamic";
 import Footer from "../core/Footer/Footer";
 import Script from "next/script";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import CustomPackage from "../core/Forms/CustomPackage";
-import BuyPackageForm from "../core/Forms/BuyPackageForm";
 
 const GetStarted = dynamic(() => import("../core/Forms/GetStarted"));
+const CustomPackage = dynamic(() => import("../core/Forms/CustomPackage"));
+const BuyPackageForm = dynamic(() => import("../core/Forms/BuyPackageForm"));
+const FreelancerForm = dynamic(() => import("../core/Forms/FreelancerForm"));
+
 const Navbar = dynamic(() => import("../core/Navbar/Navbar"));
 
 export const poppins = Poppins({

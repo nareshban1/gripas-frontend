@@ -1,13 +1,12 @@
-import React from "react";
 import { useContext } from "react";
+import TextInput from "../../components/FormComponents/TextInput";
 import OffCanvasComponent from "../../components/OffCanvasComponent/OffCanvasComponent";
 import { OverlayContext } from "../../context/OverlayContext";
-import { GetStartedInputs, GetStartedValidationSchema } from "./schema";
-import TextInput from "../../components/FormComponents/TextInput";
 import { CgArrowLongRight, useForm, yupResolver } from "../Imports/imports";
+import { GetStartedInputs, GetStartedValidationSchema } from "./schema";
 
-import TextArea from "../../components/FormComponents/TextArea";
 import Checkbox from "../../components/FormComponents/Checkbox";
+import TextArea from "../../components/FormComponents/TextArea";
 
 const GetStarted = () => {
   const { showStartedForm, toggleStartedForm } = useContext(OverlayContext);

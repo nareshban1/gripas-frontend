@@ -1,4 +1,3 @@
-import React from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import TestimonialsSlider from "./TestimonialsSlider";
 

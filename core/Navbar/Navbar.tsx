@@ -1,12 +1,12 @@
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { useContext, useEffect, useState } from "react";
-import { CgArrowLongRight, Link, motion } from "../Imports/imports";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
+import Button from "../../components/Button/Button";
 import { OverlayContext } from "../../context/OverlayContext";
 import { poppins } from "../../pages/_app";
+import { Link, m } from "../Imports/imports";
 import { MenuToggle } from "./MenuToggle";
 import { useWindowSize } from "./useWindowSize";
-import Button from "../../components/Button/Button";
 
 const Navbar = ({ className }: { className: string }) => {
   const { toggleStartedForm } = useContext(OverlayContext);
@@ -52,7 +52,7 @@ const Navbar = ({ className }: { className: string }) => {
             Marketing
           </Link>
 
-          <motion.nav
+          <m.nav
             animate={isOpen ? "open" : "closed"}
             className="navbar-toggler p-0 border-0 cursor-pointer"
           >
@@ -61,7 +61,7 @@ const Navbar = ({ className }: { className: string }) => {
                 setIsOpen(!isOpen);
               }}
             />
-          </motion.nav>
+          </m.nav>
           <div className="collapse navbar-collapse ">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item px-xl-3 px-2">

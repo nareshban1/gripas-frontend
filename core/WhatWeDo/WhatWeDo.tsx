@@ -3,12 +3,7 @@ import { useEffect, useState } from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import Markdown from "../../components/Markdown/Markdown";
 import * as gtag from "../../lib/gtag";
-import {
-  AnimatePresence,
-  CgArrowLongRight,
-  Link,
-  motion,
-} from "../Imports/imports";
+import { AnimatePresence, CgArrowLongRight, Link, m } from "../Imports/imports";
 
 export interface ServiceItem {
   id: number;
@@ -55,7 +50,7 @@ const WhatWeDo = (props: { featuredServices: ServiceItem[] }) => {
                   {service.name}
                   {selectedService?.id === service.id && (
                     <AnimatePresence mode="wait">
-                      <motion.div
+                      <m.div
                         key={selectedService?.id}
                         initial={{ opacity: 0, y: 0, x: -10 }}
                         animate={{ opacity: 1, y: 0, x: 0 }}
@@ -68,7 +63,7 @@ const WhatWeDo = (props: { featuredServices: ServiceItem[] }) => {
                         <p className="service-info fw-md-medium text-dark my-2">
                           <Markdown markdown={service.details} />
                         </p>
-                      </motion.div>
+                      </m.div>
                     </AnimatePresence>
                   )}
                 </li>
@@ -78,7 +73,7 @@ const WhatWeDo = (props: { featuredServices: ServiceItem[] }) => {
 
           <div className="col-lg-5 col-12 order-0 order-lg-2 workSection-image my-lg-0 my-4">
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={selectedService?.id}
                 initial={{ opacity: 0, y: 0, x: 100 }}
                 animate={{ opacity: 1, y: 0, x: 0 }}
@@ -97,7 +92,7 @@ const WhatWeDo = (props: { featuredServices: ServiceItem[] }) => {
                     style={{ objectFit: "contain" }}
                   />
                 )}
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
         </div>

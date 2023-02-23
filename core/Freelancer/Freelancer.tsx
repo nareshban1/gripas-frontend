@@ -1,8 +1,6 @@
 import { useContext } from "react";
-import { CgArrowLongRight } from "../Imports/imports";
-import { OverlayContext } from "../../context/OverlayContext";
-import Button from "../../components/Button/Button";
 import InfoComponent from "../../components/InfoComponent/InfoComponent";
+import { OverlayContext } from "../../context/OverlayContext";
 
 const Freelancer = () => {
   const { toggleFreelanceForm } = useContext(OverlayContext);

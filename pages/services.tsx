@@ -1,11 +1,14 @@
-import axios from "axios";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
-import AnimateInView from "../components/AnimateInView/AnimateInView";
-import Markdown from "../components/Markdown/Markdown";
+import apiRequest from "../components/Axios/api-request";
+
 import { ServiceItem } from "../core/WhatWeDo/WhatWeDo";
 const LinkToPackage = dynamic(() => import("../core/Packages/LinkToPackage"));
+const Markdown = dynamic(() => import("../components/Markdown/Markdown"));
+const AnimateInView = dynamic(
+  () => import("../components/AnimateInView/AnimateInView")
+);
 
 const Services = ({ allServices }: { allServices: ServiceItem[] }) => {
   return (
@@ -64,11 +67,11 @@ const Services = ({ allServices }: { allServices: ServiceItem[] }) => {
 export default Services;
 
 export async function getServerSideProps() {
-  const allServicesResponse = await axios.get(
+  const allServicesResponse = await apiRequest(
     `${process.env.API_ENDPOINT}services/`
   );
 
-  const [allServices] = await Promise.all([allServicesResponse?.data]);
+  const [allServices] = await Promise.all([allServicesResponse]);
 
   return {
     props: {

@@ -1,6 +1,4 @@
 import Link from "next/link";
-import React from "react";
-import Portfolio from "../PortFolio/Portfolio";
 
 const Footer = ({ className }: { className: string }) => {
   return (
