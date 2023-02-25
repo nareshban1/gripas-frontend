@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Markdown from "../../components/Markdown/Markdown";
+import HtmlParser from "../../components/HtmlParser/HtmlParser";
 import useInterval from "../../hooks/useInterval";
 import {
   AnimatePresence,
@@ -90,7 +90,7 @@ const TestimonialsSlider = ({ data }: { data: ITestemonials[] }) => {
                 {data[reviewIndex]?.title}
               </h3>
               <p className="fs-5">
-                <Markdown markdown={data[reviewIndex]?.comment ?? ""} />
+                <HtmlParser content={data[reviewIndex]?.comment ?? ""} />
               </p>
               <p className="fs-6 mb-0 fw-medium">
                 {data[reviewIndex]?.commentor}

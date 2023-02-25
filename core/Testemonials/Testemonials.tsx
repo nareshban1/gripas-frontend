@@ -5,7 +5,6 @@ export interface ITestemonials {
   id: number;
   title: string;
   comment: string;
-  slug: string;
   commentor: string;
   company: string;
   position: string;

@@ -5,7 +5,7 @@ const phoneRegExp =
 export interface FreelancerInputs {
   fullName: string;
   email: string;
-  contactNo: string;
+  phoneNo: string;
   goodAt: string;
   level: string;
   time: string;
@@ -19,7 +19,7 @@ export const FreelancerValidationSchema = Yup.object({
   email: Yup.string()
     .email("Please enter a valid email")
     .required("Please enter your email"),
-  contactNo: Yup.string()
+  phoneNo: Yup.string()
     .matches(phoneRegExp, "Please enter your valid phone number")
     .required("Please enter your contact number"),
   address: Yup.string().required("Please enter your address"),
@@ -57,16 +57,16 @@ export const ContactValidationSchema = Yup.object({
 export interface GetStartedInputs {
   email: string;
   businessName: string;
-  contactNo: string;
+  phoneNo: string;
   address: string;
   panNumber: string;
-  whyContactUs: string;
+  whyGripas: string;
   brandColor: string;
   socialMediaLink: string;
-  websiteLink: string;
-  yourServices: string;
+  website: string;
+  services: string;
   servicesRequired: string;
-  otherInfo: string;
+  info: string;
 }
 
 export const GetStartedValidationSchema = Yup.object({
@@ -74,56 +74,54 @@ export const GetStartedValidationSchema = Yup.object({
   email: Yup.string()
     .email("Please enter a valid email")
     .required("Please enter your email"),
-  contactNo: Yup.string()
+  phoneNo: Yup.string()
     .matches(phoneRegExp, "Please enter your valid phone number")
     .required("Please enter your contact number"),
   address: Yup.string().required("Please enter your address"),
   panNumber: Yup.string().required("Please enter your pan number"),
-  whyContactUs: Yup.string().required("Please enter why you chose us"),
+  whyGripas: Yup.string().required("Please enter why you chose us"),
   brandColor: Yup.string().required("Please provide your brand color"),
   socialMediaLink: Yup.string().required("Please enter your social media link"),
-  yourServices: Yup.string().required(
-    "Please provide the services you provide"
-  ),
+  services: Yup.string().required("Please provide the services you provide"),
   servicesRequired: Yup.string().required(
     "Please mention what services you require"
   ),
 }).required();
 
 export interface BuyPackageInputs {
-  packageId: string;
+  package: string;
   email: string;
   businessName: string;
-  contactNo: string;
+  phoneNo: string;
   address: string;
   panNumber: string;
-  whyContactUs: string;
+  whyGripas: string;
   brandColor: string;
   socialMediaLink: string;
-  websiteLink: string;
-  yourServices: string;
-  servicesRequired: string;
-  otherInfo: string;
+  website: string;
+  services: string;
+  servicesRequired: Array<number>;
+  info: string;
 }
 
 export const BuyPackageValidationSchema = Yup.object({
-  packageId: Yup.string().required("Please select a package"),
+  package: Yup.string().required("Please select a package"),
   businessName: Yup.string().required("Please enter your business name"),
   email: Yup.string()
     .email("Please enter a valid email")
     .required("Please enter your email"),
-  contactNo: Yup.string()
+  phoneNo: Yup.string()
     .matches(phoneRegExp, "Please enter your valid phone number")
     .required("Please enter your contact number"),
   address: Yup.string().required("Please enter your address"),
   panNumber: Yup.string().required("Please enter your pan number"),
-  whyContactUs: Yup.string().required("Please enter why you chose us"),
+  whyGripas: Yup.array()
+    .min(1, "Please mention what services you require")
+    .required("Please mention what services you require"),
   brandColor: Yup.string().required("Please provide your brand color"),
   socialMediaLink: Yup.string().required("Please enter your social media link"),
-  yourServices: Yup.string().required(
-    "Please provide the services you provide"
-  ),
-  servicesRequired: Yup.string().required(
-    "Please mention what services you require"
-  ),
+  services: Yup.string().required("Please provide the services you provide"),
+  servicesRequired: Yup.array()
+    .min(1, "Please mention what services you require")
+    .required("Please mention what services you require"),
 }).required();

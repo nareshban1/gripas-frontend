@@ -8,14 +8,11 @@ const RecommendedList = ({
 }: {
   recommendedResposeData: BlogList[];
 }) => {
-  const recommendedList = recommendedResposeData?.find(
-    (item) => item.listType === "recommended"
-  );
   return (
     <>
-      {recommendedList?.blogs ? (
+      {recommendedResposeData[0]?.blogs ? (
         <>
-          {recommendedList?.blogs.map((blog) => (
+          {recommendedResposeData[0]?.blogs.map((blog) => (
             <BlogsCard blogItem={blog} key={blog.id} />
           ))}
         </>

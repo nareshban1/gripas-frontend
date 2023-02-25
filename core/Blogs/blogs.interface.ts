@@ -11,8 +11,9 @@ export interface Blog {
   title: string;
   slug: string;
   content: string;
-  created_at: string;
+  createdAt: string;
   image: string;
+  author: string;
 }
 
 export interface Category {

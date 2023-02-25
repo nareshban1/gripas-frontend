@@ -10,8 +10,8 @@ const PackageCard = ({ pack }: { pack: PackageDetail }) => {
       className={`package-card border box-sizing-border rounded-0 p-3 shadow h-100 d-flex flex-column position-relative`}
     >
       <div className="d-flex align-items-center justify-content-between">
-        <h5 className="fs-4 spaced-text fw-bold">{pack.packagename}</h5>
-        {pack.is_offer && (
+        <h5 className="fs-4 spaced-text fw-bold">{pack.packageName}</h5>
+        {pack.isOffer && (
           <div className="ribbon ">
             <span>
               <div className="glow"></div>Offer
@@ -20,13 +20,14 @@ const PackageCard = ({ pack }: { pack: PackageDetail }) => {
         )}
       </div>
 
-      <p className="fw-semibold">{pack.packageinfo}</p>
+      <p className="fw-semibold">{pack.packageInfo}</p>
 
       <div className="my-3">
         {pack.services.map((serviceDetail, index: number) => (
           <p key={index}>
             <>
-              {serviceDetail.count} {serviceDetail.service.servicename}
+              {serviceDetail.service.serviceName}
+              {serviceDetail.moreInfo && <>({serviceDetail.moreInfo})</>}
             </>
           </p>
         ))}
@@ -34,7 +35,7 @@ const PackageCard = ({ pack }: { pack: PackageDetail }) => {
       <div className="d-flex flex-column justify-content-end  mt-auto">
         <span
           className={`fw-medium fs-5 text-decoration-line-through ${
-            pack.is_discounted ? "visible" : "invisible"
+            pack.isDiscounted ? "visible" : "invisible"
           }`}
         >
           Rs.{pack.actualprice}

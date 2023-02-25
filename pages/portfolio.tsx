@@ -2,10 +2,10 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
 import apiRequest from "../components/Axios/api-request";
+import HtmlParser from "../components/HtmlParser/HtmlParser";
 
 import { IPortfolioItem } from "../core/PortFolio/Portfolio";
 
-const Markdown = dynamic(() => import("../components/Markdown/Markdown"));
 const AnimateInView = dynamic(
   () => import("../components/AnimateInView/AnimateInView")
 );
@@ -45,7 +45,7 @@ export default function Portfolio({
                     <div className="item-grid-item-description mt-3">
                       <h4 className="spaced-text fw-bold">{item.name}</h4>
                       <p className="service-info fw-md-medium text-dark my-2">
-                        <Markdown markdown={item.details} />
+                        <HtmlParser content={item.details} />
                       </p>
                     </div>
                   </div>

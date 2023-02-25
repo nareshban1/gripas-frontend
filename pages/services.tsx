@@ -2,10 +2,10 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
 import apiRequest from "../components/Axios/api-request";
+import HtmlParser from "../components/HtmlParser/HtmlParser";
 
 import { ServiceItem } from "../core/WhatWeDo/WhatWeDo";
 const LinkToPackage = dynamic(() => import("../core/Packages/LinkToPackage"));
-const Markdown = dynamic(() => import("../components/Markdown/Markdown"));
 const AnimateInView = dynamic(
   () => import("../components/AnimateInView/AnimateInView")
 );
@@ -39,7 +39,7 @@ const Services = ({ allServices }: { allServices: ServiceItem[] }) => {
                 {service.name}
               </h1>
               <p className="service-info fw-md-medium text-dark my-2">
-                <Markdown markdown={service.details ?? ""} />
+                <HtmlParser content={service.details} />
               </p>
             </div>
             <div

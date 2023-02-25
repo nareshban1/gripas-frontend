@@ -3,4 +3,33 @@
     height: 32rem;
     width: 100%;
   }
+  &-content {
+    blockquote > p::before {
+      content: open-quote;
+      color: black;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 0;
+    }
+    blockquote > p::after {
+      content: close-quote;
+      color: black;
+      font-weight: 800;
+      font-size: 2rem;
+      line-height: 0;
+    }
+    blockquote {
+      quotes: "“" "”" "‘" "’";
+      text-decoration-color: none !important;
+      padding: 1rem;
+      p {
+        font-style: italic;
+        font-weight: 300;
+        span {
+          background-color: none !important;
+          font-style: italic;
+        }
+      }
+    }
+  }
 }

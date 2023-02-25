@@ -1,8 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CgArrowLongRight } from "react-icons/cg";
+import apiRequest from "../../components/Axios/api-request";
 import Checkbox from "../../components/FormComponents/Checkbox";
 import FormSelect from "../../components/FormComponents/FormSelect";
 import TextArea from "../../components/FormComponents/TextArea";
@@ -30,31 +30,46 @@ const BuyPackageForm = () => {
   });
 
   useEffect(() => {
-    reset({ packageId: packageId });
+    reset({ package: packageId });
   }, [packageId, reset]);
 
   useEffect(() => {
     const getPackages = async () => {
-      const packagesResponse = await axios.get(`packages/`);
-      setAllPackages(packagesResponse.data);
+      const packagesResponse = await apiRequest<PackageDetail[]>(`packages/`);
+      setAllPackages(packagesResponse ?? []);
     };
     getPackages();
   }, []);
 
-  const onSubmit = (data: BuyPackageInputs) => console.log(data);
+  const onSubmit = (data: BuyPackageInputs) => handleFormSubmission(data);
 
   const packageOptions = useMemo(
     () =>
       Array.isArray(allPackages)
         ? allPackages.map((packageDetail) => {
             return {
-              label: packageDetail.packagename,
+              label: packageDetail.packageName,
               value: packageDetail.id,
             };
           })
         : [],
     [allPackages]
   );
+
+  const handleFormSubmission = async (data: BuyPackageInputs) => {
+    const requestData = {
+      ...data,
+    };
+    const response = await apiRequest("forms/buy-package/", {
+      method: "POST",
+      requestBody: requestData,
+    });
+    if (response) {
+      alert("success");
+    } else {
+      alert("Fail");
+    }
+  };
 
   return (
     <OffCanvasComponent
@@ -67,16 +82,15 @@ const BuyPackageForm = () => {
           <FormSelect
             options={packageOptions}
             control={control}
-            name="packageId"
+            name="package"
             label="Package"
             value={packageOptions.find(
-              (c: any) => c.value === getValues("packageId")
+              (c: any) => c.value === getValues("package")
             )}
             onChange={(val: any) => {
-              setValue("packageId", val?.values);
+              setValue("package", val?.values);
             }}
-            error={errors.packageId?.message}
-            isDisabled
+            error={errors.package?.message}
           />
           <TextInput
             type="text"
@@ -96,11 +110,11 @@ const BuyPackageForm = () => {
           />
           <TextInput
             type="text"
-            name="contactNo"
+            name="phoneNo"
             label="Contact Number"
             register={register}
             placeHolder="Enter Contact Number"
-            error={errors.contactNo?.message}
+            error={errors.phoneNo?.message}
           />
           <TextInput
             type="text"
@@ -120,17 +134,20 @@ const BuyPackageForm = () => {
           />
           <Checkbox
             type="checkbox"
-            name="whyContactUs"
+            name="whyGripas"
             options={[
-              { label: "Sales", value: "Sales" },
               {
-                label: "Marketing and Branding",
-                value: "Marketing and Branding",
+                label: "Social Media Marketing",
+                value: 1,
               },
+              { label: "Graphic Designing", value: 2 },
+              { label: "Website", value: 3 },
+              { label: "Content Marketing", value: 4 },
+              { label: "Video Ads", value: 5 },
             ]}
             label="Why do You Choose Social Media Marketing?"
             register={register}
-            error={errors.whyContactUs?.message}
+            error={errors.whyGripas?.message}
           />
           <TextInput
             type="text"
@@ -150,19 +167,19 @@ const BuyPackageForm = () => {
           />
           <TextInput
             type="text"
-            name="websiteLink"
+            name="website"
             label="Website"
             register={register}
             placeHolder="Enter Website Link"
-            error={errors.websiteLink?.message}
+            error={errors.website?.message}
           />
           <TextInput
             type="text"
-            name="yourServices"
+            name="services"
             label="Your Services"
             register={register}
             placeHolder="Your Services"
-            error={errors.yourServices?.message}
+            error={errors.services?.message}
           />
           <Checkbox
             type="checkbox"
@@ -170,19 +187,19 @@ const BuyPackageForm = () => {
             options={[
               {
                 label: "Social Media Marketing",
-                value: "Social Media Marketing",
+                value: 1,
               },
-              { label: "Graphic Designing", value: "Graphic Designing" },
-              { label: "Website", value: "Website" },
-              { label: "Content Marketing", value: "Content Marketing" },
-              { label: "Video Ads", value: "Video Ads" },
+              { label: "Graphic Designing", value: 2 },
+              { label: "Website", value: 3 },
+              { label: "Content Marketing", value: 4 },
+              { label: "Video Ads", value: 5 },
             ]}
             label="What Service Do You expect From us?"
             register={register}
             error={errors.servicesRequired?.message}
           />
           <TextArea
-            name="other"
+            name="info"
             label="Any Info?"
             register={register}
             placeHolder="Enter Info"

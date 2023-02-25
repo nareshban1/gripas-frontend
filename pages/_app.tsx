@@ -18,6 +18,7 @@ const BuyPackageForm = dynamic(() => import("../core/Forms/BuyPackageForm"));
 const FreelancerForm = dynamic(() => import("../core/Forms/FreelancerForm"));
 
 const Navbar = dynamic(() => import("../core/Navbar/Navbar"));
+import { DefaultSeo } from "next-seo";
 
 export const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -42,6 +43,16 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <DefaultSeo
+        titleTemplate="%s | Gripas Marketing"
+        defaultTitle="Gripas Marketing"
+        openGraph={{
+          type: "website",
+          locale: "en_IE",
+          url: "https://gripas.ascenddevs.com/",
+          siteName: "Gripas Marketing",
+        }}
+      />
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}

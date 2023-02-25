@@ -1,6 +1,5 @@
 import Image from "next/image";
-import React from "react";
-import Markdown from "../../components/Markdown/Markdown";
+import HtmlParser from "../../components/HtmlParser/HtmlParser";
 
 export interface IPortfolioItem {
   id: number;
@@ -22,7 +21,7 @@ const PortfolioItem = (props: { item: IPortfolioItem }) => {
       <div className="masnory-item-description mt-3">
         <h4 className="spaced-text fw-bold">{item.name}</h4>
         <p className="service-info fw-md-medium text-dark my-2">
-          <Markdown markdown={item?.details} />
+          <HtmlParser content={item?.details} />
         </p>
       </div>
     </div>

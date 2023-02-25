@@ -10,6 +10,7 @@ const AllBlogs = dynamic(() => import("../../core/Blogs/AllBlogs"));
 const AnimateInView = dynamic(
   () => import("../../components/AnimateInView/AnimateInView")
 );
+const Freelancer = dynamic(() => import("../../core/Freelancer/Freelancer"));
 
 const Blogs = ({ featuredBlogs }: { featuredBlogs: Blog[] }) => {
   return (
@@ -66,6 +67,7 @@ const Blogs = ({ featuredBlogs }: { featuredBlogs: Blog[] }) => {
         ) : null}
       </AnimateInView>
       <AllBlogs />
+      <Freelancer />
     </section>
   );
 };
@@ -73,8 +75,9 @@ const Blogs = ({ featuredBlogs }: { featuredBlogs: Blog[] }) => {
 export default Blogs;
 
 export async function getServerSideProps() {
-  const featuredBlogsResponse = await apiRequest(`featured-blog/`);
-
+  const featuredBlogsResponse = await apiRequest(`featured-blog/`, {
+    headers: { "Accept-Encoding": "gzip,deflate,compress" },
+  });
   const [featuredBlogs] = await Promise.all([featuredBlogsResponse]);
 
   return {

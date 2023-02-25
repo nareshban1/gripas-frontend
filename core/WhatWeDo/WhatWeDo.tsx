@@ -2,18 +2,19 @@ import { domAnimation, LazyMotion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
-import Markdown from "../../components/Markdown/Markdown";
+import HtmlParser from "../../components/HtmlParser/HtmlParser";
 import * as gtag from "../../lib/gtag";
 import { AnimatePresence, CgArrowLongRight, Link, m } from "../Imports/imports";
 
 export interface ServiceItem {
   id: number;
-  serviceimage: string;
+  image: string;
   name: string;
   slug: string;
+  shortDescription: string;
   details: string;
-  is_active: boolean;
-  is_featured: boolean;
+  isActive: boolean;
+  isFeatured: boolean;
 }
 
 const WhatWeDo = (props: { featuredServices: ServiceItem[] }) => {
@@ -62,9 +63,9 @@ const WhatWeDo = (props: { featuredServices: ServiceItem[] }) => {
                           }}
                           className="h-100 w-100 position-relative"
                         >
-                          <p className="service-info fw-md-medium text-dark my-2">
-                            <Markdown markdown={service.details} />
-                          </p>
+                          <div className="service-info fw-md-medium text-dark my-2">
+                            <HtmlParser content={service.details} />
+                          </div>
                         </m.div>
                       </LazyMotion>
                     </AnimatePresence>
@@ -89,7 +90,7 @@ const WhatWeDo = (props: { featuredServices: ServiceItem[] }) => {
                 >
                   {selectedService && (
                     <Image
-                      src={selectedService?.serviceimage ?? ""}
+                      src={selectedService?.image ?? ""}
                       alt={selectedService?.name ?? ""}
                       fill
                       sizes=""

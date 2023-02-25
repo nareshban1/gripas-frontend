@@ -29,7 +29,7 @@ const GetStarted = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="">
           <TextInput
             type="text"
-            name="business"
+            name="businessName"
             label="Business Name"
             register={register}
             placeHolder="Enter Business Name"
@@ -69,7 +69,7 @@ const GetStarted = () => {
           />
           <Checkbox
             type="checkbox"
-            name="whyContactUs"
+            name="whyGripas"
             options={[
               { label: "Sales", value: "Sales" },
               {
@@ -79,7 +79,7 @@ const GetStarted = () => {
             ]}
             label="Why do You Choose Social Media Marketing?"
             register={register}
-            error={errors.whyContactUs?.message}
+            error={errors.whyGripas?.message}
           />
           <TextInput
             type="text"
@@ -103,15 +103,15 @@ const GetStarted = () => {
             label="Website"
             register={register}
             placeHolder="Enter Website Link"
-            error={errors.websiteLink?.message}
+            error={errors.website?.message}
           />
           <TextInput
             type="text"
-            name="yourServices"
+            name="services"
             label="Your Services"
             register={register}
             placeHolder="Your Services"
-            error={errors.yourServices?.message}
+            error={errors.services?.message}
           />
           <Checkbox
             type="checkbox"
@@ -131,7 +131,7 @@ const GetStarted = () => {
             error={errors.servicesRequired?.message}
           />
           <TextArea
-            name="other"
+            name="info"
             label="Any Info?"
             register={register}
             placeHolder="Enter Info"

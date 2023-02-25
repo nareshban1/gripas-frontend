@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { CgArrowLongRight, Link } from "../Imports/imports";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
+import HtmlParser from "../../components/HtmlParser/HtmlParser";
 import * as gtag from "../../lib/gtag";
-import Markdown from "../../components/Markdown/Markdown";
+import { CgArrowLongRight, Link } from "../Imports/imports";
 
 export interface IPortfolioItem {
   id: number;
@@ -37,9 +37,9 @@ const Portfolio = (props: { featuredPortfolios: IPortfolioItem[] }) => {
                       </div>
                       <div className="masnory-item-description mt-3">
                         <h4 className="spaced-text fw-bold">{item.name}</h4>
-                        <p className="service-info fw-md-medium text-dark my-2">
-                          <Markdown markdown={item?.details} />
-                        </p>
+                        <div className="service-info fw-md-medium text-dark my-2">
+                          <HtmlParser content={item?.details} />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -57,9 +57,9 @@ const Portfolio = (props: { featuredPortfolios: IPortfolioItem[] }) => {
                       </div>
                       <div className="masnory-item-description mt-3">
                         <h4 className="spaced-text fw-bold">{item.name}</h4>
-                        <p className="service-info fw-md-medium text-dark my-2">
-                          <Markdown markdown={item?.details} />
-                        </p>
+                        <div className="service-info fw-md-medium text-dark my-2">
+                          <HtmlParser content={item?.details} />
+                        </div>
                       </div>
                     </div>
                   </div>

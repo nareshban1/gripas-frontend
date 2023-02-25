@@ -5,13 +5,13 @@ import PackageCard from "./PackageCard";
 
 export interface PackageDetail {
   id: number;
-  packagename: string;
-  packageinfo: string;
+  packageName: string;
+  packageInfo: string;
   slug: string;
   price: number;
-  is_recommended: boolean;
-  is_discounted: boolean;
-  is_offer: boolean;
+  isRecommended: boolean;
+  isDiscounted: boolean;
+  isOffer: boolean;
   actualprice: number;
   services: Service[];
 }
@@ -19,15 +19,15 @@ export interface PackageDetail {
 export interface Service {
   id: number;
   service: ServiceDetails;
-  count?: number;
+  moreInfo: string;
   is_featured: boolean;
 }
 
 export interface ServiceDetails {
   id: number;
-  servicename: string;
-  created_at: string;
-  updated_at: string;
+  serviceName: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const Packages = ({
