@@ -4,7 +4,7 @@ import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import Button from "../../components/Button/Button";
 import { OverlayContext } from "../../context/OverlayContext";
 import { poppins } from "../../pages/_app";
-import { Link, m } from "../Imports/imports";
+import { Link, motion } from "../Imports/imports";
 import { MenuToggle } from "./MenuToggle";
 import { useWindowSize } from "./useWindowSize";
 
@@ -52,7 +52,7 @@ const Navbar = ({ className }: { className: string }) => {
             Marketing
           </Link>
 
-          <m.nav
+          <motion.nav
             animate={isOpen ? "open" : "closed"}
             className="navbar-toggler p-0 border-0 cursor-pointer"
           >
@@ -61,7 +61,7 @@ const Navbar = ({ className }: { className: string }) => {
                 setIsOpen(!isOpen);
               }}
             />
-          </m.nav>
+          </motion.nav>
           <div className="collapse navbar-collapse ">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item px-xl-3 px-2">

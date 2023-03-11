@@ -3,11 +3,20 @@ import Button from "../../components/Button/Button";
 import { OverlayContext } from "../../context/OverlayContext";
 import { PackageDetail } from "./Packages";
 
-const PackageCard = ({ pack }: { pack: PackageDetail }) => {
+const PackageCard = ({
+  pack,
+  onClick,
+}: {
+  pack: PackageDetail;
+  onClick?: () => void;
+}) => {
   const { togglePackageBuyForm, setPackage } = useContext(OverlayContext);
   return (
     <div
-      className={`package-card border box-sizing-border rounded-0 p-3 shadow h-100 d-flex flex-column position-relative`}
+      onClick={onClick}
+      className={`package-card border box-sizing-border rounded-0 p-3 shadow h-100 d-flex flex-column position-relative ${
+        onClick && "cursor-pointer"
+      }`}
     >
       <div className="d-flex align-items-center justify-content-between">
         <h5 className="fs-4 spaced-text fw-bold">{pack.packageName}</h5>
@@ -23,14 +32,16 @@ const PackageCard = ({ pack }: { pack: PackageDetail }) => {
       <p className="fw-semibold">{pack.packageInfo}</p>
 
       <div className="my-3">
-        {pack.services.map((serviceDetail, index: number) => (
-          <p key={index}>
-            <>
-              {serviceDetail.service.serviceName}
-              {serviceDetail.moreInfo && <>({serviceDetail.moreInfo})</>}
-            </>
-          </p>
-        ))}
+        {pack.services
+          .filter((service) => service.isFeatured)
+          .map((serviceDetail, index: number) => (
+            <p key={index}>
+              <>
+                {serviceDetail.service.serviceName}
+                {serviceDetail.moreInfo && <>({serviceDetail.moreInfo})</>}
+              </>
+            </p>
+          ))}
       </div>
       <div className="d-flex flex-column justify-content-end  mt-auto">
         <span

@@ -18,14 +18,15 @@ const BuyPackageForm = dynamic(() => import("../core/Forms/BuyPackageForm"));
 const FreelancerForm = dynamic(() => import("../core/Forms/FreelancerForm"));
 
 const Navbar = dynamic(() => import("../core/Navbar/Navbar"));
-import { DefaultSeo } from "next-seo";
 
-export const poppins = Poppins({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "fallback",
-});
+const WhatsAppWidget = dynamic(
+  () => import("../core/WhatAppChat/WhatsAppChat"),
+  {
+    ssr: false,
+  }
+);
+import { DefaultSeo } from "next-seo";
+import { poppins } from "../lib/app.interface";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -73,6 +74,11 @@ export default function App({ Component, pageProps }: AppProps) {
       </Script>
 
       <OverlayContextProvider>
+        <style jsx global>{`
+          * > * {
+            font-family: ${poppins.style.fontFamily};
+          }
+        `}</style>
         <Navbar className={poppins.className} />
         <main
           id="main"
@@ -84,6 +90,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <FreelancerForm />
         <CustomPackage />
         <BuyPackageForm />
+        <WhatsAppWidget />
         <Footer className={poppins.className} />
       </OverlayContextProvider>
     </>

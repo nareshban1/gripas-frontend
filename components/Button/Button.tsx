@@ -22,7 +22,8 @@ const Button = ({
   hasArrow?: boolean;
   icon?: ReactNode;
 }) => {
-  const onButtonClick = () => {
+  const onButtonClick = (e: any) => {
+    e.stopPropagation();
     onClick();
     gtag.event({
       action: action ?? label + " clicked",

@@ -20,7 +20,7 @@ export interface Service {
   id: number;
   service: ServiceDetails;
   moreInfo: string;
-  is_featured: boolean;
+  isFeatured: boolean;
 }
 
 export interface ServiceDetails {
@@ -38,7 +38,7 @@ const Packages = ({
   featuredPackages: PackageDetail[];
 }) => {
   return (
-    <div className={`${className ? className : "py-5 bg-white"}`}>
+    <section className="bg-white">
       <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
         <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm ">
           Packages
@@ -46,13 +46,15 @@ const Packages = ({
         <h3 className="font-size-lg fw-bold lh-1 mt-3 text-dark lh-base">
           We Have Awesome Packages with Flexible Pricing.
         </h3>
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 my-5 g-3">
-          {featuredPackages.map((pack, index) => (
-            <div className="col " key={index}>
-              <PackageCard pack={pack} />
-            </div>
-          ))}
-        </div>
+        {featuredPackages.length ? (
+          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 my-5 g-3">
+            {featuredPackages.map((pack, index) => (
+              <div className="col " key={index}>
+                <PackageCard pack={pack} />
+              </div>
+            ))}
+          </div>
+        ) : null}
         <div className="mt-4 d-flex">
           <Link
             href="/packages"
@@ -71,7 +73,7 @@ const Packages = ({
           </Link>
         </div>
       </AnimateInView>
-    </div>
+    </section>
   );
 };
 

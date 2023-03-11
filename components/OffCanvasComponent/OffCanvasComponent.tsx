@@ -1,5 +1,5 @@
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { poppins } from "../../pages/_app";
+import { poppins } from "../../lib/app.interface";
 const OffCanvasComponent = ({
   show,
   title,

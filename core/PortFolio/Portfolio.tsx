@@ -3,21 +3,37 @@ import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import HtmlParser from "../../components/HtmlParser/HtmlParser";
 import * as gtag from "../../lib/gtag";
 import { CgArrowLongRight, Link } from "../Imports/imports";
+import PortfolioItem from "./PortfolioItem";
 
 export interface IPortfolioItem {
   id: number;
   image: string;
   name: string;
   slug: string;
+  shortDescription: string;
+  client: Client;
   details: string;
-  is_active: boolean;
-  is_featured: boolean;
+  isActive: boolean;
+  isFeatured: boolean;
+}
+
+export interface Client {
+  id: number;
+  name: string;
+  details: string;
+  location: string;
+  phoneNo: string;
+  email: string;
+  isActive: boolean;
+  clientSince: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const Portfolio = (props: { featuredPortfolios: IPortfolioItem[] }) => {
   const { featuredPortfolios } = props;
   return (
-    <section className="bg-white py-5">
+    <section className="bg-white ">
       <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
         <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
           Portfolio
@@ -25,50 +41,31 @@ const Portfolio = (props: { featuredPortfolios: IPortfolioItem[] }) => {
         <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
           What have we worked on
         </h3>
-        <div className="masnory-container ">
-          <div className="row position-relative w-100 g-5 m-0">
-            <div className="col-12 col-md-6 ps-md-0 pe-md-4 p-0">
-              <div className=" row g-5 masnory-item-container position-relative h-100">
-                {[...featuredPortfolios].splice(0, 2).map((item) => (
-                  <div className="col-12 " key={item.id}>
-                    <div className="masnory-item">
-                      <div className="masnory-item-image">
-                        <Image src={item.image} alt={item.name} fill />
-                      </div>
-                      <div className="masnory-item-description mt-3">
-                        <h4 className="spaced-text fw-bold">{item.name}</h4>
-                        <div className="service-info fw-md-medium text-dark my-2">
-                          <HtmlParser content={item?.details} />
-                        </div>
-                      </div>
+        {featuredPortfolios.length ? (
+          <div className="masnory-container ">
+            <div className="row position-relative w-100 g-5 my-3 m-0">
+              <div className="col-12 col-md-6 ps-md-0 pe-md-4 p-0 m-0">
+                <div className=" row g-5 masnory-item-container position-relative h-100">
+                  {[...featuredPortfolios].splice(0, 2).map((item) => (
+                    <div className="col-12 " key={item.id}>
+                      <PortfolioItem item={item} />
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <div className="col-12 col-md-6 pe-md-0 ps-md-4 p-0">
-              <div className="row g-5 masnory-item-container position-relative mt-0 mt-md-5">
-                {[...featuredPortfolios].splice(2, 4).map((item) => (
-                  <div className="col-12 " key={item.id}>
-                    <div className="masnory-item">
-                      <div className="masnory-item-image">
-                        <Image src={item.image} alt={item.name} fill />
-                      </div>
-                      <div className="masnory-item-description mt-3">
-                        <h4 className="spaced-text fw-bold">{item.name}</h4>
-                        <div className="service-info fw-md-medium text-dark my-2">
-                          <HtmlParser content={item?.details} />
-                        </div>
-                      </div>
+              <div className="col-12 col-md-6 pe-md-0 ps-md-4 p-0 ">
+                <div className="row g-5 masnory-item-container position-relative ">
+                  {[...featuredPortfolios].splice(2, 3).map((item) => (
+                    <div className="col-12 " key={item.id}>
+                      <PortfolioItem item={item} />
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
+        ) : null}
         <div className="mt-4 d-flex">
           <Link
             href="/portfolio"

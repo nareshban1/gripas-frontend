@@ -1,3 +1,5 @@
+import { Poppins } from "@next/font/google";
+
 export interface PageData {
   id: number;
   page: string;
@@ -11,3 +13,10 @@ export interface PageData {
   createdAt: string;
   updatedAt: string;
 }
+
+export const poppins = Poppins({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "fallback",
+});

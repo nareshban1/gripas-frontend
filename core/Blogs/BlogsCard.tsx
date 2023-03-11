@@ -3,10 +3,20 @@ import React from "react";
 import { m } from "framer-motion";
 import Image from "next/image";
 import { Blog } from "./blogs.interface";
-
+import * as gtag from "../../lib/gtag";
 const BlogsCard = ({ blogItem }: { blogItem: Blog }) => {
   return (
-    <Link href={`/blogs/${blogItem.slug}`}>
+    <Link
+      href={`/blogs/${blogItem.slug}`}
+      onClick={() => {
+        gtag.event({
+          action: `${blogItem.title} Viewed`,
+          label: blogItem.title,
+          category: "engagement",
+          value: "",
+        });
+      }}
+    >
       <m.div
         className="col cursor-pointer"
         whileHover={{ scale: 1.05 }}

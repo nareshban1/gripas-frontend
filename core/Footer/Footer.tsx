@@ -1,5 +1,6 @@
 import Link from "next/link";
-
+import { GrFacebook, GrInstagram } from "react-icons/gr";
+import { FaTiktok } from "react-icons/fa";
 const Footer = ({ className }: { className: string }) => {
   return (
     <div className={`bg-primary ${className} py-5 border-0 border-top`}>
@@ -50,6 +51,17 @@ const Footer = ({ className }: { className: string }) => {
             </div>
             <div className="text-white">
               <h6 className="spaced-text fw-bold">Follow Us</h6>
+              <div className="d-flex ">
+                <a target="_blank" href="facebook.com">
+                  <GrFacebook size={24} className="me-3" />
+                </a>
+                <a target="_blank" href="instagram.com">
+                  <GrInstagram size={24} className="me-3" />
+                </a>
+                <a target="_blank" href="tiktok.com">
+                  <FaTiktok size={24} className="me-3" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -1,15 +1,8 @@
+import { Poppins } from "@next/font/google";
 import Image from "next/image";
 import HtmlParser from "../../components/HtmlParser/HtmlParser";
-
-export interface IPortfolioItem {
-  id: number;
-  image: string;
-  name: string;
-  slug: string;
-  details: string;
-  is_active: boolean;
-  is_featured: boolean;
-}
+import { poppins } from "../../lib/app.interface";
+import { IPortfolioItem } from "./Portfolio";
 
 const PortfolioItem = (props: { item: IPortfolioItem }) => {
   const { item } = props;
@@ -20,9 +13,11 @@ const PortfolioItem = (props: { item: IPortfolioItem }) => {
       </div>
       <div className="masnory-item-description mt-3">
         <h4 className="spaced-text fw-bold">{item.name}</h4>
-        <p className="service-info fw-md-medium text-dark my-2">
-          <HtmlParser content={item?.details} />
-        </p>
+        <div
+          className={`service-info fw-md-medium text-dark my-2 ${poppins.className}`}
+        >
+          <HtmlParser content={item?.shortDescription} />
+        </div>
       </div>
     </div>
   );

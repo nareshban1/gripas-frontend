@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import apiRequest from "../../components/Axios/api-request";
 import HtmlParser from "../../components/HtmlParser/HtmlParser";
 import {
@@ -8,6 +9,7 @@ import {
   PaginatedBlogs,
 } from "../../core/Blogs/blogs.interface";
 import { CgArrowLongRight, Link } from "../../core/Imports/imports";
+import Seo, { PageContentData } from "../../core/Seo/Seo";
 import * as gtag from "../../lib/gtag";
 
 const LinkToPackage = dynamic(
@@ -27,8 +29,28 @@ const BlogDetail = ({
   blogResponseData: Blog;
   recommendedResposeData: BlogList[];
 }) => {
+  const [pageContent, setPageContent] = useState<PageContentData | null>(null);
+
+  useEffect(() => {
+    if (blogResponseData) {
+      setPageContent({
+        content: blogResponseData?.content,
+        pageDescription: blogResponseData?.content,
+        pageTitle: blogResponseData?.title,
+        pageImage: blogResponseData?.image,
+        pageKeywords: blogResponseData?.category
+          .map((category) => category.name)
+          .toLocaleString(),
+      });
+    }
+    return () => {
+      setPageContent(null);
+    };
+  }, [blogResponseData]);
+
   return (
     <>
+      {pageContent && <Seo pageContent={pageContent} />}
       <section className="bg-white ">
         <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
           <p className=" fw-regular lh-1 text-dark lh-base text-center fs-5 m-0">
@@ -121,13 +143,13 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  const allBlogs = await await apiRequest<PaginatedBlogs>(`all-blogs`);
+  const allBlogs = await apiRequest<PaginatedBlogs>(`all-blogs/`);
 
   const [allBlogsResponseData] = await Promise.all([allBlogs]);
-  const paths = allBlogsResponseData?.data?.map((blog: any) => ({
+  const paths = allBlogsResponseData?.data?.map((blog) => ({
     params: { blogSlug: blog.slug },
   }));
-  return { paths, fallback: true };
+  return { paths, fallback: "blocking" };
 }
 
 export default BlogDetail;

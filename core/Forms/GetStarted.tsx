@@ -45,11 +45,11 @@ const GetStarted = () => {
           />
           <TextInput
             type="text"
-            name="contactNo"
+            name="phoneNo"
             label="Contact Number"
             register={register}
             placeHolder="Enter Contact Number"
-            error={errors.contactNo?.message}
+            error={errors.phoneNo?.message}
           />
           <TextInput
             type="text"

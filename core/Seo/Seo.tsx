@@ -2,7 +2,16 @@ import { NextSeo } from "next-seo";
 import React from "react";
 import { PageData } from "../../lib/app.interface";
 
-const Seo = ({ pageContent }: { pageContent: PageData }) => {
+export interface PageContentData {
+  pageTitle: string;
+  pageDescription: string;
+  pageKeywords?: string;
+  content: string;
+  pageImage?: string;
+  pageUrl?: string;
+}
+
+const Seo = ({ pageContent }: { pageContent: PageContentData }) => {
   return (
     <>
       {pageContent && (
@@ -12,7 +21,7 @@ const Seo = ({ pageContent }: { pageContent: PageData }) => {
           additionalMetaTags={[
             {
               name: "keywords",
-              content: pageContent.pageKeywords,
+              content: pageContent.pageKeywords ?? "",
             },
             {
               name: "author",
@@ -25,7 +34,7 @@ const Seo = ({ pageContent }: { pageContent: PageData }) => {
             description: pageContent.pageDescription,
             images: [
               {
-                url: pageContent.pageImage,
+                url: pageContent.pageImage ?? "",
                 width: 800,
                 height: 600,
                 alt: pageContent.pageTitle,

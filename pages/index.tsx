@@ -1,13 +1,13 @@
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 import apiRequest from "../components/Axios/api-request";
+import HeroSection from "../core/HeroSection/HeroSection";
+import InfoSection from "../core/InfoSection/InfoSection";
 import Seo from "../core/Seo/Seo";
 import { PageData } from "../lib/app.interface";
 
 const BlogsLanding = dynamic(() => import("../core/Blogs/BlogsLanding"));
 const Freelancer = dynamic(() => import("../core/Freelancer/Freelancer"));
-const HeroSection = dynamic(() => import("../core/HeroSection/HeroSection"));
-const InfoSection = dynamic(() => import("../core/InfoSection/InfoSection"));
 const Packages = dynamic(() => import("../core/Packages/Packages"));
 const Portfolio = dynamic(() => import("../core/PortFolio/Portfolio"));
 const Testemonials = dynamic(() => import("../core/Testemonials/Testemonials"));
@@ -68,7 +68,7 @@ export async function getServerSideProps() {
     featuredBlogs,
     testemonials,
     featuredPackages,
-    pageContent,
+    pageContentData,
   ] = await Promise.all([
     featuredServicesResponse,
     featuredPortfolioResponse,
@@ -77,6 +77,7 @@ export async function getServerSideProps() {
     featuredPackagesResponse,
     pageDetailsResponse,
   ]);
+  const pageContent = pageContentData ? pageContentData : {};
 
   return {
     props: {

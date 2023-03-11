@@ -20,7 +20,7 @@ type Props = {
 
 const InfoComponent = (props: Props) => {
   const {
-    className,
+    className = "",
     isLink = false,
     link,
     subtitle,

@@ -13,7 +13,7 @@ export interface ITestemonials {
 const Testemonials = ({ testemonials }: { testemonials: ITestemonials[] }) => {
   console.log(JSON.stringify(testemonials), "data");
   return (
-    <section className="bg-white py-5">
+    <section className="bg-white">
       <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
         <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
           Testemonials
@@ -21,9 +21,9 @@ const Testemonials = ({ testemonials }: { testemonials: ITestemonials[] }) => {
         <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
           What people say
         </h3>
-        <div className="position-relative d-flex flex-column overflow-hidden">
-          <TestimonialsSlider data={testemonials} />
-        </div>
+        {testemonials.length ? (
+          <TestimonialsSlider reviews={testemonials} />
+        ) : null}
       </AnimateInView>
     </section>
   );

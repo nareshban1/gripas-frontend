@@ -1,7 +1,7 @@
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Path = (props: any) => (
-  <m.path
+  <motion.path
     fill="transparent"
     strokeWidth="3"
     stroke="#ffffff"
