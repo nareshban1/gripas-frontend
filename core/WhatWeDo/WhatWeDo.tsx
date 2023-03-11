@@ -36,7 +36,7 @@ const WhatWeDo = (props: { featuredServices: ServiceItem[] }) => {
         <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
           What We Do
         </h3>
-        {featuredServices.length ? (
+        {featuredServices && featuredServices?.length ? (
           <div className="row d-flex ">
             <div className="col-lg-7 col-12 order-1 order-md-1">
               <ul className="p-0">

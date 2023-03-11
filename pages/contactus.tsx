@@ -57,14 +57,15 @@ const ContactUs = ({
               <h5 className="fw-semibold text-uppercase mb-4">
                 General Information
               </h5>
-              {allContacts.map((location, index) => (
-                <div key={index} className="fs-5">
-                  <h5 className="fs-5 fw-bold ">{location.officename}</h5>
-                  <p className="m-0 fw-medium">{location.location}</p>
-                  <p className="m-0 fw-medium">{location.phoneNo}</p>
-                  <p className="m-0 fw-medium">{location.email}</p>
-                </div>
-              ))}
+              {allContacts &&
+                allContacts?.map((location, index) => (
+                  <div key={index} className="fs-5">
+                    <h5 className="fs-5 fw-bold ">{location.officename}</h5>
+                    <p className="m-0 fw-medium">{location.location}</p>
+                    <p className="m-0 fw-medium">{location.phoneNo}</p>
+                    <p className="m-0 fw-medium">{location.email}</p>
+                  </div>
+                ))}
             </div>
           </div>
         </AnimateInView>

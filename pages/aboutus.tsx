@@ -53,7 +53,7 @@ const AboutUs = ({
             <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
               The Team
             </h3>
-            {teamMembers?.length ? (
+            {teamMembers && teamMembers?.length ? (
               <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
                 {teamMembers?.map((item) => (
                   <div className="col cursor-pointer" key={item.id}>

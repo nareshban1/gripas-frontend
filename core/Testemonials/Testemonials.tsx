@@ -21,7 +21,7 @@ const Testemonials = ({ testemonials }: { testemonials: ITestemonials[] }) => {
         <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
           What people say
         </h3>
-        {testemonials.length ? (
+        {testemonials && testemonials?.length ? (
           <TestimonialsSlider reviews={testemonials} />
         ) : null}
       </AnimateInView>

@@ -1,4 +1,3 @@
-import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 import apiRequest from "../components/Axios/api-request";
 import HeroSection from "../core/HeroSection/HeroSection";
@@ -77,6 +76,7 @@ export async function getServerSideProps() {
     featuredPackagesResponse,
     pageDetailsResponse,
   ]);
+  console.log(featuredServices);
   const pageContent = pageContentData ? pageContentData : {};
 
   return {

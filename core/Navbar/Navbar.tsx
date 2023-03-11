@@ -3,7 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import Button from "../../components/Button/Button";
 import { OverlayContext } from "../../context/OverlayContext";
-import { poppins } from "../../pages/_app";
+import { poppins } from "../../lib/app.interface";
+
 import { Link, motion } from "../Imports/imports";
 import { MenuToggle } from "./MenuToggle";
 import { useWindowSize } from "./useWindowSize";

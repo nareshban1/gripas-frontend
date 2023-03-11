@@ -16,7 +16,7 @@ const BlogsLanding = ({ featuredBlogs }: { featuredBlogs: BlogList[] }) => {
         <h3 className="font-size-lg fw-bold lh-1 my-3 text-primary lh-base">
           Blogs
         </h3>
-        {featuredBlogs[0]?.blogs.length ? (
+        {featuredBlogs[0]?.blogs?.length ? (
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-3">
             {featuredBlogs[0]?.blogs.map((item) => (
               <BlogsCard blogItem={item} key={item.id} />

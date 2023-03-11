@@ -45,17 +45,18 @@ const Packages = ({
             Packages
           </h3>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            {packages?.map((pack, index) => (
-              <div className="col " key={index}>
-                <PackageCard
-                  pack={pack}
-                  onClick={() => {
-                    openModal();
-                    setSelectedItem(pack);
-                  }}
-                />
-              </div>
-            ))}
+            {packages &&
+              packages?.map((pack, index) => (
+                <div className="col " key={index}>
+                  <PackageCard
+                    pack={pack}
+                    onClick={() => {
+                      openModal();
+                      setSelectedItem(pack);
+                    }}
+                  />
+                </div>
+              ))}
           </div>
         </AnimateInView>
         <PackageModal

@@ -41,7 +41,7 @@ const Portfolio = (props: { featuredPortfolios: IPortfolioItem[] }) => {
         <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
           What have we worked on
         </h3>
-        {featuredPortfolios.length ? (
+        {featuredPortfolios && featuredPortfolios?.length ? (
           <div className="masnory-container ">
             <div className="row position-relative w-100 g-5 my-3 m-0">
               <div className="col-12 col-md-6 ps-md-0 pe-md-4 p-0 m-0">
