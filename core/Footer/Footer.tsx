@@ -1,7 +1,45 @@
 import Link from "next/link";
-import { GrFacebook, GrInstagram } from "react-icons/gr";
+import Image from "next/image";
+import { GrFacebook, GrInstagram, GrLinkedin, GrTwitter } from "react-icons/gr";
 import { FaTiktok } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import apiRequest from "../../components/Axios/api-request";
+import { TiSocialAtCircular } from "react-icons/ti";
+export interface Social {
+  id: number;
+  platform: string;
+  link: string;
+  image: string;
+}
+
 const Footer = ({ className }: { className: string }) => {
+  const [socials, setSocials] = useState<Social[]>([]);
+
+  useEffect(() => {
+    const getSocials = async () => {
+      const socialsResponse = await apiRequest<Social[]>(`socials/`);
+      setSocials(socialsResponse ?? []);
+    };
+    getSocials();
+  }, []);
+
+  const renderIcons = (platform: string) => {
+    switch (platform) {
+      case "facebook":
+        return <GrFacebook size={24} className="me-3" />;
+      case "instagram":
+        return <GrInstagram size={24} className="me-3" />;
+      case "tiktok":
+        return <FaTiktok size={24} className="me-3" />;
+      case "linkedin":
+        return <GrLinkedin size={24} className="me-3" />;
+      case "twitter":
+        return <GrTwitter size={24} className="me-3" />;
+      default:
+        return <TiSocialAtCircular size={24} className="me-3" />;
+    }
+  };
+
   return (
     <div className={`bg-primary ${className} py-5 border-0 border-top`}>
       <div className="container my-5">
@@ -49,20 +87,32 @@ const Footer = ({ className }: { className: string }) => {
                 </Link>
               </ul>
             </div>
-            <div className="text-white">
-              <h6 className="spaced-text fw-bold">Follow Us</h6>
-              <div className="d-flex ">
-                <a target="_blank" href="facebook.com">
-                  <GrFacebook size={24} className="me-3" />
-                </a>
-                <a target="_blank" href="instagram.com">
-                  <GrInstagram size={24} className="me-3" />
-                </a>
-                <a target="_blank" href="tiktok.com">
-                  <FaTiktok size={24} className="me-3" />
-                </a>
+            {socials && socials?.length ? (
+              <div className="text-white">
+                <h6 className="spaced-text fw-bold">Follow Us</h6>
+                <div className="d-flex mt-2">
+                  {socials?.map((social) => (
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
+                      href={social.link}
+                      key={social.id}
+                    >
+                      {social.image ? (
+                        <Image
+                          src={social.image}
+                          alt={social.platform}
+                          height={24}
+                          width={24}
+                        />
+                      ) : (
+                        <>{renderIcons(social.platform)}</>
+                      )}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
+            ) : null}
           </div>
         </div>
       </div>

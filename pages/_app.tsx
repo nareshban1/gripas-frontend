@@ -1,16 +1,20 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/main.scss";
 
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { Poppins } from "@next/font/google";
+import { DefaultSeo } from "next-seo";
 import type { AppProps } from "next/app";
-import Head from "next/head";
-import { OverlayContextProvider } from "../context/OverlayContext";
-import * as gtag from "../lib/gtag";
 import dynamic from "next/dynamic";
-import Footer from "../core/Footer/Footer";
+import Head from "next/head";
+import { useRouter } from "next/router";
 import Script from "next/script";
+import { useEffect } from "react";
+
+import "react-toastify/dist/ReactToastify.css";
+import { OverlayContextProvider } from "../context/OverlayContext";
+import Footer from "../core/Footer/Footer";
+import { poppins } from "../lib/app.interface";
+import * as gtag from "../lib/gtag";
+import { ToastContainer } from "react-toastify";
 
 const GetStarted = dynamic(() => import("../core/Forms/GetStarted"));
 const CustomPackage = dynamic(() => import("../core/Forms/CustomPackage"));
@@ -25,8 +29,6 @@ const WhatsAppWidget = dynamic(
     ssr: false,
   }
 );
-import { DefaultSeo } from "next-seo";
-import { poppins } from "../lib/app.interface";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -90,6 +92,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <FreelancerForm />
         <CustomPackage />
         <BuyPackageForm />
+        <ToastContainer />
         <WhatsAppWidget />
         <Footer className={poppins.className} />
       </OverlayContextProvider>

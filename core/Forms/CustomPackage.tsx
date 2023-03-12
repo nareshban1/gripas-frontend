@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import TextInput from "../../components/FormComponents/TextInput";
 import OffCanvasComponent from "../../components/OffCanvasComponent/OffCanvasComponent";
 import { OverlayContext } from "../../context/OverlayContext";
@@ -7,18 +7,70 @@ import { GetStartedInputs, GetStartedValidationSchema } from "./schema";
 
 import Checkbox from "../../components/FormComponents/Checkbox";
 import TextArea from "../../components/FormComponents/TextArea";
+import apiRequest from "../../components/Axios/api-request";
+import { OptionType, ServicesSimple } from "./BuyPackageForm";
+import { useBoolean } from "usehooks-ts";
+import { toast } from "react-toastify";
 
 const CustomPackage = () => {
   const { showCustomForm, toggleCustomForm } = useContext(OverlayContext);
+  const [allServices, setAllServices] = useState<OptionType[]>([]);
+  const { value: isLoading, toggle: toggleLoading } = useBoolean(false);
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm<GetStartedInputs>({
     resolver: yupResolver(GetStartedValidationSchema),
   });
-  const onSubmit = (data: GetStartedInputs) => data;
+
+  useEffect(() => {
+    const getServices = async () => {
+      const servicesResponse = await apiRequest<ServicesSimple[]>(
+        `servicessimple/`
+      );
+      if (Array.isArray(servicesResponse)) {
+        setAllServices(
+          servicesResponse?.map((service) => {
+            return {
+              label: service.name,
+              value: service.id,
+            };
+          })
+        );
+      }
+    };
+    getServices();
+  }, []);
+
+  const onSubmit = (data: GetStartedInputs) => handleFormSubmission(data);
+  const handleFormSubmission = async (data: GetStartedInputs) => {
+    const requestData = {
+      ...data,
+    };
+    toggleLoading();
+    const response = await apiRequest("forms/custom-package/", {
+      method: "POST",
+      requestBody: requestData,
+    });
+    if (response) {
+      toggleLoading();
+      reset();
+      toggleCustomForm();
+      toast.success("Your request was submitted successfully", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else {
+      toggleLoading();
+      toggleCustomForm();
+      toast.error("Error Submitting form", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      reset();
+    }
+  };
   return (
     <OffCanvasComponent
       title={"Custom Package Request"}
@@ -68,17 +120,11 @@ const CustomPackage = () => {
             error={errors.panNumber?.message}
           />
           <Checkbox
-            type="checkbox"
             name="whyGripas"
-            options={[
-              { label: "Sales", value: "Sales" },
-              {
-                label: "Marketing and Branding",
-                value: "Marketing and Branding",
-              },
-            ]}
+            options={allServices}
             label="Why do You Choose Social Media Marketing?"
             register={register}
+            control={control}
             error={errors.whyGripas?.message}
           />
           <TextInput
@@ -99,7 +145,7 @@ const CustomPackage = () => {
           />
           <TextInput
             type="text"
-            name="websiteLink"
+            name="website"
             label="Website"
             register={register}
             placeHolder="Enter Website Link"
@@ -114,18 +160,9 @@ const CustomPackage = () => {
             error={errors.services?.message}
           />
           <Checkbox
-            type="checkbox"
+            control={control}
             name="servicesRequired"
-            options={[
-              {
-                label: "Social Media Marketing",
-                value: "Social Media Marketing",
-              },
-              { label: "Graphic Designing", value: "Graphic Designing" },
-              { label: "Website", value: "Website" },
-              { label: "Content Marketing", value: "Content Marketing" },
-              { label: "Video Ads", value: "Video Ads" },
-            ]}
+            options={allServices ?? []}
             label="What Service Do You expect From us?"
             register={register}
             error={errors.servicesRequired?.message}
@@ -137,6 +174,7 @@ const CustomPackage = () => {
             placeHolder="Enter Info"
           />
           <button
+            disabled={isLoading}
             type="submit"
             className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
           >

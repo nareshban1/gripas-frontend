@@ -1,17 +1,28 @@
-import { RegisterOptions, UseFormRegister } from "react-hook-form";
+import {
+  RegisterOptions,
+  UseFormRegister,
+  useController,
+} from "react-hook-form";
+import { Control } from "react-hook-form/dist/types";
 
 type CheckboxTypes = {
   options: any[];
+  control?: Control<any>;
   name: string;
   rules?: RegisterOptions;
   error?: string;
   register?: UseFormRegister<any>;
   label?: string;
-  type: "radio" | "checkbox";
 };
 
 const Checkbox = (props: CheckboxTypes) => {
-  const { name, type, label, options, register, rules, error, ...rest } = props;
+  const { name, label, options, register, rules, error, control, ...rest } =
+    props;
+
+  const { field } = useController({
+    control,
+    name: name,
+  });
   return (
     <div className="mb-3">
       <label htmlFor={name} className="form-label">
@@ -22,11 +33,28 @@ const Checkbox = (props: CheckboxTypes) => {
           options.map((option) => (
             <div key={option.id} className="d-flex align-items-center my-1">
               <input
-                type={type}
+                type={"checkbox"}
                 id={option?.id}
                 name={name}
                 value={option.value}
-                {...(register && register(name, rules))}
+                onClick={(e: any) => {
+                  if (
+                    field?.value &&
+                    Array.isArray(field?.value) &&
+                    field.value?.includes(e.target.value)
+                  ) {
+                    const newValue = [...field.value];
+                    field.onChange(
+                      newValue.filter((value) => value !== e.target.value)
+                    );
+                  } else if (field?.value && Array.isArray(field?.value)) {
+                    const newValue = [...field.value, e.target.value];
+                    field.onChange(newValue);
+                  } else {
+                    const newValue = [e.target.value];
+                    field.onChange(newValue);
+                  }
+                }}
                 className="text-primary bg-primary"
               />{" "}
               <label

@@ -16,7 +16,6 @@ const PackageModal = ({
   toggle,
   modalButton,
 }: ModalProps) => {
-  console.log(isOpen);
   return (
     <Modal
       show={isOpen}

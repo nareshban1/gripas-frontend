@@ -1,5 +1,9 @@
 import { useContext } from "react";
+import { toast } from "react-toastify";
+import { useBoolean } from "usehooks-ts";
+import apiRequest from "../../components/Axios/api-request";
 import Checkbox from "../../components/FormComponents/Checkbox";
+import Radio from "../../components/FormComponents/Radio";
 import TextInput from "../../components/FormComponents/TextInput";
 import OffCanvasComponent from "../../components/OffCanvasComponent/OffCanvasComponent";
 import { OverlayContext } from "../../context/OverlayContext";
@@ -8,16 +12,46 @@ import { FreelancerInputs, FreelancerValidationSchema } from "./schema";
 
 const FreelancerForm = () => {
   const { showfreelanceForm, toggleFreelanceForm } = useContext(OverlayContext);
+  const { value: isLoading, toggle: toggleLoading } = useBoolean(false);
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
     watch,
   } = useForm<FreelancerInputs>({
     resolver: yupResolver(FreelancerValidationSchema),
   });
-  const onSubmit = (data: FreelancerInputs) => console.log(data);
+  const onSubmit = (data: FreelancerInputs) => handleFormSubmission(data);
+  const handleFormSubmission = async (data: FreelancerInputs) => {
+    const requestData = {
+      ...data,
+      skillLevel: data?.other ? data?.other : data?.skillLevel,
+    };
+    toggleLoading();
+    const response = await apiRequest("forms/freelancer/", {
+      method: "POST",
+      requestBody: requestData,
+    });
+    if (response) {
+      toggleLoading();
+      reset();
+      toggleFreelanceForm();
+      toast.success("Your application was submitted successfully", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    } else {
+      toggleLoading();
+      toggleFreelanceForm();
+      toast.error("Error Submitting form", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      reset();
+    }
+  };
+
+  console.log(errors);
   return (
     <OffCanvasComponent
       title={"Freelancer ?"}
@@ -28,11 +62,11 @@ const FreelancerForm = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextInput
             type="text"
-            name="fullName"
+            name="name"
             label="Name"
             register={register}
-            placeHolder="Enter First Name"
-            error={errors.fullName?.message}
+            placeHolder="Enter Full Name"
+            error={errors.name?.message}
           />
           <TextInput
             type="email"
@@ -60,23 +94,22 @@ const FreelancerForm = () => {
           />
           <TextInput
             type="text"
-            name="goodAt"
+            name="techStack"
             label="What are you good at?"
             register={register}
             placeHolder="Good At?"
-            error={errors.goodAt?.message}
+            error={errors.techStack?.message}
           />
           <TextInput
             type="text"
-            name="time"
+            name="workTime"
             label="Preferred Freelancing Time?"
             register={register}
             placeHolder="Preferred Time?"
-            error={errors.time?.message}
+            error={errors.workTime?.message}
           />
-          <Checkbox
-            type="radio"
-            name="level"
+          <Radio
+            name="skillLevel"
             options={[
               { label: "Beginner", value: "beginner" },
               { label: "Intermediate", value: "intermediate" },
@@ -85,9 +118,9 @@ const FreelancerForm = () => {
             ]}
             label="Level of your Work?"
             register={register}
-            error={errors.level?.message}
+            error={errors.skillLevel?.message}
           />
-          {watch("level") === "other" && (
+          {watch("skillLevel") === "other" && (
             <TextInput
               type="text"
               name="other"
@@ -97,8 +130,7 @@ const FreelancerForm = () => {
             />
           )}
 
-          <Checkbox
-            type="radio"
+          <Radio
             name="experience"
             options={[
               { label: "1-6 Months", value: "1-6 Months" },
@@ -112,6 +144,7 @@ const FreelancerForm = () => {
           />
 
           <button
+            disabled={isLoading}
             type="submit"
             className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
           >

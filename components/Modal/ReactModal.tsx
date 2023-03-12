@@ -9,7 +9,6 @@ interface ModalProps extends PropsWithChildren {
 }
 
 const ReactModal = ({ heading, children, isOpen, toggle }: ModalProps) => {
-  console.log(isOpen);
   return (
     <Modal
       show={isOpen}

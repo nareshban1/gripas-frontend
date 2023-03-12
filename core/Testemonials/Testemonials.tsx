@@ -11,7 +11,7 @@ export interface ITestemonials {
   is_active: boolean;
 }
 const Testemonials = ({ testemonials }: { testemonials: ITestemonials[] }) => {
-  console.log(JSON.stringify(testemonials), "data");
+  JSON.stringify(testemonials), "data";
   return (
     <section className="bg-white">
       <AnimateInView className="container py-5  d-flex flex-column justify-content-start">

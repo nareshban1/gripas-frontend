@@ -76,7 +76,6 @@ export async function getServerSideProps() {
     featuredPackagesResponse,
     pageDetailsResponse,
   ]);
-  console.log(featuredServices);
   const pageContent = pageContentData ? pageContentData : {};
 
   return {

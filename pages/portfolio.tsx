@@ -42,31 +42,33 @@ export default function Portfolio({
           </h3>
           <div className="container-fluid p-0">
             <div className="row row-cols-md-2 row-cols-1  position-relative w-100 g-5 m-0">
-              {allPortfolios &&
-                allPortfolios?.length &&
-                allPortfolios.map((item) => (
-                  <div className="col item-grid p-0 p-md-3 " key={item.id}>
-                    <div
-                      className="item-grid-item cursor-pointer"
-                      onClick={() => {
-                        setSelectedItem(item);
-                        openModal();
-                      }}
-                    >
-                      <div className="item-grid-item-image">
-                        <Image src={item.image} alt={item.name} fill />
-                      </div>
-                      <div className="item-grid-item-description mt-3">
-                        <h4 className="spaced-text fw-bold">{item.name}</h4>
-                        <div
-                          className={`service-info fw-md-medium text-dark my-2 ${poppins.className}`}
-                        >
-                          <HtmlParser content={item.shortDescription} />
+              {allPortfolios && allPortfolios?.length ? (
+                <>
+                  {allPortfolios.map((item) => (
+                    <div className="col item-grid p-0 p-md-3 " key={item.id}>
+                      <div
+                        className="item-grid-item cursor-pointer"
+                        onClick={() => {
+                          setSelectedItem(item);
+                          openModal();
+                        }}
+                      >
+                        <div className="item-grid-item-image">
+                          <Image src={item.image} alt={item.name} fill />
+                        </div>
+                        <div className="item-grid-item-description mt-3">
+                          <h4 className="spaced-text fw-bold">{item.name}</h4>
+                          <div
+                            className={`service-info fw-md-medium text-dark my-2 ${poppins.className}`}
+                          >
+                            <HtmlParser content={item.shortDescription} />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </>
+              ) : null}
             </div>
           </div>
         </AnimateInView>

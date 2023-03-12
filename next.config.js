@@ -10,6 +10,7 @@ const nextConfig = {
   },
   env: {
     API_ENDPOINT: process.env.API_ENDPOINT,
+    PHONENO: process.env.PHONENO,
   },
 };
 

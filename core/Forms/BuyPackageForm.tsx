@@ -2,6 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { CgArrowLongRight } from "react-icons/cg";
+import { useBoolean } from "usehooks-ts";
 import apiRequest from "../../components/Axios/api-request";
 import Checkbox from "../../components/FormComponents/Checkbox";
 import FormSelect from "../../components/FormComponents/FormSelect";
@@ -11,11 +12,23 @@ import OffCanvasComponent from "../../components/OffCanvasComponent/OffCanvasCom
 import { OverlayContext } from "../../context/OverlayContext";
 import { PackageDetail } from "../Packages/Packages";
 import { BuyPackageInputs, BuyPackageValidationSchema } from "./schema";
+import { toast } from "react-toastify";
+export interface ServicesSimple {
+  id: number;
+  name: string;
+}
+
+export interface OptionType {
+  label: string;
+  value: number;
+}
 
 const BuyPackageForm = () => {
   const { showPackageBuyForm, togglePackageBuyForm, packageId, setPackage } =
     useContext(OverlayContext);
   const [allPackages, setAllPackages] = useState<PackageDetail[]>([]);
+  const [allServices, setAllServices] = useState<OptionType[]>([]);
+  const { value: isLoading, toggle: toggleLoading } = useBoolean(false);
   const {
     register,
     handleSubmit,
@@ -31,14 +44,30 @@ const BuyPackageForm = () => {
 
   useEffect(() => {
     reset({ package: packageId });
-  }, [packageId, reset]);
+  }, [packageId, reset, showPackageBuyForm]);
 
   useEffect(() => {
     const getPackages = async () => {
       const packagesResponse = await apiRequest<PackageDetail[]>(`packages/`);
       setAllPackages(packagesResponse ?? []);
     };
+    const getServices = async () => {
+      const servicesResponse = await apiRequest<ServicesSimple[]>(
+        `servicessimple/`
+      );
+      if (Array.isArray(servicesResponse)) {
+        setAllServices(
+          servicesResponse?.map((service) => {
+            return {
+              label: service.name,
+              value: service.id,
+            };
+          })
+        );
+      }
+    };
     getPackages();
+    getServices();
   }, []);
 
   const onSubmit = (data: BuyPackageInputs) => handleFormSubmission(data);
@@ -60,14 +89,25 @@ const BuyPackageForm = () => {
     const requestData = {
       ...data,
     };
+    toggleLoading();
     const response = await apiRequest("forms/buy-package/", {
       method: "POST",
       requestBody: requestData,
     });
+
     if (response) {
-      alert("success");
+      toggleLoading();
+      reset();
+      toast.success("Your request was submitted successfully", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      togglePackageBuyForm();
     } else {
-      alert("Fail");
+      toggleLoading();
+      toast.error("Error Submitting form", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      reset();
     }
   };
 
@@ -133,18 +173,9 @@ const BuyPackageForm = () => {
             error={errors.panNumber?.message}
           />
           <Checkbox
-            type="checkbox"
             name="whyGripas"
-            options={[
-              {
-                label: "Social Media Marketing",
-                value: 1,
-              },
-              { label: "Graphic Designing", value: 2 },
-              { label: "Website", value: 3 },
-              { label: "Content Marketing", value: 4 },
-              { label: "Video Ads", value: 5 },
-            ]}
+            options={allServices}
+            control={control}
             label="Why do You Choose Social Media Marketing?"
             register={register}
             error={errors.whyGripas?.message}
@@ -182,20 +213,11 @@ const BuyPackageForm = () => {
             error={errors.services?.message}
           />
           <Checkbox
-            type="checkbox"
             name="servicesRequired"
-            options={[
-              {
-                label: "Social Media Marketing",
-                value: 1,
-              },
-              { label: "Graphic Designing", value: 2 },
-              { label: "Website", value: 3 },
-              { label: "Content Marketing", value: 4 },
-              { label: "Video Ads", value: 5 },
-            ]}
+            options={allServices}
             label="What Service Do You expect From us?"
             register={register}
+            control={control}
             error={errors.servicesRequired?.message}
           />
           <TextArea
@@ -205,6 +227,7 @@ const BuyPackageForm = () => {
             placeHolder="Enter Info"
           />
           <button
+            disabled={isLoading}
             type="submit"
             className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
           >
