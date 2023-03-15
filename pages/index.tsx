@@ -11,7 +11,9 @@ const Packages = dynamic(() => import("../core/Packages/Packages"));
 const Portfolio = dynamic(() => import("../core/PortFolio/Portfolio"));
 const Testemonials = dynamic(() => import("../core/Testemonials/Testemonials"));
 const WhatWeDo = dynamic(() => import("../core/WhatWeDo/WhatWeDo"));
-
+const CampaignLanding = dynamic(
+  () => import("../core/Campaigns/CampaignsLanding")
+);
 export default function Home(props: {
   featuredServices: any;
   featuredPortfolios: any;
@@ -19,6 +21,7 @@ export default function Home(props: {
   featuredPackages: any;
   featuredBlogs: any;
   pageContent: PageData;
+  featuredCampaigns: any;
 }) {
   const {
     featuredServices,
@@ -27,6 +30,7 @@ export default function Home(props: {
     featuredPackages,
     featuredBlogs,
     pageContent,
+    featuredCampaigns,
   } = props;
 
   return (
@@ -40,6 +44,7 @@ export default function Home(props: {
         <Packages featuredPackages={featuredPackages} />
         <Testemonials testemonials={testemonials} />
         <BlogsLanding featuredBlogs={featuredBlogs} />
+        <CampaignLanding featuredCampaigns={featuredCampaigns} />
         <Freelancer />
       </div>
     </>
@@ -60,6 +65,9 @@ export async function getServerSideProps() {
   const featuredBlogsResponse = await apiRequest(
     `blog-group/?listType=landing`
   );
+  const featuredCampaignsResponse = await apiRequest(
+    `campaign-group/?listType=featured`
+  );
   const pageDetailsResponse = await apiRequest(`pagecontents/home`);
   const [
     featuredServices,
@@ -68,6 +76,7 @@ export async function getServerSideProps() {
     testemonials,
     featuredPackages,
     pageContentData,
+    featuredCampaigns,
   ] = await Promise.all([
     featuredServicesResponse,
     featuredPortfolioResponse,
@@ -75,6 +84,7 @@ export async function getServerSideProps() {
     testemonialsResponse,
     featuredPackagesResponse,
     pageDetailsResponse,
+    featuredCampaignsResponse,
   ]);
   const pageContent = pageContentData ? pageContentData : {};
 
@@ -86,6 +96,7 @@ export async function getServerSideProps() {
       featuredBlogs,
       testemonials,
       pageContent,
+      featuredCampaigns,
     },
   };
 }

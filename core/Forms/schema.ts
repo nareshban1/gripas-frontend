@@ -132,3 +132,21 @@ export const BuyPackageValidationSchema = Yup.object({
     .min(1, "Please mention what services you require")
     .required("Please mention what services you require"),
 });
+
+export interface WebsiteFormInputs {
+  name: string;
+  email: string;
+  phoneNo: string;
+  details: string;
+}
+
+export const WebsiteFormValidationSchema = Yup.object({
+  name: Yup.string().required("Please enter your name"),
+  email: Yup.string()
+    .email("Please enter a valid email")
+    .required("Please enter your email"),
+  phoneNo: Yup.string()
+    .matches(phoneRegExp, "Please enter your valid phone number")
+    .required("Please enter your contact number"),
+  details: Yup.string().required("Please  provide website details"),
+}).required();

@@ -2,35 +2,39 @@ import dynamic from "next/dynamic";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import * as gtag from "../../lib/gtag";
 import { CgArrowLongRight, Link } from "../Imports/imports";
-import { BlogList } from "./blogs.interface";
+import { CampaignList } from "./campaigns.interface";
 
-const BlogsCard = dynamic(() => import("./BlogsCard"));
+const CampaignCard = dynamic(() => import("./CampaignCard"));
 
-const BlogsLanding = ({ featuredBlogs }: { featuredBlogs: BlogList[] }) => {
+const CampaignLanding = ({
+  featuredCampaigns,
+}: {
+  featuredCampaigns: CampaignList[];
+}) => {
   return (
     <section className="bg-white">
       <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
         <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
-          Content
+          Engagements
         </h2>
         <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
-          Blogs
+          Campaigns
         </h3>
-        {featuredBlogs[0]?.blogs?.length ? (
+        {featuredCampaigns[0]?.blogs?.length ? (
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-3">
-            {featuredBlogs[0]?.blogs.map((item) => (
-              <BlogsCard blogItem={item} key={item.id} />
+            {featuredCampaigns[0]?.blogs.map((item) => (
+              <CampaignCard campaignItem={item} key={item.id} />
             ))}
           </div>
         ) : null}
         <div className="mt-4 d-flex">
           <Link
-            href="/blogs"
+            href="/campaigns"
             className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
             onClick={() => {
               gtag.event({
-                action: "View All Blogs Clicked",
-                label: "View All Blogs",
+                action: "View All Campaigns Clicked",
+                label: "View All Campaigns",
                 category: "engagement",
                 value: "",
               });
@@ -45,4 +49,4 @@ const BlogsLanding = ({ featuredBlogs }: { featuredBlogs: BlogList[] }) => {
   );
 };
 
-export default BlogsLanding;
+export default CampaignLanding;

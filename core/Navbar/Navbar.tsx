@@ -181,7 +181,7 @@ const Navbar = ({ className }: { className: string }) => {
                   <li className="nav-item py-2">
                     <Link
                       className="nav-link text-white fw-bold  nav-link-items fs-3"
-                      href="/blogs"
+                      href="/contactus"
                       onClick={hidemenuFunc}
                     >
                       Contact
