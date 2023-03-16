@@ -1,32 +1,35 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useContext, useEffect, useState } from "react";
+import { CgArrowLongRight } from "react-icons/cg";
 import apiRequest from "../../components/Axios/api-request";
+import Button from "../../components/Button/Button";
 import HtmlParser from "../../components/HtmlParser/HtmlParser";
-import { Blog } from "../../core/Blogs/blogs.interface";
-import { PaginatedCampaigns } from "../../core/Campaigns/campaigns.interface";
+import { OverlayContext } from "../../context/OverlayContext";
+import {
+  CompleteCampaign,
+  PaginatedCampaigns,
+} from "../../core/Campaigns/campaigns.interface";
 import Seo, { PageContentData } from "../../core/Seo/Seo";
-
+import * as gtag from "../../lib/gtag";
 const AnimateInView = dynamic(
   () => import("../../components/AnimateInView/AnimateInView")
 );
 const CampaignDetail = ({
   campaignResponseData,
 }: {
-  campaignResponseData: Blog;
+  campaignResponseData: CompleteCampaign;
 }) => {
   const [pageContent, setPageContent] = useState<PageContentData | null>(null);
-
+  const { setCampaign, toggleCampaignForm } = useContext(OverlayContext);
   useEffect(() => {
     if (campaignResponseData) {
       setPageContent({
-        content: campaignResponseData?.content,
-        pageDescription: campaignResponseData?.content,
-        pageTitle: campaignResponseData?.title,
+        content: campaignResponseData?.shortDescription,
+        pageDescription: campaignResponseData?.shortDescription,
+        pageTitle: campaignResponseData?.name,
         pageImage: campaignResponseData?.image,
-        pageKeywords: campaignResponseData?.category
-          .map((category) => category.name)
-          .toLocaleString(),
       });
     }
     return () => {
@@ -39,25 +42,54 @@ const CampaignDetail = ({
       {pageContent && <Seo pageContent={pageContent} />}
       <section className="bg-white ">
         <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
-          <p className=" fw-regular lh-1 text-dark lh-base text-center fs-5 m-0">
-            {new Date(campaignResponseData?.createdAt)?.toLocaleDateString()}
-          </p>
           <h3 className="fs-1 fw-bold lh-1 my-3 text-dark lh-base text-center">
-            {campaignResponseData?.title}
+            {campaignResponseData?.name}
           </h3>
           <div className="my-4">
             <div className="position-relative blogs-image">
               <Image
                 src={campaignResponseData?.image}
-                alt={campaignResponseData?.title}
+                alt={campaignResponseData?.name}
                 fill
                 style={{ objectFit: "cover", width: "100%", height: "100%" }}
               />
             </div>
             <div className="my-5 bg-white">
               <div className="col col-lg-10 mx-auto fs-5 fw-md-medium text-dark blogs-content">
-                <HtmlParser content={campaignResponseData?.content ?? ""} />
+                <HtmlParser content={campaignResponseData?.details ?? ""} />
               </div>
+            </div>
+            <div className="d-flex">
+              <Link
+                href={`/privacypolicy/${campaignResponseData?.policy?.slug}`}
+                className="btn btn-outline-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
+                onClick={() => {
+                  gtag.event({
+                    action: "View Policy clicked",
+                    label: "View Policy",
+                    category: "engagement",
+                    value: "",
+                  });
+                }}
+              >
+                View Campaign Policy
+                <CgArrowLongRight className="ms-2 long-arrow" />
+              </Link>
+              <Button
+                label={"Get Started"}
+                className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center ms-3"
+                onClick={() => {
+                  setCampaign({
+                    campaignId: campaignResponseData?.id,
+                    campaignName: campaignResponseData?.name,
+                  });
+                  toggleCampaignForm();
+                }}
+                action={"Campaign Get Started Clicked"}
+                actionlabel={"Campaign Get Started"}
+                actionCategory={"engagement"}
+                value={""}
+              />
             </div>
           </div>
         </AnimateInView>
@@ -75,7 +107,11 @@ export async function getStaticProps({
   const campaignResponse = await apiRequest(`get-campaign/${campaignSlug}`);
 
   const [campaignResponseData] = await Promise.all([campaignResponse]);
-
+  if (!campaignResponseData) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
       campaignResponseData,
@@ -85,7 +121,7 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  const allCampaign = await apiRequest<PaginatedCampaigns>(`all-campaigns/`);
+  const allCampaign = await apiRequest<PaginatedCampaigns>(`all-campaign/`);
 
   const [allCampaignResponseData] = await Promise.all([allCampaign]);
   const paths = allCampaignResponseData?.data?.map((campaign) => ({

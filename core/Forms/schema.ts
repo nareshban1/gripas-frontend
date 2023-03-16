@@ -150,3 +150,45 @@ export const WebsiteFormValidationSchema = Yup.object({
     .required("Please enter your contact number"),
   details: Yup.string().required("Please  provide website details"),
 }).required();
+
+export interface CampaignGetStartedInputs {
+  campaign: string;
+  campaignName: string;
+  email: string;
+  businessName: string;
+  phoneNo: string;
+  address: string;
+  panNumber: string;
+  whyGripas: Array<number>;
+  brandColor: string;
+  socialMediaLink: string;
+  website: string;
+  services: string;
+  servicesRequired: Array<number>;
+  info: string;
+}
+
+export const CampaignValidationSchema = Yup.object({
+  campaign: Yup.string().required("Please select a campaign"),
+  businessName: Yup.string().required("Please enter your business name"),
+  email: Yup.string()
+    .email("Please enter a valid email")
+    .required("Please enter your email"),
+  phoneNo: Yup.string()
+    .matches(phoneRegExp, "Please enter your valid phone number")
+    .required("Please enter your contact number"),
+  address: Yup.string().required("Please enter your address"),
+  panNumber: Yup.string().required("Please enter your pan number"),
+  whyGripas: Yup.array()
+    .min(1, "Please mention what services you require")
+    .required("Please mention what services you require"),
+  brandColor: Yup.string().required("Please provide your brand color"),
+  socialMediaLink: Yup.string()
+    .url()
+    .required("Please enter your social media link"),
+  services: Yup.string().required("Please provide the services you provide"),
+  website: Yup.string().url("Please enter a valid link"),
+  servicesRequired: Yup.array()
+    .min(1, "Please mention what services you require")
+    .required("Please mention what services you require"),
+});

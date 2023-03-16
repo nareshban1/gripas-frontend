@@ -88,6 +88,10 @@ const Footer = ({ className }: { className: string }) => {
                 <Link className="text-white py-2" href="/website-request">
                   <li className="pe-md-3 my-2 my-md-0">Website Request</li>
                 </Link>
+                <Link className="text-white py-2" href="/campaigns">
+                  <li className="pe-md-3 my-2 my-md-0">Campaigns</li>
+                </Link>
+
                 <Link className="text-white py-2" href="/privacypolicy">
                   <li className="pe-md-3 my-2 my-md-0">Privacy Policy</li>
                 </Link>

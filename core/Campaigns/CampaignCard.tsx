@@ -3,14 +3,15 @@ import React from "react";
 import { m } from "framer-motion";
 import Image from "next/image";
 import * as gtag from "../../lib/gtag";
-const CampaignCard = ({ campaignItem }: { campaignItem: any }) => {
+import { Campaign } from "./campaigns.interface";
+const CampaignCard = ({ campaignItem }: { campaignItem: Campaign }) => {
   return (
     <Link
       href={`/campaigns/${campaignItem.slug}`}
       onClick={() => {
         gtag.event({
-          action: `${campaignItem.title} Viewed`,
-          label: campaignItem.title,
+          action: `${campaignItem.name} Viewed`,
+          label: campaignItem.name,
           category: "engagement",
           value: "",
         });
@@ -24,13 +25,13 @@ const CampaignCard = ({ campaignItem }: { campaignItem: any }) => {
         <div className="position-relative  h-100 ">
           <Image
             src={campaignItem?.image}
-            alt={campaignItem.title}
+            alt={campaignItem.name}
             height={350}
             width={400}
             style={{ objectFit: "cover", width: "100%" }}
           />
           <p className="py-3 mb-0 spaced-text fw-bold fs-5 text-dark">
-            {campaignItem.title}
+            {campaignItem.name}
           </p>
         </div>
       </m.div>

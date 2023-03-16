@@ -11,6 +11,7 @@ const CampaignLanding = ({
 }: {
   featuredCampaigns: CampaignList[];
 }) => {
+  console.log(featuredCampaigns, "FEATURED");
   return (
     <section className="bg-white">
       <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
@@ -20,9 +21,9 @@ const CampaignLanding = ({
         <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
           Campaigns
         </h3>
-        {featuredCampaigns[0]?.blogs?.length ? (
+        {featuredCampaigns[0]?.campaign?.length ? (
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-3">
-            {featuredCampaigns[0]?.blogs.map((item) => (
+            {featuredCampaigns[0]?.campaign.map((item) => (
               <CampaignCard campaignItem={item} key={item.id} />
             ))}
           </div>

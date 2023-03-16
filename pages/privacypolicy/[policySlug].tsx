@@ -10,25 +10,32 @@ const AnimateInView = dynamic(
   () => import("../../components/AnimateInView/AnimateInView")
 );
 
+export interface Policy {
+  id: number;
+  name: string;
+  slug: string;
+  policy: string;
+}
+
 const CampaignDetail = ({
-  campaignResponseData,
+  policyResponseData,
 }: {
-  campaignResponseData: Blog;
+  policyResponseData: Policy;
 }) => {
   const [pageContent, setPageContent] = useState<PageContentData | null>(null);
 
   useEffect(() => {
-    if (campaignResponseData) {
+    if (policyResponseData) {
       setPageContent({
-        content: campaignResponseData?.content,
-        pageDescription: campaignResponseData?.content,
-        pageTitle: "Campaign Privacy Policy",
+        content: policyResponseData?.policy,
+        pageDescription: policyResponseData?.policy,
+        pageTitle: policyResponseData?.name,
       });
     }
     return () => {
       setPageContent(null);
     };
-  }, [campaignResponseData]);
+  }, [policyResponseData]);
 
   return (
     <>
@@ -36,11 +43,11 @@ const CampaignDetail = ({
       <section className="bg-white ">
         <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
           <h3 className="fs-1 fw-bold lh-1 my-3 text-dark lh-base text-center">
-            {campaignResponseData?.title}
+            {policyResponseData?.name}
           </h3>
           <div className="my-5 bg-white">
             <div className="col col-lg-10 mx-auto fs-5 fw-md-medium text-dark blogs-content">
-              <HtmlParser content={campaignResponseData?.content ?? ""} />
+              <HtmlParser content={policyResponseData?.policy ?? ""} />
             </div>
           </div>
         </AnimateInView>
@@ -49,32 +56,27 @@ const CampaignDetail = ({
   );
 };
 
-export async function getStaticProps({
+export async function getServerSideProps({
   params,
 }: {
-  params: { campaignSlug: string };
+  params: { policySlug: string };
 }) {
-  const campaignSlug = params.campaignSlug;
-  const campaignResponse = await apiRequest(`get-campaign/${campaignSlug}`);
+  const policySlug = params.policySlug;
+  const policyResponse = await apiRequest(`privacy-policy/${policySlug}`);
 
-  const [campaignResponseData] = await Promise.all([campaignResponse]);
+  const [policyResponseData] = await Promise.all([policyResponse]);
+
+  if (!policyResponseData) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
-      campaignResponseData,
+      policyResponseData,
     },
-    revalidate: 60,
   };
-}
-
-export async function getStaticPaths() {
-  const allCampaign = await apiRequest<PaginatedCampaigns>(`all-campaigns/`);
-
-  const [allCampaignResponseData] = await Promise.all([allCampaign]);
-  const paths = allCampaignResponseData?.data?.map((campaign) => ({
-    params: { campaignSlug: campaign.slug },
-  }));
-  return { paths, fallback: "blocking" };
 }
 
 export default CampaignDetail;

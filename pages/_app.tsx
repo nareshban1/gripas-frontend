@@ -15,6 +15,7 @@ import Footer from "../core/Footer/Footer";
 import { poppins } from "../lib/app.interface";
 import * as gtag from "../lib/gtag";
 import { ToastContainer } from "react-toastify";
+import CampaignGetStartedForm from "../core/Forms/CampaignGetStartedForm";
 
 const GetStarted = dynamic(() => import("../core/Forms/GetStarted"));
 const CustomPackage = dynamic(() => import("../core/Forms/CustomPackage"));
@@ -93,6 +94,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <CustomPackage />
         <BuyPackageForm />
         <ToastContainer />
+        <CampaignGetStartedForm />
         <WhatsAppWidget />
         <Footer className={poppins.className} />
       </OverlayContextProvider>

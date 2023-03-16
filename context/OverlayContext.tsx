@@ -12,6 +12,11 @@ export const OverlayContextProvider = (props: any) => {
   const [showCustomForm, setShowCustomForm] = useState(false);
   const [packageId, setPackageId] = useState<string | number>("");
   const [showPackageBuyForm, setShowPackageBuyForm] = useState(false);
+  const [campaign, setCampaignDetails] = useState<{
+    campaignId: number;
+    campaignName: string;
+  } | null>(null);
+  const [showCampaignForm, setShowCampaignForm] = useState(false);
   const toggleFreelanceForm = () => {
     setShowfreelanceForm(!showfreelanceForm);
   };
@@ -32,17 +37,32 @@ export const OverlayContextProvider = (props: any) => {
     setPackageId(id);
   };
 
+  const setCampaign = (campaignDetails: {
+    campaignId: number;
+    campaignName: string;
+  }) => {
+    setCampaignDetails(campaignDetails);
+  };
+
+  const toggleCampaignForm = () => {
+    setShowCampaignForm(!showCampaignForm);
+  };
+
   const value = {
     showStartedForm,
     showfreelanceForm,
     showCustomForm,
     showPackageBuyForm,
+    showCampaignForm,
     toggleStartedForm,
     toggleFreelanceForm,
     toggleCustomForm,
     togglePackageBuyForm,
+    toggleCampaignForm,
     setPackage,
+    setCampaign,
     packageId,
+    campaign,
   };
 
   return (

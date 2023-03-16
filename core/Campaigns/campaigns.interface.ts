@@ -1,24 +1,14 @@
 export interface CampaignList {
-  id: number;
-  listType: string;
-  upload_time: string;
-  blogs: Blog[];
+  campaign: Campaign[];
 }
 
-export interface Blog {
-  id: number;
-  category: Category[];
-  title: string;
-  slug: string;
-  content: string;
-  createdAt: string;
-  image: string;
-  author: string;
-}
-
-export interface Category {
+export interface Campaign {
   id: number;
   name: string;
+  slug: string;
+  image: string;
+  shortDescription: string;
+  details?: string;
 }
 
 export interface PaginatedCampaigns {
@@ -30,5 +20,21 @@ export interface PaginatedCampaigns {
   count: number;
   totalPages: number;
   currentPage: number;
-  data: Blog[];
+  data: Campaign[];
+}
+
+export interface CompleteCampaign {
+  id: number;
+  image: string;
+  name: string;
+  slug: string;
+  shortDescription: string;
+  policy: Policy;
+  details: string;
+  isActive: boolean;
+}
+
+export interface Policy {
+  id: number;
+  slug: string;
 }
