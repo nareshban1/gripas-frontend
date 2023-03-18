@@ -2,9 +2,9 @@ import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import { useContext, useEffect, useState } from "react";
 import AnimateInView from "../../components/AnimateInView/AnimateInView";
 import Button from "../../components/Button/Button";
+import Logo from "../../components/Logo/Logo";
 import { OverlayContext } from "../../context/OverlayContext";
 import { poppins } from "../../lib/app.interface";
-
 import { Link, motion } from "../Imports/imports";
 import { MenuToggle } from "./MenuToggle";
 import { useWindowSize } from "./useWindowSize";
@@ -42,15 +42,7 @@ const Navbar = ({ className }: { className: string }) => {
             className="navbar-brand py-3 hero-sub-text font-size-sm fw-bold text-white"
             href="/"
           >
-            {/* <Image
-            src="/logo.svg"
-            alt="Gripas Marketing"
-            width={180}
-            height={70}
-          /> */}
-            Gripas
-            <br />
-            Marketing
+            <Logo color="white" />
           </Link>
 
           <motion.nav
@@ -64,7 +56,7 @@ const Navbar = ({ className }: { className: string }) => {
             />
           </motion.nav>
           <div className="collapse navbar-collapse ">
-            <ul className="navbar-nav ms-auto">
+            <ul className="navbar-nav ms-auto list-none">
               <li className="nav-item px-xl-3 px-2">
                 <Link
                   className="nav-link text-white fw-medium nav-link-items"
@@ -132,7 +124,7 @@ const Navbar = ({ className }: { className: string }) => {
           <div className="container main h-100 py-2 d-flex">
             <div className="overflow-auto w-100 flex-grow-1 position-relative">
               <div className="position-absolute h-100 overflow-auto  d-flex flex-column justify-content-between ">
-                <ul className="navbar-nav ">
+                <ul className="navbar-nav list-none">
                   <li className="nav-item py-2">
                     <Link
                       className="nav-link text-white fw-bold  nav-link-items fs-3"

@@ -26,7 +26,7 @@ const apiRequest = async <T>(
       url: `${API_URL}${url}`,
       params: queryParams,
       headers: {
-        // "Accept-Encoding": "gzip,deflate,compress",
+        "Accept-Encoding": "gzip,deflate,compress",
         "Content-Type": "application/json",
       },
       data: requestBody,

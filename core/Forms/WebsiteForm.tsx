@@ -23,7 +23,7 @@ const WebsiteForm = () => {
       ...data,
     };
     toggleLoading();
-    const response = await apiRequest("forms/webiste-form/", {
+    const response = await apiRequest("forms/website-request/", {
       method: "POST",
       requestBody: requestData,
     });

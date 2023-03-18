@@ -5,6 +5,7 @@ import { FaTiktok } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import apiRequest from "../../components/Axios/api-request";
 import { TiSocialAtCircular } from "react-icons/ti";
+import Logo from "../../components/Logo/Logo";
 export interface Social {
   id: number;
   platform: string;
@@ -49,15 +50,17 @@ const Footer = ({ className }: { className: string }) => {
               className="navbar-brand  hero-sub-text font-size-md fw-bold text-white"
               href="/"
             >
-              {/* <Image
-            src="/logo.svg"
-            alt="Gripas Marketing"
-            width={180}
-            height={70}
-          /> */}
-              Gripas
+              <Logo color="white" />
+              <Image
+                src="/logo.svg"
+                className=""
+                alt="Gripas Marketing"
+                width={180}
+                height={70}
+              />
+              {/* Gripas
               <br />
-              Marketing
+              Marketing */}
             </Link>
             <p className="lh-1 mt-2 text-white lh-base fs-5 ">
               Driving business through creativity
@@ -66,7 +69,7 @@ const Footer = ({ className }: { className: string }) => {
           <div className="col-12 col-md-6">
             <div className="text-white my-4 w-100">
               <h6 className="spaced-text fw-bold">Quick Links</h6>
-              <ul className="p-0 d-md-flex my-2 flex-wrap">
+              <ul className="p-0 d-md-flex my-2 flex-wrap list-none">
                 <Link className="text-white py-2" href="/aboutus">
                   <li className="pe-md-3 my-2 my-md-0">About Us</li>
                 </Link>
@@ -91,7 +94,6 @@ const Footer = ({ className }: { className: string }) => {
                 <Link className="text-white py-2" href="/campaigns">
                   <li className="pe-md-3 my-2 my-md-0">Campaigns</li>
                 </Link>
-
                 <Link className="text-white py-2" href="/privacypolicy">
                   <li className="pe-md-3 my-2 my-md-0">Privacy Policy</li>
                 </Link>

@@ -39,7 +39,7 @@ const WhatWeDo = (props: { featuredServices: ServiceItem[] }) => {
         {featuredServices && featuredServices?.length ? (
           <div className="row d-flex ">
             <div className="col-lg-7 col-12 order-1 order-md-1">
-              <ul className="p-0">
+              <ul className="p-0 list-none">
                 {featuredServices?.map((service) => (
                   <li
                     key={service.id}

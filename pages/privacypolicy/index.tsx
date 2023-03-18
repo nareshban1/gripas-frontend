@@ -11,7 +11,7 @@ const Policy = ({ pageContent }: { pageContent: any }) => {
     <>
       <Seo pageContent={pageContent} />
       <section className="bg-white ">
-        <AnimateInView className="container pt-5  d-flex flex-column justify-content-start">
+        <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
           <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
             Our Policy
           </h2>
@@ -19,7 +19,7 @@ const Policy = ({ pageContent }: { pageContent: any }) => {
             Policy
           </h3>
           {pageContent?.content && (
-            <div className="col-12 col-md-8 fs-5">
+            <div className="col-12 fs-5">
               <HtmlParser content={pageContent?.content} />
             </div>
           )}
@@ -34,6 +34,7 @@ export default Policy;
 export async function getServerSideProps() {
   const pageDetailsResponse = await apiRequest(`pagecontents/privacy-policy`);
   const [pageContentData] = await Promise.all([pageDetailsResponse]);
+  console.log(pageContentData);
   const pageContent = pageContentData ? pageContentData : {};
   return {
     props: {
