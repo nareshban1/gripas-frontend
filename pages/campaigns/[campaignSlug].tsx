@@ -57,39 +57,39 @@ const CampaignDetail = ({
             <div className="my-5 bg-white">
               <div className="col col-lg-10 mx-auto fs-5 fw-md-medium text-dark blogs-content">
                 <HtmlParser content={campaignResponseData?.details ?? ""} />
+                <div className="d-flex mt-5">
+                  <Link
+                    href={`/privacypolicy/${campaignResponseData?.policy?.slug}`}
+                    className="btn btn-outline-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
+                    onClick={() => {
+                      gtag.event({
+                        action: "View Policy clicked",
+                        label: "View Policy",
+                        category: "engagement",
+                        value: "",
+                      });
+                    }}
+                  >
+                    View Campaign Policy
+                    <CgArrowLongRight className="ms-2 long-arrow" />
+                  </Link>
+                  <Button
+                    label={"Get Started"}
+                    className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center ms-3"
+                    onClick={() => {
+                      setCampaign({
+                        campaignId: campaignResponseData?.id,
+                        campaignName: campaignResponseData?.name,
+                      });
+                      toggleCampaignForm();
+                    }}
+                    action={"Campaign Get Started Clicked"}
+                    actionlabel={"Campaign Get Started"}
+                    actionCategory={"engagement"}
+                    value={""}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="d-flex">
-              <Link
-                href={`/privacypolicy/${campaignResponseData?.policy?.slug}`}
-                className="btn btn-outline-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-                onClick={() => {
-                  gtag.event({
-                    action: "View Policy clicked",
-                    label: "View Policy",
-                    category: "engagement",
-                    value: "",
-                  });
-                }}
-              >
-                View Campaign Policy
-                <CgArrowLongRight className="ms-2 long-arrow" />
-              </Link>
-              <Button
-                label={"Get Started"}
-                className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center ms-3"
-                onClick={() => {
-                  setCampaign({
-                    campaignId: campaignResponseData?.id,
-                    campaignName: campaignResponseData?.name,
-                  });
-                  toggleCampaignForm();
-                }}
-                action={"Campaign Get Started Clicked"}
-                actionlabel={"Campaign Get Started"}
-                actionCategory={"engagement"}
-                value={""}
-              />
             </div>
           </div>
         </AnimateInView>

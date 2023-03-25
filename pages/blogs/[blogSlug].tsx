@@ -53,10 +53,10 @@ const BlogDetail = ({
       {pageContent && <Seo pageContent={pageContent} />}
       <section className="bg-white ">
         <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
-          <p className=" fw-regular lh-1 text-dark lh-base text-center fs-5 m-0">
+          <p className=" fw-regular lh-1 text-dark lh-base text-center fs-6 m-0">
             {new Date(blogResponseData?.createdAt)?.toLocaleDateString()}
           </p>
-          <h3 className="fs-1 fw-bold lh-1 my-3 text-dark lh-base text-center">
+          <h3 className="fs-1 fw-bold lh-1 text-dark lh-base text-center">
             {blogResponseData?.title}
           </h3>
           {blogResponseData?.author && (

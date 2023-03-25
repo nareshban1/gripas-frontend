@@ -79,7 +79,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <OverlayContextProvider>
         <style jsx global>{`
           * > * {
-            font-family: ${poppins.style.fontFamily};
+            font-family: ${poppins.style.fontFamily} !important;
           }
         `}</style>
         <Navbar className={poppins.className} />
