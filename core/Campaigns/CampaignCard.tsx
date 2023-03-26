@@ -28,7 +28,7 @@ const CampaignCard = ({ campaignItem }: { campaignItem: Campaign }) => {
             alt={campaignItem.name}
             height={350}
             width={400}
-            style={{ objectFit: "cover", width: "100%" }}
+            style={{ objectFit: "fill", width: "100%" }}
           />
           <p className="py-3 mb-0 spaced-text fw-bold fs-5 text-dark">
             {campaignItem.name}

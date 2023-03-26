@@ -51,11 +51,11 @@ const CampaignDetail = ({
                 src={campaignResponseData?.image}
                 alt={campaignResponseData?.name}
                 fill
-                style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                style={{ objectFit: "fill", width: "100%", height: "100%" }}
               />
             </div>
             <div className="my-5 bg-white">
-              <div className="col col-lg-10 mx-auto fs-5 fw-md-medium text-dark blogs-content">
+              <div className="col col-lg-10 mx-auto fs-6 fw-md-medium text-dark blogs-content">
                 <HtmlParser content={campaignResponseData?.details ?? ""} />
                 <div className="d-flex mt-5">
                   <Link
