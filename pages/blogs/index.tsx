@@ -66,7 +66,7 @@ const Blogs = ({
                       <p className=" spaced-text fw-bold fs-5 text-dark ">
                         {featuredBlogs[0]?.title}
                       </p>
-                      <p className="fs-5 fw-md-medium text-dark my-2">
+                      <p className="fs-6 fw-md-medium text-dark my-2">
                         <HtmlParser
                           content={featuredBlogs[0]?.content.substring(0, 200)}
                         />
