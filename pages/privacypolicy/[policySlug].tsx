@@ -42,10 +42,12 @@ const CampaignDetail = ({
       {pageContent && <Seo pageContent={pageContent} />}
       <section className="bg-white ">
         <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
-          <h3 className="fs-1 fw-bold lh-1 my-3 text-dark lh-base text-center">
-            {policyResponseData?.name}
-          </h3>
-          <div className="my-5 bg-white">
+          <div className="col col-lg-10 mx-auto fs-5 fw-md-medium text-dark blogs-content">
+            <h3 className="fs-3 fw-bold lh-1 my-3 text-dark lh-base ">
+              {policyResponseData?.name}
+            </h3>
+          </div>
+          <div className="bg-white">
             <div className="col col-lg-10 mx-auto fs-5 fw-md-medium text-dark blogs-content">
               <HtmlParser content={policyResponseData?.policy ?? ""} />
             </div>

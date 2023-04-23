@@ -5,6 +5,7 @@ import { ContactInputs, ContactValidationSchema } from "./schema";
 import apiRequest from "../../components/Axios/api-request";
 import { useBoolean } from "usehooks-ts";
 import { toast } from "react-toastify";
+import Button from "../../components/Button/Button";
 
 const ContactForm = () => {
   const {
@@ -75,14 +76,17 @@ const ContactForm = () => {
           register={register}
           placeHolder="Enter Message"
         />
-        <button
+        <Button
+          onClick={handleSubmit(onSubmit)}
+          action="User Sent an Email"
+          actionCategory="Engagement"
+          actionlabel="User Sent an Email"
+          hasArrow
+          label="Send Message"
           disabled={isLoading}
           type="submit"
           className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-        >
-          Send Message
-          <CgArrowLongRight className="ms-2 long-arrow" />
-        </button>
+        />
       </form>
     </div>
   );

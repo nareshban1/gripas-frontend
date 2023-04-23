@@ -13,6 +13,7 @@ import { OverlayContext } from "../../context/OverlayContext";
 import { PackageDetail } from "../Packages/Packages";
 import { BuyPackageInputs, BuyPackageValidationSchema } from "./schema";
 import { toast } from "react-toastify";
+import Button from "../../components/Button/Button";
 export interface ServicesSimple {
   id: number;
   name: string;
@@ -226,13 +227,20 @@ const BuyPackageForm = () => {
             register={register}
             placeHolder="Enter Info"
           />
-          <button
+          <Button
+            onClick={handleSubmit(onSubmit)}
+            action="Get Started with Campaign"
+            actionCategory="Engagement"
+            actionlabel={`Buy ${
+              packageOptions.find((c: any) => c.value === getValues("package"))
+                ?.label
+            } package`}
+            hasArrow
+            label="Lets Go"
             disabled={isLoading}
             type="submit"
             className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-          >
-            Lets Go <CgArrowLongRight className="ms-2 long-arrow" />
-          </button>
+          />
         </form>
       </div>
     </OffCanvasComponent>

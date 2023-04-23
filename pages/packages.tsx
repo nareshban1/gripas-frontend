@@ -82,7 +82,7 @@ const Packages = ({
                     togglePackageBuyForm();
                     setPackage(selectedItem.id);
                   }}
-                  label=" Buy Package"
+                  label="Buy Package"
                 ></Button>
               )}
             </>

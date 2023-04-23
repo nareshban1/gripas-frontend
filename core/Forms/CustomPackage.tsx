@@ -11,6 +11,7 @@ import apiRequest from "../../components/Axios/api-request";
 import { OptionType, ServicesSimple } from "./BuyPackageForm";
 import { useBoolean } from "usehooks-ts";
 import { toast } from "react-toastify";
+import Button from "../../components/Button/Button";
 
 const CustomPackage = () => {
   const { showCustomForm, toggleCustomForm } = useContext(OverlayContext);
@@ -173,13 +174,17 @@ const CustomPackage = () => {
             register={register}
             placeHolder="Enter Info"
           />
-          <button
+          <Button
+            onClick={handleSubmit(onSubmit)}
+            action="Request Custom Package"
+            actionCategory="Engagement"
+            actionlabel="Request Custom Package"
+            hasArrow
+            label="Lets Go"
             disabled={isLoading}
             type="submit"
             className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-          >
-            Lets Go <CgArrowLongRight className="ms-2 long-arrow" />
-          </button>
+          />
         </form>
       </div>
     </OffCanvasComponent>

@@ -16,7 +16,7 @@ const Policy = ({ pageContent }: { pageContent: any }) => {
             Our Policy
           </h2>
           <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
-            Policy
+            Gripas Marketing Privacy Policy
           </h3>
           {pageContent?.content && (
             <div className="col-12 fs-5">

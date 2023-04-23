@@ -10,6 +10,8 @@ const Button = ({
   actionCategory,
   value,
   hasArrow = true,
+  disabled = false,
+  type = "button",
   icon,
 }: {
   onClick: () => void;
@@ -21,6 +23,8 @@ const Button = ({
   actionlabel?: string;
   hasArrow?: boolean;
   icon?: ReactNode;
+  disabled?: boolean;
+  type?: string;
 }) => {
   const onButtonClick = (e: any) => {
     e.stopPropagation();
@@ -28,13 +32,17 @@ const Button = ({
     gtag.event({
       action: action ?? label + " clicked",
       label: actionlabel ?? label,
-      category: actionCategory ?? "engagement",
+      category: actionCategory ?? "Engagement",
       value: value ?? "",
     });
   };
 
   return (
-    <button className={`${className}`} onClick={onButtonClick}>
+    <button
+      className={`${className}`}
+      onClick={onButtonClick}
+      disabled={disabled}
+    >
       {label ?? null}
       {hasArrow && <CgArrowLongRight className="ms-2 long-arrow" />}
       {icon}

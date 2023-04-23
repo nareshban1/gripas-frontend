@@ -9,6 +9,7 @@ import OffCanvasComponent from "../../components/OffCanvasComponent/OffCanvasCom
 import { OverlayContext } from "../../context/OverlayContext";
 import { CgArrowLongRight, useForm, yupResolver } from "../Imports/imports";
 import { FreelancerInputs, FreelancerValidationSchema } from "./schema";
+import Button from "../../components/Button/Button";
 
 const FreelancerForm = () => {
   const { showfreelanceForm, toggleFreelanceForm } = useContext(OverlayContext);
@@ -142,14 +143,17 @@ const FreelancerForm = () => {
             register={register}
             error={errors.experience?.message}
           />
-
-          <button
+          <Button
+            onClick={handleSubmit(onSubmit)}
+            action="Freelancer Application Submitted"
+            actionCategory="Engagement"
+            actionlabel="Freelancer Application Submitted"
+            hasArrow
+            label="Lets Go"
             disabled={isLoading}
             type="submit"
             className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-          >
-            Lets Go <CgArrowLongRight className="ms-2 long-arrow" />
-          </button>
+          />
         </form>
       </div>
     </OffCanvasComponent>

@@ -5,6 +5,7 @@ import { WebsiteFormInputs, WebsiteFormValidationSchema } from "./schema";
 import apiRequest from "../../components/Axios/api-request";
 import { useBoolean } from "usehooks-ts";
 import { toast } from "react-toastify";
+import Button from "../../components/Button/Button";
 
 const WebsiteForm = () => {
   const {
@@ -81,14 +82,17 @@ const WebsiteForm = () => {
           register={register}
           placeHolder="Enter Website Details"
         />
-        <button
+        <Button
+          onClick={handleSubmit(onSubmit)}
+          action="Request Website Quota"
+          actionCategory="Engagement"
+          actionlabel="Request Website Quota"
+          hasArrow
+          label="Request Quota"
           disabled={isLoading}
           type="submit"
           className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-        >
-          Request Quota
-          <CgArrowLongRight className="ms-2 long-arrow" />
-        </button>
+        />
       </form>
     </div>
   );
