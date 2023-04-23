@@ -35,7 +35,7 @@ const AboutUs = ({
             About Us
           </h3>
           {pageContent?.content && (
-            <div className="col-12 col-md-8 fs-5">
+            <div className="col-12 col-md-8 fs-6">
               <HtmlParser content={pageContent?.content} />
             </div>
           )}
