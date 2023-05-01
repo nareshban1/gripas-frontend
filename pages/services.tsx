@@ -49,12 +49,7 @@ const Services = ({
                 }`}
               >
                 <div className="position-relative service-image">
-                  <Image
-                    src={service?.image}
-                    alt={service.name}
-                    fill
-                    style={{ objectFit: "contain" }}
-                  />
+                  <Image src={service?.image} alt={service.name} fill />
                 </div>
               </div>
             </div>

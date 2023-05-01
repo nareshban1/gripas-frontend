@@ -40,36 +40,34 @@ export default function Portfolio({
           <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
             Our Portfolio
           </h3>
-          <div className="container-fluid p-0">
-            <div className="row row-cols-md-2 row-cols-1  position-relative w-100 g-5 m-0">
-              {allPortfolios && allPortfolios?.length ? (
-                <>
-                  {allPortfolios.map((item) => (
-                    <div className="col item-grid p-0 p-md-3 " key={item.id}>
-                      <div
-                        className="item-grid-item cursor-pointer"
-                        onClick={() => {
-                          setSelectedItem(item);
-                          openModal();
-                        }}
-                      >
-                        <div className="item-grid-item-image">
-                          <Image src={item.image} alt={item.name} fill />
-                        </div>
-                        <div className="item-grid-item-description mt-3">
-                          <h4 className="spaced-text fw-bold">{item.name}</h4>
-                          <div
-                            className={`service-info fw-md-medium text-dark my-2 ${poppins.className}`}
-                          >
-                            <HtmlParser content={item.shortDescription} />
-                          </div>
+          <div className="row row-cols-md-2 row-col-1  g-4">
+            {allPortfolios && allPortfolios?.length ? (
+              <>
+                {allPortfolios.map((item) => (
+                  <div className="col" key={item.id}>
+                    <div
+                      className="cursor-pointer  border box-sizing-border"
+                      onClick={() => {
+                        setSelectedItem(item);
+                        openModal();
+                      }}
+                    >
+                      <div className="item-grid-item-image">
+                        <Image src={item.image} alt={item.name} fill />
+                      </div>
+                      <div className="item-grid-item-description  p-3">
+                        <h4 className="spaced-text fw-bold">{item.name}</h4>
+                        <div
+                          className={`service-info fw-md-medium text-dark mt-2 ${poppins.className}`}
+                        >
+                          <HtmlParser content={item.shortDescription} />
                         </div>
                       </div>
                     </div>
-                  ))}
-                </>
-              ) : null}
-            </div>
+                  </div>
+                ))}
+              </>
+            ) : null}
           </div>
         </AnimateInView>
       </section>
@@ -90,8 +88,10 @@ export default function Portfolio({
                 <div
                   className={`service-info fw-md-medium text-dark my-3  ${poppins.className}`}
                 >
-                  <h5 className="m-0 fw-semibold">Client Details</h5>
-                  <p className="m-0 fw-medium fs-5">
+                  <p className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
+                    Client Details
+                  </p>
+                  <p className="m-0 fw-bold fs-5">
                     {selectedItem?.client?.name}
                   </p>
                   <p className="m-0">{selectedItem?.client?.details}</p>
@@ -100,6 +100,9 @@ export default function Portfolio({
                   </p>
                 </div>
               )}
+              <p className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
+                Project Details
+              </p>
               <div
                 className={`service-info fw-md-medium text-dark my-2 ${poppins.className}`}
               >
