@@ -9,11 +9,10 @@ export interface PackageDetail {
   packageInfo: string;
   slug: string;
   price: number;
+  image: string;
   isRecommended: boolean;
   isDiscounted: boolean;
   isOffer: boolean;
-  actualprice: number;
-  services: Service[];
 }
 
 export interface Service {
@@ -58,7 +57,7 @@ const Packages = ({
         <div className="mt-4 d-flex">
           <Link
             href="/packages"
-            className="btn btn-outline-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
+            className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
             onClick={() => {
               gtag.event({
                 action: "View All Packages Clicked",

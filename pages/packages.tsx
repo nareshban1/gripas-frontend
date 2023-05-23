@@ -31,7 +31,6 @@ const Packages = ({
     setFalse: closeModal,
     setTrue: openModal,
   } = useBoolean(false);
-  const [selectedItem, setSelectedItem] = useState<PackageDetail | null>(null);
 
   return (
     <>
@@ -48,81 +47,11 @@ const Packages = ({
             {packages &&
               packages?.map((pack, index) => (
                 <div className="col " key={index}>
-                  <PackageCard
-                    pack={pack}
-                    onClick={() => {
-                      openModal();
-                      setSelectedItem(pack);
-                    }}
-                  />
+                  <PackageCard pack={pack} />
                 </div>
               ))}
           </div>
         </AnimateInView>
-        <PackageModal
-          heading={
-            selectedItem ? (
-              <>
-                <h4 className="fw-bold">{selectedItem.packageName}</h4>
-                <p className="fw-medium fs-6">{selectedItem.packageInfo}</p>
-              </>
-            ) : (
-              "Package Details"
-            )
-          }
-          isOpen={isOpen}
-          toggle={closeModal}
-          modalButton={
-            <>
-              {selectedItem && (
-                <Button
-                  className="btn btn-primary rounded-0 px-4 py-3 nav-link-text d-flex align-items-center"
-                  onClick={() => {
-                    closeModal();
-                    togglePackageBuyForm();
-                    setPackage(selectedItem.id);
-                  }}
-                  label="Buy Package"
-                ></Button>
-              )}
-            </>
-          }
-        >
-          {selectedItem && (
-            <>
-              <div>
-                <div className="d-flex flex-column justify-content-end  mt-auto">
-                  <span
-                    className={`fw-medium fs-5 text-decoration-line-through ${
-                      selectedItem.isDiscounted ? "visible" : "invisible"
-                    }`}
-                  >
-                    Rs.{selectedItem.actualprice}
-                  </span>
-                  <div className="d-flex align-items-baseline ">
-                    <h1 className="fs-1 fw-bold m-0 me-2 text-primary">
-                      Rs.{selectedItem.price.toLocaleString()}
-                    </h1>
-                    <span>per month</span>
-                  </div>
-                </div>
-                <h5 className="fw-semibold mt-4">What you get?</h5>
-                <div className="my-3">
-                  {selectedItem.services.map((serviceDetail, index: number) => (
-                    <p key={index}>
-                      <>
-                        {serviceDetail.service.serviceName}
-                        {serviceDetail.moreInfo && (
-                          <>({serviceDetail.moreInfo})</>
-                        )}
-                      </>
-                    </p>
-                  ))}
-                </div>
-              </div>
-            </>
-          )}
-        </PackageModal>
       </section>
       <InfoComponent
         subtitle="Customization"

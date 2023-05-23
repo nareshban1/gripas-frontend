@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Button from "../../components/Button/Button";
 import { OverlayContext } from "../../context/OverlayContext";
 import { PackageDetail } from "./Packages";
+import Image from "next/image";
 
 const PackageCard = ({
   pack,
@@ -28,29 +29,11 @@ const PackageCard = ({
           </div>
         )}
       </div>
-
       <p className="fw-semibold">{pack.packageInfo}</p>
-
-      <div className="my-3">
-        {pack.services
-          .filter((service) => service.isFeatured)
-          .map((serviceDetail, index: number) => (
-            <p key={index}>
-              <>
-                {serviceDetail.service.serviceName}
-                {serviceDetail.moreInfo && <>({serviceDetail.moreInfo})</>}
-              </>
-            </p>
-          ))}
+      <div className="my-3 position-relative h-100">
+        <Image src={pack.image} alt={pack.packageName} fill />
       </div>
       <div className="d-flex flex-column justify-content-end  mt-auto">
-        <span
-          className={`fw-medium fs-5 text-decoration-line-through ${
-            pack.isDiscounted ? "visible" : "invisible"
-          }`}
-        >
-          Rs.{pack.actualprice}
-        </span>
         <div className="d-flex align-items-baseline ">
           <h1 className="fs-1 fw-bold m-0 me-2">
             Rs.{pack.price.toLocaleString()}

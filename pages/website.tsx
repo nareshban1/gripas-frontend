@@ -5,7 +5,7 @@ import HtmlParser from "../components/HtmlParser/HtmlParser";
 import WebsiteForm from "../core/Forms/WebsiteForm";
 import { CgArrowLongRight, Link } from "../core/Imports/imports";
 import Seo from "../core/Seo/Seo";
-import { PageData } from "../lib/app.interface";
+import { PageData, poppins } from "../lib/app.interface";
 const AnimateInView = dynamic(
   () => import("../components/AnimateInView/AnimateInView")
 );
@@ -20,9 +20,11 @@ export interface TeamMember {
 const WebsiteRequest = ({
   teamMembers,
   pageContent,
+  allWebsites,
 }: {
   teamMembers: TeamMember[];
   pageContent: PageData;
+  allWebsites: any;
 }) => {
   return (
     <>
@@ -52,6 +54,39 @@ const WebsiteRequest = ({
             </>
           )}
 
+          <section className="bg-white my-5">
+            <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
+              Websites we built
+            </h2>
+            <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
+              Our Works
+            </h3>
+            <div className="row row-cols-md-3 row-cols-2 g-4">
+              {allWebsites && allWebsites?.length ? (
+                <>
+                  {allWebsites.map((item: any) => (
+                    <div className="col" key={item.id}>
+                      <a
+                        className="cursor-pointer box-sizing-border"
+                        target="_blank"
+                        rel="noreferrer"
+                        href={item.link}
+                        key={item.id}
+                      >
+                        <div className="website-grid-item-image">
+                          <Image src={item.image} alt={item.name} fill />
+                        </div>
+                        {/* <div className="website-grid-item-description pt-3">
+                          <h5 className="spaced-text fw-medium">{item.name}</h5>
+                        </div> */}
+                      </a>
+                    </div>
+                  ))}
+                </>
+              ) : null}
+            </div>
+          </section>
+
           <div className="my-4 d-flex">
             <Link
               href="/services"
@@ -77,13 +112,18 @@ const WebsiteRequest = ({
 export default WebsiteRequest;
 
 export async function getStaticProps() {
+  const allWebsitesResponse = await apiRequest(`websites/`);
   const pageContentResponse = await apiRequest(`pagecontents/website`);
-  const [pageContentData] = await Promise.all([pageContentResponse]);
+  const [allWebsites, pageContentData] = await Promise.all([
+    allWebsitesResponse,
+    pageContentResponse,
+  ]);
   const pageContent = pageContentData ? pageContentData : {};
 
   return {
     props: {
       pageContent,
+      allWebsites,
     },
     revalidate: 60,
   };
