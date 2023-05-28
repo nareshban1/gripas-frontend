@@ -81,7 +81,7 @@ export default function Portfolio({
           <>
             {" "}
             <div className="item-grid-item-image">
-              <Image src={selectedItem.image} alt={selectedItem.name} fill />
+              <Image src={selectedItem.image} alt={selectedItem.name} />
             </div>
             <div className="item-grid-item-description mt-3">
               {selectedItem?.client && (
