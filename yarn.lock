@@ -4394,6 +4394,13 @@ react-dropzone@^14.2.3:
     file-selector "^0.6.0"
     prop-types "^15.8.1"
 
+react-error-boundary@^4.0.7:
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/react-error-boundary/-/react-error-boundary-4.0.7.tgz#dd65b16d1939894d59ab084af1d371fb10a16ebb"
+  integrity sha512-XyDSL7Uhv3PMs0e1k29cMSnZPSlUCsF7Ci0dtdcpkaWDi9bM2hw6ru2l+PgBhiqilE1ne2XIlsllcaHsn0B6Dw==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
 react-fast-compare@^2.0.1:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"

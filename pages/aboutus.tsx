@@ -65,9 +65,10 @@ const AboutUs = ({
                         width={400}
                         style={{ objectFit: "cover", width: "100%" }}
                       />
-                      <p className="py-3 spaced-text fw-bold fs-5 text-dark m-0">
+                      <p className="pt-3 spaced-text fw-bold fs-5 text-dark m-0">
                         {item.name}
                       </p>
+                      <p className="text-dark m-0">{item.info}</p>
                     </div>
                   </div>
                 ))}

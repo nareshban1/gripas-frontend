@@ -1,10 +1,9 @@
 import dynamic from "next/dynamic";
 import apiRequest from "../components/Axios/api-request";
-import HeroSection from "../core/HeroSection/HeroSection";
-import InfoSection from "../core/InfoSection/InfoSection";
 import Seo from "../core/Seo/Seo";
 import { PageData } from "../lib/app.interface";
-
+import HeroSection from "../core/HeroSection/HeroSection";
+import InfoSection from "../core/InfoSection/InfoSection";
 const BlogsLanding = dynamic(() => import("../core/Blogs/BlogsLanding"));
 const Freelancer = dynamic(() => import("../core/Freelancer/Freelancer"));
 const Packages = dynamic(() => import("../core/Packages/Packages"));
@@ -14,6 +13,7 @@ const WhatWeDo = dynamic(() => import("../core/WhatWeDo/WhatWeDo"));
 const CampaignLanding = dynamic(
   () => import("../core/Campaigns/CampaignsLanding")
 );
+
 export default function Home(props: {
   featuredServices: any;
   featuredPortfolios: any;
@@ -52,51 +52,41 @@ export default function Home(props: {
 }
 
 export async function getServerSideProps() {
-  const featuredServicesResponse = await apiRequest(
-    `services/?isFeatured=true`
-  );
-  const featuredPortfolioResponse = await apiRequest(
-    `portfolios/?isFeatured=true`
-  );
-  const featuredPackagesResponse = await apiRequest(
-    `packages/?isFeatured=true`
-  );
-  const testemonialsResponse = await apiRequest(`testemonials/`);
-  const featuredBlogsResponse = await apiRequest(
-    `blog-group/?listType=landing`
-  );
-  const featuredCampaignsResponse = await apiRequest(
-    `campaign-group/?listType=featured`
-  );
-  const pageDetailsResponse = await apiRequest(`pagecontents/home`);
-  const [
-    featuredServices,
-    featuredPortfolios,
-    featuredBlogs,
-    testemonials,
-    featuredPackages,
-    pageContentData,
-    featuredCampaigns,
-  ] = await Promise.all([
-    featuredServicesResponse,
-    featuredPortfolioResponse,
-    featuredBlogsResponse,
-    testemonialsResponse,
-    featuredPackagesResponse,
-    pageDetailsResponse,
-    featuredCampaignsResponse,
-  ]);
-  const pageContent = pageContentData ? pageContentData : {};
+  try {
+    const featuredServices = await apiRequest("services/?isFeatured=true");
+    const featuredPortfolios = await apiRequest("portfolios/?isFeatured=true");
+    const featuredPackages = await apiRequest("packages/?isFeatured=true");
+    const testemonials = await apiRequest("testemonials/");
+    const featuredBlogs = await apiRequest("blog-group/?listType=landing");
+    const featuredCampaigns = await apiRequest(
+      "campaign-group/?listType=featured"
+    );
+    const pageContentData = await apiRequest("pagecontents/home");
+    const pageContent = pageContentData || {};
 
-  return {
-    props: {
-      featuredServices,
-      featuredPortfolios,
-      featuredPackages,
-      featuredBlogs,
-      testemonials,
-      pageContent,
-      featuredCampaigns,
-    },
-  };
+    return {
+      props: {
+        featuredServices,
+        featuredPortfolios,
+        featuredPackages,
+        featuredBlogs,
+        testemonials,
+        pageContent,
+        featuredCampaigns,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: {
+        featuredServices: [],
+        featuredPortfolios: [],
+        featuredPackages: [],
+        featuredBlogs: [],
+        testemonials: [],
+        pageContent: {},
+        featuredCampaigns: [],
+      },
+    };
+  }
 }
