@@ -30,12 +30,12 @@ const PackageCard = ({
         )}
       </div>
       <p className="fw-semibold">{pack.packageInfo}</p>
-      <div className="my-3 position-relative h-100">
+      <div className="my-3 position-relative h-100 package-image">
         <Image src={pack.image} alt={pack.packageName} fill />
       </div>
       <div className="d-flex flex-column justify-content-end  mt-auto">
         <div className="d-flex align-items-baseline ">
-          <h1 className="fs-1 fw-bold m-0 me-2">
+          <h1 className="fs-2 fw-bold m-0 me-2">
             Rs.{pack.price.toLocaleString()}
           </h1>
           <span>per month</span>

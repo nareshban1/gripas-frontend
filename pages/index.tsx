@@ -32,6 +32,7 @@ export default function Home(props: {
     pageContent,
     featuredCampaigns,
   } = props;
+  console.log(props, "DATAAA");
 
   return (
     <>
@@ -53,11 +54,12 @@ export default function Home(props: {
 
 export async function getServerSideProps() {
   try {
+    const featuredBlogs = await apiRequest("blog-group/?listType=landing-page");
     const featuredServices = await apiRequest("services/?isFeatured=true");
     const featuredPortfolios = await apiRequest("portfolios/?isFeatured=true");
     const featuredPackages = await apiRequest("packages/?isFeatured=true");
     const testemonials = await apiRequest("testemonials/");
-    const featuredBlogs = await apiRequest("blog-group/?listType=landing");
+
     const featuredCampaigns = await apiRequest(
       "campaign-group/?listType=featured"
     );
@@ -76,7 +78,7 @@ export async function getServerSideProps() {
       },
     };
   } catch (error) {
-    console.error(error);
+    console.error(error, "error");
     return {
       props: {
         featuredServices: [],

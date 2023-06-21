@@ -1,12 +1,4 @@
-.masnory {
-  &-container {
-    // width: 100%;
-  }
-  &-item-container {
-    // &:nth-child(1) {
-    //   margin-right: 1.5rem;
-    // }
-  }
+.masonry {
   &-item {
     position: relative;
     &-image {
@@ -17,11 +9,10 @@
       img {
         height: 100% !important;
         width: 100% !important;
-        object-fit: cover;
+        object-fit: contain;
       }
     }
-    &-description {
-    }
+
   }
 }
 

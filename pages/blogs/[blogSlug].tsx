@@ -71,7 +71,7 @@ const BlogDetail = ({
                 src={blogResponseData?.image}
                 alt={blogResponseData?.title}
                 fill
-                style={{ objectFit: "fill", width: "100%", height: "100%" }}
+                style={{ objectFit: "contain", width: "100%", height: "100%" }}
               />
             </div>
 

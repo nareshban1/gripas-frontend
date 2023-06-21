@@ -43,7 +43,7 @@ const Packages = ({
           <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
             Packages
           </h3>
-          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
             {packages &&
               packages?.map((pack, index) => (
                 <div className="col " key={index}>

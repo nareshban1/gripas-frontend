@@ -7,6 +7,7 @@ import { BlogList } from "./blogs.interface";
 const BlogsCard = dynamic(() => import("./BlogsCard"));
 
 const BlogsLanding = ({ featuredBlogs }: { featuredBlogs: BlogList[] }) => {
+  console.log(featuredBlogs, "HELLO");
   return (
     <section className="bg-white">
       <AnimateInView className="container py-5  d-flex flex-column justify-content-start">

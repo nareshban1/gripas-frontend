@@ -1,3 +1,18 @@
-.package-card {
-  min-height: 33rem;
+
+.package{
+  &-card {
+      min-height: 33rem;
+    }
+  &-image {
+          height: 500px;
+          width: 100%;
+          position: relative;
+      
+          img {
+            height: 100% !important;
+            width: 100% !important;
+            object-fit: contain;
+            object-position: left;
+          }
+        }
 }

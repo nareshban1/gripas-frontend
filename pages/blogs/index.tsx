@@ -60,7 +60,7 @@ const Blogs = ({
                       alt={featuredBlogs[0]?.title}
                       height={350}
                       width={400}
-                      style={{ objectFit: "fill", width: "100%" }}
+                      style={{ objectFit: "contain", width: "100%" }}
                     />
                     <div className="py-4 bg-white">
                       <p className=" spaced-text fw-bold fs-5 text-dark ">

@@ -42,10 +42,10 @@ const Portfolio = (props: { featuredPortfolios: IPortfolioItem[] }) => {
           What have we worked on
         </h3>
         {featuredPortfolios && featuredPortfolios?.length ? (
-          <div className="masnory-container ">
+          <div className="masonry-container ">
             <div className="row position-relative w-100 g-5 my-3 m-0">
               <div className="col-12 col-md-6 ps-md-0 pe-md-4 p-0 m-0">
-                <div className=" row g-5 masnory-item-container position-relative h-100">
+                <div className=" row g-5 masonry-item-container position-relative h-100">
                   {[...featuredPortfolios].splice(0, 2).map((item) => (
                     <div className="col-12 " key={item.id}>
                       <PortfolioItem item={item} />
@@ -55,8 +55,8 @@ const Portfolio = (props: { featuredPortfolios: IPortfolioItem[] }) => {
               </div>
 
               <div className="col-12 col-md-6 pe-md-0 ps-md-4 p-0 ">
-                <div className="row g-5 masnory-item-container position-relative ">
-                  {[...featuredPortfolios].splice(2, 3).map((item) => (
+                <div className="row g-5 masonry-item-container position-relative ">
+                  {[...featuredPortfolios].splice(2, 2).map((item) => (
                     <div className="col-12 " key={item.id}>
                       <PortfolioItem item={item} />
                     </div>
