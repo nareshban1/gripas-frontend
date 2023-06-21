@@ -48,7 +48,7 @@ const Services = ({
                   index % 2 === 0 ? "order-md-2 " : "order-md-1"
                 }`}
               >
-                <div className="position-relative service-image">
+                <div className="service-image">
                   <Image src={service?.image} alt={service.name} fill />
                 </div>
               </div>

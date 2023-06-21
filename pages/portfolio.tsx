@@ -78,38 +78,46 @@ export default function Portfolio({
         toggle={closeModal}
       >
         {selectedItem && (
-          <>
-            {" "}
-            <div className="item-grid-item-image">
-              <Image src={selectedItem.image} alt={selectedItem.name} fill />
-            </div>
-            <div className="item-grid-item-description mt-3">
-              {selectedItem?.client && (
-                <div
-                  className={`service-info fw-md-medium text-dark my-3  ${poppins.className}`}
-                >
-                  <p className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
-                    Client Details
-                  </p>
-                  <p className="m-0 fw-bold fs-5">
-                    {selectedItem?.client?.name}
-                  </p>
-                  <p className="m-0">{selectedItem?.client?.details}</p>
-                  <p className="m-0 fw-light">
-                    {selectedItem?.client?.location}
-                  </p>
-                </div>
-              )}
-              <p className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
-                Project Details
-              </p>
-              <div
-                className={`service-info fw-md-medium text-dark my-2 ${poppins.className}`}
-              >
-                <HtmlParser content={selectedItem.details} />
+          <div className="row">
+            <div className="col-4">
+              <div className="item-grid-item-image">
+                <Image
+                  src={selectedItem.image}
+                  alt={selectedItem.name}
+                  fill
+                  style={{ objectPosition: "left" }}
+                />
               </div>
             </div>
-          </>
+            <div className="col">
+              <div className="item-grid-item-description mt-3">
+                {selectedItem?.client && (
+                  <div
+                    className={`service-info fw-md-medium text-dark my-3  ${poppins.className}`}
+                  >
+                    <p className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
+                      Client Details
+                    </p>
+                    <p className="m-0 fw-bold fs-5">
+                      {selectedItem?.client?.name}
+                    </p>
+                    <p className="m-0">{selectedItem?.client?.details}</p>
+                    <p className="m-0 fw-light">
+                      {selectedItem?.client?.location}
+                    </p>
+                  </div>
+                )}
+                <p className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
+                  Project Details
+                </p>
+                <div
+                  className={`service-info fw-md-medium text-dark my-2 ${poppins.className}`}
+                >
+                  <HtmlParser content={selectedItem.details} />
+                </div>
+              </div>
+            </div>
+          </div>
         )}
       </ReactModal>
 

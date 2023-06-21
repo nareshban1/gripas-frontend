@@ -65,7 +65,7 @@ const WhatWeDo = (props: { featuredServices: ServiceItem[] }) => {
                             className="h-100 w-100 position-relative"
                           >
                             <div className="service-info fw-md-medium text-dark my-2">
-                              <HtmlParser content={service.details} />
+                              <HtmlParser content={service.shortDescription} />
                             </div>
                           </m.div>
                         </LazyMotion>

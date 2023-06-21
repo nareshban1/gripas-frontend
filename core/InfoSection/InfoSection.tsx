@@ -2,7 +2,7 @@ import AnimateInView from "../../components/AnimateInView/AnimateInView";
 
 const InfoSection = () => {
   return (
-    <section className="py-4 bg-primary">
+    <section className=" bg-primary">
       <AnimateInView className="container">
         <div className="info-section ">
           <h3 className="font-size-lg fw-bold lh-1 mb-3 text-white lh-base ">
