@@ -1,18 +1,15 @@
-import dynamic from "next/dynamic";
 import apiRequest from "../components/Axios/api-request";
-import Seo from "../core/Seo/Seo";
-import { PageData } from "../lib/app.interface";
+import BlogsLanding from "../core/Blogs/BlogsLanding";
+import CampaignLanding from "../core/Campaigns/CampaignsLanding";
+import Freelancer from "../core/Freelancer/Freelancer";
 import HeroSection from "../core/HeroSection/HeroSection";
 import InfoSection from "../core/InfoSection/InfoSection";
-const BlogsLanding = dynamic(() => import("../core/Blogs/BlogsLanding"));
-const Freelancer = dynamic(() => import("../core/Freelancer/Freelancer"));
-const Packages = dynamic(() => import("../core/Packages/Packages"));
-const Portfolio = dynamic(() => import("../core/PortFolio/Portfolio"));
-const Testemonials = dynamic(() => import("../core/Testemonials/Testemonials"));
-const WhatWeDo = dynamic(() => import("../core/WhatWeDo/WhatWeDo"));
-const CampaignLanding = dynamic(
-  () => import("../core/Campaigns/CampaignsLanding")
-);
+import Packages from "../core/Packages/Packages";
+import Portfolio from "../core/PortFolio/Portfolio";
+import Seo from "../core/Seo/Seo";
+import Testemonials from "../core/Testemonials/Testemonials";
+import WhatWeDo from "../core/WhatWeDo/WhatWeDo";
+import { PageData } from "../lib/app.interface";
 
 export default function Home(props: {
   featuredServices: any;
