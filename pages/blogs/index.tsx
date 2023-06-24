@@ -1,26 +1,25 @@
 import { m } from "framer-motion";
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import apiRequest from "../../components/Axios/api-request";
 import HtmlParser from "../../components/HtmlParser/HtmlParser";
+import AllBlogs from "../../core/Blogs/AllBlogs";
 import { Blog } from "../../core/Blogs/blogs.interface";
 import Seo from "../../core/Seo/Seo";
 import * as gtag from "../../lib/gtag";
-const AllBlogs = dynamic(() => import("../../core/Blogs/AllBlogs"));
 const AnimateInView = dynamic(
   () => import("../../components/AnimateInView/AnimateInView")
 );
 const Freelancer = dynamic(() => import("../../core/Freelancer/Freelancer"));
 
-const Blogs = ({
+export default function Blogs({
   featuredBlogs,
   pageContent,
 }: {
   featuredBlogs: Blog[];
   pageContent: any;
-}) => {
+}) {
   return (
     <>
       <Seo pageContent={pageContent} />
@@ -66,11 +65,11 @@ const Blogs = ({
                       <p className=" spaced-text fw-bold fs-5 text-dark ">
                         {featuredBlogs[0]?.title}
                       </p>
-                      <p className="fs-6 fw-md-medium text-dark my-2">
+                      <div className="fs-6 fw-md-medium text-dark my-2">
                         <HtmlParser
                           content={featuredBlogs[0]?.content.substring(0, 200)}
                         />
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </m.div>
@@ -83,24 +82,29 @@ const Blogs = ({
       </section>
     </>
   );
-};
-
-export default Blogs;
+}
 
 export async function getServerSideProps() {
-  const featuredBlogsResponse = await apiRequest(`featured-blog/`, {
-    headers: { "Accept-Encoding": "gzip,deflate,compress" },
-  });
-  const pageDetailsResponse = await apiRequest(`pagecontents/blogs`);
-  const [featuredBlogs, pageContentData] = await Promise.all([
-    featuredBlogsResponse,
-    pageDetailsResponse,
-  ]);
-  const pageContent = pageContentData ? pageContentData : {};
-  return {
-    props: {
-      featuredBlogs,
-      pageContent,
-    },
-  };
+  try {
+    const featuredBlogs = await apiRequest(`featured-blog/`, {
+      headers: { "Accept-Encoding": "gzip,deflate,compress" },
+    });
+    const pageDetailsResponse = await apiRequest(`pagecontents/blogs`);
+    const pageContent = pageDetailsResponse || {};
+
+    return {
+      props: {
+        featuredBlogs,
+        pageContent,
+      },
+    };
+  } catch (error) {
+    console.error(error, "error");
+    return {
+      props: {
+        featuredBlogs: [],
+        pageContent: {},
+      },
+    };
+  }
 }

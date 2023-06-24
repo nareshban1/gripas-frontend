@@ -52,7 +52,6 @@ const FreelancerForm = () => {
     }
   };
 
-  console.log(errors);
   return (
     <OffCanvasComponent
       title={"Freelancer ?"}

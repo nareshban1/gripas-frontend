@@ -1,3 +1,4 @@
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import apiRequest from "../components/Axios/api-request";
 import BlogsLanding from "../core/Blogs/BlogsLanding";
 import CampaignLanding from "../core/Campaigns/CampaignsLanding";
@@ -11,52 +12,21 @@ import Testemonials from "../core/Testemonials/Testemonials";
 import WhatWeDo from "../core/WhatWeDo/WhatWeDo";
 import { PageData } from "../lib/app.interface";
 
-export default function Home(props: {
+export const getServerSideProps: GetServerSideProps<{
   featuredServices: any;
   featuredPortfolios: any;
   testemonials: any;
   featuredPackages: any;
   featuredBlogs: any;
-  pageContent: PageData;
+  pageContent: any;
   featuredCampaigns: any;
-}) {
-  const {
-    featuredServices,
-    featuredPortfolios,
-    testemonials,
-    featuredPackages,
-    featuredBlogs,
-    pageContent,
-    featuredCampaigns,
-  } = props;
-  console.log(props, "DATAAA");
-
-  return (
-    <>
-      <Seo pageContent={pageContent} />
-      <div className="w-100 bg-primary overflow-hidden">
-        <HeroSection />
-        <InfoSection />
-        <WhatWeDo featuredServices={featuredServices} />
-        <Portfolio featuredPortfolios={featuredPortfolios} />
-        <Packages featuredPackages={featuredPackages} />
-        <Testemonials testemonials={testemonials} />
-        <BlogsLanding featuredBlogs={featuredBlogs} />
-        <CampaignLanding featuredCampaigns={featuredCampaigns} />
-        <Freelancer />
-      </div>
-    </>
-  );
-}
-
-export async function getServerSideProps() {
+}> = async () => {
   try {
     const featuredBlogs = await apiRequest("blog-group/?listType=landing-page");
     const featuredServices = await apiRequest("services/?isFeatured=true");
     const featuredPortfolios = await apiRequest("portfolios/?isFeatured=true");
     const featuredPackages = await apiRequest("packages/?isFeatured=true");
     const testemonials = await apiRequest("testemonials/");
-
     const featuredCampaigns = await apiRequest(
       "campaign-group/?listType=featured"
     );
@@ -88,4 +58,31 @@ export async function getServerSideProps() {
       },
     };
   }
+};
+
+export default function Home({
+  featuredServices,
+  featuredPortfolios,
+  testemonials,
+  featuredPackages,
+  featuredBlogs,
+  pageContent,
+  featuredCampaigns,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  return (
+    <>
+      <Seo pageContent={pageContent} />
+      <div className="w-100 bg-primary overflow-hidden">
+        <HeroSection />
+        <InfoSection />
+        <WhatWeDo featuredServices={featuredServices} />
+        <Portfolio featuredPortfolios={featuredPortfolios} />
+        <Packages featuredPackages={featuredPackages} />
+        <Testemonials testemonials={testemonials} />
+        <BlogsLanding featuredBlogs={featuredBlogs} />
+        <CampaignLanding featuredCampaigns={featuredCampaigns} />
+        <Freelancer />
+      </div>
+    </>
+  );
 }

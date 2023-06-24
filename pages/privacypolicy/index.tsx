@@ -34,7 +34,6 @@ export default Policy;
 export async function getServerSideProps() {
   const pageDetailsResponse = await apiRequest(`pagecontents/privacy-policy`);
   const [pageContentData] = await Promise.all([pageDetailsResponse]);
-  console.log(pageContentData);
   const pageContent = pageContentData ? pageContentData : {};
   return {
     props: {

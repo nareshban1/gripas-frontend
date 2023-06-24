@@ -75,7 +75,6 @@ const GetStarted = () => {
     }
   };
 
-  console.log(getValues());
   return (
     <OffCanvasComponent
       title={"Get Started"}

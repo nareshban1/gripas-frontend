@@ -24,10 +24,10 @@ const RecommendedList = dynamic(
 
 const BlogDetail = ({
   blogResponseData,
-  recommendedResposeData,
+  recommendedResponseData,
 }: {
   blogResponseData: Blog;
-  recommendedResposeData: BlogList[];
+  recommendedResponseData: BlogList[];
 }) => {
   const [pageContent, setPageContent] = useState<PageContentData | null>(null);
 
@@ -83,7 +83,7 @@ const BlogDetail = ({
           </div>
         </AnimateInView>
       </section>
-      {recommendedResposeData?.length ? (
+      {recommendedResponseData?.length ? (
         <section className="bg-white py-5">
           <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
             <h2 className=" fw-bold lh-1 m-0 text-dark lh-base text-start hero-sub-text font-size-sm">
@@ -94,7 +94,7 @@ const BlogDetail = ({
             </h3>
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-3">
               <RecommendedList
-                recommendedResposeData={recommendedResposeData}
+                recommendedResponseData={recommendedResponseData}
               />
             </div>
             <div className="mt-5 d-flex">
@@ -122,34 +122,6 @@ const BlogDetail = ({
   );
 };
 
-export async function getStaticProps({
-  params,
-}: {
-  params: { blogSlug: string };
-}) {
-  const blogSlug = params.blogSlug;
-  const blogResponse = await apiRequest(`get-blog/${blogSlug}`);
-  const recommendedResponse = await apiRequest(
-    `blog-group/?listType=recommended`
-  );
-  const [blogResponseData, recommendedResposeData] = await Promise.all([
-    blogResponse,
-    recommendedResponse,
-  ]);
-  if (!blogResponseData) {
-    return {
-      notFound: true,
-    };
-  }
-  return {
-    props: {
-      blogResponseData,
-      recommendedResposeData,
-    },
-    revalidate: 60,
-  };
-}
-
 export async function getStaticPaths() {
   const allBlogs = await apiRequest<PaginatedBlogs>(`all-blogs/`);
 
@@ -158,6 +130,41 @@ export async function getStaticPaths() {
     params: { blogSlug: blog.slug },
   }));
   return { paths, fallback: "blocking" };
+}
+
+export async function getStaticProps({
+  params,
+}: {
+  params: { blogSlug: string };
+}) {
+  try {
+    const blogSlug = params.blogSlug;
+    const blogResponseData = await apiRequest(`get-blog/${blogSlug}`);
+    const recommendedResponseData = await apiRequest(
+      `blog-group/?listType=recommended`
+    );
+    if (!blogResponseData) {
+      return {
+        notFound: true,
+      };
+    }
+    return {
+      props: {
+        blogResponseData,
+        recommendedResponseData,
+      },
+      revalidate: 10,
+    };
+  } catch (error) {
+    console.error(error, "error");
+    return {
+      props: {
+        blogResponseData: [],
+        recommendedResponseData: [],
+      },
+      revalidate: 10,
+    };
+  }
 }
 
 export default BlogDetail;

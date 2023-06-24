@@ -7,7 +7,6 @@ import { BlogList } from "./blogs.interface";
 const BlogsCard = dynamic(() => import("./BlogsCard"));
 
 const BlogsLanding = ({ featuredBlogs }: { featuredBlogs: BlogList[] }) => {
-  console.log(featuredBlogs, "HELLO");
   return (
     <section className="bg-white">
       <AnimateInView className="container py-5  d-flex flex-column justify-content-start">
@@ -17,7 +16,7 @@ const BlogsLanding = ({ featuredBlogs }: { featuredBlogs: BlogList[] }) => {
         <h3 className="font-size-lg fw-bold lh-1 my-3 text-dark lh-base">
           Blogs
         </h3>
-        {featuredBlogs[0]?.blogs?.length ? (
+        {featuredBlogs?.[0]?.blogs?.length ? (
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-3">
             {featuredBlogs[0]?.blogs.map((item) => (
               <BlogsCard blogItem={item} key={item.id} />

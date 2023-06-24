@@ -4,15 +4,15 @@ import { BlogList } from "./blogs.interface";
 const BlogsCard = dynamic(() => import("./BlogsCard"));
 
 const RecommendedList = ({
-  recommendedResposeData,
+  recommendedResponseData,
 }: {
-  recommendedResposeData: BlogList[];
+  recommendedResponseData: BlogList[];
 }) => {
   return (
     <>
-      {recommendedResposeData[0]?.blogs ? (
+      {recommendedResponseData[0]?.blogs ? (
         <>
-          {recommendedResposeData[0]?.blogs.map((blog) => (
+          {recommendedResponseData[0]?.blogs.map((blog) => (
             <BlogsCard blogItem={blog} key={blog.id} />
           ))}
         </>
