@@ -84,7 +84,7 @@ const AboutUs = ({
 
 export default AboutUs;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const teamMembersResponse = await apiRequest(`teams/`);
   const pageContentResponse = await apiRequest(`pagecontents/about`);
   const [teamMembers, pageContentData] = await Promise.all([
@@ -98,6 +98,5 @@ export async function getStaticProps() {
       teamMembers,
       pageContent,
     },
-    revalidate: 60,
   };
 }

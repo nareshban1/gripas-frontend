@@ -111,7 +111,7 @@ const WebsiteRequest = ({
 
 export default WebsiteRequest;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const allWebsitesResponse = await apiRequest(`websites/`);
   const pageContentResponse = await apiRequest(`pagecontents/website`);
   const [allWebsites, pageContentData] = await Promise.all([
@@ -125,6 +125,5 @@ export async function getStaticProps() {
       pageContent,
       allWebsites,
     },
-    revalidate: 60,
   };
 }

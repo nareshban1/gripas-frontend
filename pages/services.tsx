@@ -63,7 +63,7 @@ const Services = ({
 
 export default Services;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const allServicesResponse = await apiRequest(`services/`);
   const pageDetailsResponse = await apiRequest(`pagecontents/services`);
 
@@ -78,6 +78,5 @@ export async function getStaticProps() {
       allServices,
       pageContent,
     },
-    revalidate: 60,
   };
 }

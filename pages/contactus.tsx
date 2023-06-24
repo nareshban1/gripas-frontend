@@ -77,7 +77,7 @@ const ContactUs = ({
 
 export default ContactUs;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const allContactResponse = await apiRequest(`contacts/`);
   const pageDetailsResponse = await apiRequest(`pagecontents/contactus`);
 
@@ -93,6 +93,5 @@ export async function getStaticProps() {
       allContacts,
       pageContent,
     },
-    revalidate: 60,
   };
 }

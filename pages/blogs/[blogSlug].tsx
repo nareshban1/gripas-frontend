@@ -122,17 +122,7 @@ const BlogDetail = ({
   );
 };
 
-export async function getStaticPaths() {
-  const allBlogs = await apiRequest<PaginatedBlogs>(`all-blogs/`);
-
-  const [allBlogsResponseData] = await Promise.all([allBlogs]);
-  const paths = allBlogsResponseData?.data?.map((blog) => ({
-    params: { blogSlug: blog.slug },
-  }));
-  return { paths, fallback: "blocking" };
-}
-
-export async function getStaticProps({
+export async function getServerSideProps({
   params,
 }: {
   params: { blogSlug: string };
@@ -153,16 +143,14 @@ export async function getStaticProps({
         blogResponseData,
         recommendedResponseData,
       },
-      revalidate: 10,
     };
   } catch (error) {
     console.error(error, "error");
     return {
       props: {
-        blogResponseData: [],
+        blogResponseData: {},
         recommendedResponseData: [],
       },
-      revalidate: 10,
     };
   }
 }
