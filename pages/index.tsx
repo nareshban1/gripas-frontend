@@ -1,16 +1,34 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import apiRequest from "../components/Axios/api-request";
-import BlogsLanding from "../core/Blogs/BlogsLanding";
-import CampaignLanding from "../core/Campaigns/CampaignsLanding";
-import Freelancer from "../core/Freelancer/Freelancer";
 import HeroSection from "../core/HeroSection/HeroSection";
 import InfoSection from "../core/InfoSection/InfoSection";
-import Packages from "../core/Packages/Packages";
-import Portfolio from "../core/PortFolio/Portfolio";
 import Seo from "../core/Seo/Seo";
-import Testemonials from "../core/Testemonials/Testemonials";
-import WhatWeDo from "../core/WhatWeDo/WhatWeDo";
-import { PageData } from "../lib/app.interface";
+
+import dynamic from 'next/dynamic';
+
+const BlogsLanding = dynamic(() => import('../core/Blogs/BlogsLanding'), {
+  loading: () => <p>Loading...</p>,
+})
+const CampaignLanding = dynamic(() => import('../core/Campaigns/CampaignsLanding'), {
+  loading: () => <p>Loading...</p>,
+})
+const Freelancer = dynamic(() => import('../core/Freelancer/Freelancer'), {
+  loading: () => <p>Loading...</p>,
+})
+const Testemonials = dynamic(() => import('../core/Testemonials/Testemonials'), {
+  loading: () => <p>Loading...</p>,
+})
+const WhatWeDo = dynamic(() => import('../core/WhatWeDo/WhatWeDo'), {
+  loading: () => <p>Loading...</p>,
+})
+const Packages = dynamic(() => import('../core/Packages/Packages'), {
+  loading: () => <p>Loading...</p>,
+})
+const Portfolio = dynamic(() => import('../core/PortFolio/Portfolio'), {
+  loading: () => <p>Loading...</p>,
+})
+
+
 
 export const getServerSideProps: GetServerSideProps<{
   featuredServices: any;

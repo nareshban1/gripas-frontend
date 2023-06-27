@@ -1,14 +1,13 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { useState } from "react";
+import { useBoolean } from "usehooks-ts";
 import apiRequest from "../components/Axios/api-request";
 import HtmlParser from "../components/HtmlParser/HtmlParser";
 import ReactModal from "../components/Modal/ReactModal";
-import { useBoolean } from "usehooks-ts";
 import { IPortfolioItem } from "../core/PortFolio/Portfolio";
 import Seo from "../core/Seo/Seo";
 import { PageData, poppins } from "../lib/app.interface";
-import { useState } from "react";
-import Button from "../components/Button/Button";
 
 const AnimateInView = dynamic(
   () => import("../components/AnimateInView/AnimateInView")
