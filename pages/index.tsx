@@ -24,7 +24,7 @@ const WhatWeDo = dynamic(() => import('../core/WhatWeDo/WhatWeDo'), {
 const Packages = dynamic(() => import('../core/Packages/Packages'), {
   loading: () => <p>Loading...</p>,
 })
-const Portfolio = dynamic(() => import('../core/PortFolio/Portfolio'), {
+const Portfolio = dynamic(() => import('../core/PortFolio/PortfolioSlider'), {
   loading: () => <p>Loading...</p>,
 })
 
